@@ -1,5 +1,12 @@
-Somos o grupo GrapeSci 🍇
+<h2>Este é o repositório do projeto Grape-Sci destinado a coisas de nosso Site Institucional, e documentação de nosso projeto</h2>
 
-Nosso projeto é dedicado ao controle de umidade e temperatura do solo, para a colheita das uvas das videiras doeseu hectare. Sendo assim, os problemas enfrentados pelas empresas de cultivo de uva reside na dificuldade de monitorar e controlar adequadamente a umidade do solo em suas vinhas. A umidade excessiva pode levar ao desenvolvimento de doenças fúngicas, como o míldio, enquanto a umidade insuficiente pode resultar em estresse hídrico das plantas e redução na qualidade e no rendimento da colheita, tendo uma perda de aproximadamente 21%.
+<p>Aqui poderemos encontrar nosso Site Instituciional, que é feito utilizando as linguagens:</p>
 
-Com o sensor de umidade para plantas, a " Agrivale " poderia evitar tanto a irrigação excessiva, que pode levar a problemas como o apodrecimento das raízes e doenças fúngicas, quanto a irrigação insuficiente, que pode resultar em estresse hídrico nas plantas e diminuição da qualidade da uva. Isso resultaria em uma maior produtividade e qualidade das uvas colhidas, contribuindo para a reputação e a competitividade da empresa no mercado de vinhos e sucos de uva.
+
+![Github Badge](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Github Badge](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Github Badge](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+
+<p>Em nosso site poderemos encontrar mais sobre nosso projeto, como uma tela nos falando mais sobre nós, membros da Grape-Sci, e outra tela que pode te dizer o quanto você tem a ganhar usando nosso projeto, 
+  e porque ele fará a difença em seu negócio</p>
+
