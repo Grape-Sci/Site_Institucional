@@ -1,1 +1,5 @@
-# Este é o repositório destinado ao site institucional de nosso projeto, aqui estarão guardados tudo que se relaciona nosso projeto.
+Somos o grupo GrapeSci 🍇
+
+Nosso projeto é dedicado ao controle de umidade e temperatura do solo, para a colheita das uvas das videiras doeseu hectare. Sendo assim, os problemas enfrentados pelas empresas de cultivo de uva reside na dificuldade de monitorar e controlar adequadamente a umidade do solo em suas vinhas. A umidade excessiva pode levar ao desenvolvimento de doenças fúngicas, como o míldio, enquanto a umidade insuficiente pode resultar em estresse hídrico das plantas e redução na qualidade e no rendimento da colheita, tendo uma perda de aproximadamente 21%.
+
+Com o sensor de umidade para plantas, a " Agrivale " poderia evitar tanto a irrigação excessiva, que pode levar a problemas como o apodrecimento das raízes e doenças fúngicas, quanto a irrigação insuficiente, que pode resultar em estresse hídrico nas plantas e diminuição da qualidade da uva. Isso resultaria em uma maior produtividade e qualidade das uvas colhidas, contribuindo para a reputação e a competitividade da empresa no mercado de vinhos e sucos de uva.

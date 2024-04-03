@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resto.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="imagens/icon.png">
+
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="header">
+        <p>GrapeSci</p>
+        <img src="imagens/logo.png">
+        <img src="imagens/prof.png" alt="">
+    </div>
+   <div class="side-bar" id="sidebar">
+    <ul>
+        <li class="meni"><i class='bx bx-menu menu' id="expandButton"></i><h1 class="tit">Grape<h1 class="sci">Sci</h1></h1></li>
+        <li><i class='bx bxs-dashboard' ></i> <span>Menu</span></li>
+        <li class="pesqui"><i class='bx bx-search pesq'></i><input type="text" placeholder="Pesquise aqui"></li>
+        <li><i class='bx bxs-droplet' ></i><span>Umidade</span></li>
+        <li><i class='bx bxs-thermometer' ></i><span>Temperatura</span></li>
+        <li class="bai1"> <i class='bx bxs-moon night'></i><span class="dif">Modo noturno</span></li>
+        <li class="bai"><i class='bx bx-log-out uau'></i><span class="dif2">Log-out</span></li>
+    </ul>
+</div>
+
+</body>
+</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const sidebar = document.getElementById("sidebar");
+        const expandButton = document.getElementById("expandButton");
+
+        expandButton.addEventListener("click", function() {
+            sidebar.classList.toggle("expanded");
+        });
+
+        const body = document.querySelector("body");
+
+        const nightModeToggle = document.querySelector('.night');
+
+
+        nightModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+
+
+            localStorage.setItem('nightMode', body.classList.contains('dark') ? 'true' : 'false');
+        });
+        
+        const nightMode = localStorage.getItem('nightMode');
+
+        if (nightMode === 'true') {
+            body.classList.add('dark');
+        }
+    });
+</script>
