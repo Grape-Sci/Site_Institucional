@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="GrapeSci.css">
+    <link rel="shortcut icon" type="imagex/png" href="imagens/icon.png">
+</head>
+
+<body>
+
+    <div>
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">GrapeSci</h1>
+            <img src="imagens/logo.png" alt="" class="uva1">
+            <ul class="navbar">
+                <li>Inicio</li>
+                <li>Simulador</li>
+                <li>|</li>
+                <li><a href="loginNv.html">Login</a></li>
+                <li><a href="cadastronNv.html">Cadastro</a></li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="subtitulo">Cadastro da Empresa</div>
+
+    <br> <br> <br>
+
+    <div class="caixa">
+    <div class="inputs">
+        <span>Usuário</span><input placeholder="Usuario" oninput="validar()" type="text" id="input_usuario">
+        <span>Cargo</span> <input placeholder="Cargo" oninput="validar()" type="text" id="input_cargo">
+        <span>CPF</span><input placeholder="CPF" oninput="validar()" type="text" id="input_cpf">
+        <span>Telefone</span><input placeholder="Telefone" oninput="validar()" type="text" id="input_telefone">
+        <span>Email</span><input placeholder="E-mail" oninput="validar()" type="email" id="input_email">
+        <span>Senha</span><input placeholder="Senha" oninput="validar()" type="password" id="input_senha">
+        <span>Confirme Sua Senha</span><input placeholder="Confirme sua Senha" oninput="validar()" type="password" id="input_confirmarsenha">
+    </div>
+
+    <br>
+
+    <div class="botao">
+        <button onclick="cadastro()">Cadastrar</button>
+    </div>
+    </div>
+</div>
+
+</body>
+
+</html>
+
+<script>
+    function cadastro() {
+        var usuario = input_usuario.value
+        var cargo = input_cargo.value
+        var cpf = input_cpf.value
+        var telefone = input_telefone.value
+        var email = input_email.value
+        var senha = input_senha.value
+        var confsenha = input_confirmarsenha.value
+        var tamanhocpf = cpf.length
+        var tamanhotel = telefone.length
+        var indice_arroba = email.indexOf('@')
+        var tamanhosenha = senha.length
+
+        if (tamanhocpf > 11) {
+            alert(`O CPF ${cpf} não existe, tente novamente.
+                não utilize pontos, espaços ou traços.`)
+        }
+
+        if (tamanhotel > 13) {
+            alert(`O telefone ${telefone} não existe, tente novamente.
+        Coloque o DDD e não utilize pontos, espaços, traços ou caracteres especiais`)
+        }
+
+        if (indice_arroba < 0) {
+            alert(`O email ${email} está incorreto, tente novamente.`)
+        }
+
+        if (tamanhosenha < 8) {
+            alert(`Senha muito fraca, tenha pelo menos 8 caracteres`)
+        }
+
+        if (senha != confsenha) {
+            alert('As senhas não são iguais, tente novamente.')
+        }
+
+    }
+
+    function validar() {
+        
+
+    }
+</script>
