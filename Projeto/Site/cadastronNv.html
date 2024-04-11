@@ -21,14 +21,43 @@
             </div>
             <div class="camposCad">
                 <div class="inputsCad">
-                    
+                    <div class="container">
+                        <div class="campo">
+                            <input type="text" id="input_usuario" placeholder="Usuário">
+                        </div>
+                        <div class="campo">
+                            <input type="text" id="input_cnpj" placeholder="CNPJ">
+                        </div>
+                        <div class="campo">
+                            <input type="text" id="input_telefone" placeholder="Telefone">
+                        </div>
+                        <div class="campo">
+                            <input type="text" id="input_senha" placeholder="Senha">
+                        </div>
+                    </div>
                 </div>
                 <div class="inputsCad">
-
+                    <div class="container">
+                        <div class="campo">
+                            <input type="text" id="input_empresa" placeholder="Nome da empresa">
+                        </div>
+                        <div class="campo">
+                            <input type="text" id="input_email" placeholder="Email">
+                        </div>
+                        <div class="campo">
+                            <input type="text" id="input_cargo" placeholder="Cargo">
+                        </div>
+                        <div class="campo">
+                            <input type="text" id="input_confirmar" placeholder="Confirmar senha">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="botaoCad">
-                
+                <div class="container">
+                    <button onclick="cadastrar()">Cadastrar</button>
+                    <span>Já possui uma conta? <a href="loginNv.html">Login</a></span>
+                </div>
             </div>
         </div>
     </div>
@@ -39,5 +68,19 @@
 </html>
 
 <script>
+
+function cadastrar() {
+    var usuario = input_usuario.value;
+    var cnpj = input_cnpj.value;
+    var telefone = input_telefone.value;
+    var senha = input_senha.value;
+    var empresa = input_empresa.value;
+    var email = input_email.value;
+    var cargo = input_cargo.value;
+    var confirmar = input_confirmar.value;
+
+    if (senha != confirmar) alert(`Confirmação de senha inválida.`);
+
+}
 
 </script>

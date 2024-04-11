@@ -114,7 +114,7 @@
   border-style: none;
   border-radius: 15px;
   margin-bottom: 2%;
-
+  cursor: pointer;
 }
 
 .botao .container span {
@@ -173,8 +173,7 @@
 }
 
 .campo input {
-  width: 100%;
-  height: 90%;
+  padding: 8% 25%;
   border-radius: 10px;
 }
 
@@ -290,12 +289,39 @@ input:checked + .slider:before {
 .inputsCad {
   width: 50%;
   height: 100%;
-  flex-direction: column;
-  border: dotted red 2px;
 }
-  
+
+.inputsCad .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 
 .botaoCad {
   height: 20%;
 }
 
+.botaoCad .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.botaoCad .container button {
+  background-color: #593BB9;
+  color: #fff;
+  width: 70%;
+  height: 30%;
+  border-style: none;
+  border-radius: 15px;
+  margin-bottom: 2%;
+  cursor: pointer;
+}
+
+.botaoCad .container span {
+  font-size: 14px;
+}
+
+.botaoCad .container a {
+  color: #593BB9;
+  text-decoration: none;
+}
