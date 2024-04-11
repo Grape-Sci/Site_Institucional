@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0; 
+        }
+        .inputs{
+            border-radius: 3px;
+            border-color: white;
+            border:#341cd2 1px solid;
+            box-shadow: 2px 1px 3px black;
+        }
+        .div_inputs{
+            display: flex;
+            justify-content: center;
+        }
+        .box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 200px;
+            border:#d7f9e9 2px solid;
+            background-color: #d7f9e9;
+            border-radius: 30px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .button{
+            size: 150%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box_ipts" class="box">
+        <div id="div_inputs">
+            <center>
+            <div>
+                <span> Qual o valor do investimento?</span>
+                <input class ="inputs" type="number" id="ipt_investimentoValor">
+            </div>
+            <div>
+                <span> Insira o numero de videiras em cada hectare:</span>
+                <input class ="inputs" type="number" id="ipt_videirasPorHectar">
+            </div>
+            <div>
+                <span> Insira o numero de hectares:</span>
+                <input class ="inputs" type="number" id="ipt_hectares">
+            </div>
+            <div>
+                <span> Defina o tamanho padrão do hectar(considere 0.1km²):</span>
+                <input class ="inputs"type="number" id="ipt_tamanhoPadrao">
+            </div>
+            <div>
+                <span> Insira o preço por kilograma:</span>
+                <input class ="inputs" type="number" id="ipt_precoKilo">
+            </div>
+            <div>
+                <span> Quantidade de kilos de uva por videira:</span>
+                <input class ="inputs" type="number" id="ipt_qtdKilosPorVideira">
+            </div>
+            <button class="button">Calcular Lucro!</button>  
+        </center>
+        </div>
+    </div>
+</body>
+
+</html>
