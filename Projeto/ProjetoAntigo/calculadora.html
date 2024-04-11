@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,24 +12,24 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <style>
-         .custom-modal {
+    .custom-modal {
         height: 650px;
-    width: 650px;
-}
+        width: 650px;
+    }
 
-.swal2-confirm {
-    background: #54BD91 !important; 
-    color: white;
-    border: none;
-    padding: 10px 20px; 
-    font-size: 16px; 
-    border-radius: 10px;
-    cursor: pointer;
-    position: absolute;
-    bottom: 20px;
-}
-
+    .swal2-confirm {
+        background: #54BD91 !important;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 20px;
+    }
 </style>
+
 <body>
     <div class="back">
         <button><i class='bx bxs-left-arrow'></i></button>
@@ -72,12 +73,12 @@
                 </div>
             </div>
             <div class="row2">
-                <div class="col2">  
+                <div class="col2">
                     <span class="texto">Digite o preço por kilograma:</span>
-                    <input type="text" class="boxiC" id="kilo"> 
+                    <input type="text" class="boxiC" id="kilo">
                 </div>
                 <div class="col">
-                  <span class="texto">Quantidade de kilos de uva por videira:</span>
+                    <span class="texto">Quantidade de kilos de uva por videira:</span>
                     <input type="text" class="boxiC" id="qtdKilo">
                 </div>
             </div>
@@ -86,50 +87,50 @@
                 <div id="div_mensagem"></div>
             </div>
         </div>
-        </div>
-        </div>
-        <script>
-     
-        
-     function calcularlucro(){
-    var investimento = Number(valor.value);  // Recebe os Valores desejado das inputs
-    var qtdVideiras = Number(uvas.value); // Recebe os Valores das inputs
-    var num_hectares = Number(hectares.value); // Recebe os Valores das inputs
-    var tamanho_hectares = Number(tamanho.value); // O tamanho padrão de um hectare equivale a 0.1 km², porém se ele tiver um maior, deverá mudar o valor de 0.1 para 0.2 e assim por diante.
-    var precoUva = Number(kilo.value); // Recebe os Valores das inputs
-    var qtdproduzidakilo = Number(qtdKilo.value)
-    var perda = 0.21; // Esse valor representa, em base nas pesquisas realizadas, a perda na produção de uvas
+    </div>
+    </div>
+    <script>
 
-    var videirasperda = (qtdVideiras * num_hectares / tamanho_hectares * perda) - qtdVideiras; // Aqui é o cálculo videira em cada hecateres e a sua perda.
-    var calcporkilo = videirasperda * qtdproduzidakilo; // cada videira produz 15.7 kg de uvas
-    var vendasUva = calcporkilo * precoUva; // é o valor em que é vendido as uvas 
-    var lucro = vendasUva - investimento; // Aqui o cálculo do lucro
-    var mensagem = 'Não é possível realizar o cálculo. Insira valores maiores que 0!';
 
-    // Um if que realiza a verificação caso os valores forem 0. Não será possível fazer contas
-    if (investimento <= 0){
-        if (qtdVideiras <= 0){
-        if (num_hectares <= 0){
-        if (tamanho_hectares <= 0.1){
-        if (precoUva <= 0){
-            Swal.fire({
-  icon: "error",
-  title: "NÃO FOI POSSÍVEL REALIZAR O CÁLCULO",
-  text: "Os numeros têm que ser diferentes de 0",
-  customClass: {
-                    popup: 'custom-modal', 
-                    confirmButton: 'swal2-confirm1'
+        function calcularlucro() {
+            var investimento = Number(valor.value);  // Recebe os Valores desejado das inputs
+            var qtdVideiras = Number(uvas.value); // Recebe os Valores das inputs
+            var num_hectares = Number(hectares.value); // Recebe os Valores das inputs
+            var tamanho_hectares = Number(tamanho.value); // O tamanho padrão de um hectare equivale a 0.1 km², porém se ele tiver um maior, deverá mudar o valor de 0.1 para 0.2 e assim por diante.
+            var precoUva = Number(kilo.value); // Recebe os Valores das inputs
+            var qtdproduzidakilo = Number(qtdKilo.value)
+            var perda = 0.21; // Esse valor representa, em base nas pesquisas realizadas, a perda na produção de uvas
+
+            var videirasperda = (qtdVideiras * num_hectares / tamanho_hectares * perda) - qtdVideiras; // Aqui é o cálculo videira em cada hecateres e a sua perda.
+            var calcporkilo = videirasperda * qtdproduzidakilo; // cada videira produz 15.7 kg de uvas
+            var vendasUva = calcporkilo * precoUva; // é o valor em que é vendido as uvas 
+            var lucro = vendasUva - investimento; // Aqui o cálculo do lucro
+            var mensagem = 'Não é possível realizar o cálculo. Insira valores maiores que 0!';
+
+            // Um if que realiza a verificação caso os valores forem 0. Não será possível fazer contas
+            if (investimento <= 0) {
+                if (qtdVideiras <= 0) {
+                    if (num_hectares <= 0) {
+                        if (tamanho_hectares <= 0.1) {
+                            if (precoUva <= 0) {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "NÃO FOI POSSÍVEL REALIZAR O CÁLCULO",
+                                    text: "Os numeros têm que ser diferentes de 0",
+                                    customClass: {
+                                        popup: 'custom-modal',
+                                        confirmButton: 'swal2-confirm1'
+                                    }
+                                });
+                            }
+                        }
+                    }
                 }
-});
-    }
-    }
-    } 
-    } 
-    }else{
-        if (lucro < investimento){
-        Swal.fire({
-                title: "Investimento em Vinhedo",
-                html: `Seu investimento de: <span style="font-size: 25px"><b>R$:${investimento}</b></span><br><br>
+            } else {
+                if (lucro < investimento) {
+                    Swal.fire({
+                        title: "Investimento em Vinhedo",
+                        html: `Seu investimento de: <span style="font-size: 25px"><b>R$:${investimento}</b></span><br><br>
                 <img src="imagens/logo.png" style=" width: 100px;" alt="Logo"> <!-- Substitua pelo caminho correto da sua imagem -->
                 <br><br>
                 <p style=" text-align: justify;">Com a quantidade de ${qtdVideiras} videiras  e o número de hectares igual ${num_hectares} e distruibuindo
@@ -138,15 +139,15 @@
                 Sendo assim, com um valor de R$${precoUva} por cada quilo de uva que será vendido, irá gerar um total de R$${vendasUva}.<br><br></p>
 
                 Sendo assim, gerando um prejuízo total de:  <span style="font-size: 25px; color: red;"><b>R$:${lucro}</b></span>.`,
-                customClass: {
-                    popup: 'custom-modal', 
-                    confirmButton: 'swal2-confirm'
-                }
-            });
-        }   else{
-            Swal.fire({
-                title: "Investimento em Vinhedo",
-                html: `Seu investimento de: <span style="font-size: 25px"><b>R$:${investimento}</b></span><br><br>
+                        customClass: {
+                            popup: 'custom-modal',
+                            confirmButton: 'swal2-confirm'
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Investimento em Vinhedo",
+                        html: `Seu investimento de: <span style="font-size: 25px"><b>R$:${investimento}</b></span><br><br>
                 <img src="imagens/logo.png" style=" width: 100px;" alt="Logo"> <!-- Substitua pelo caminho correto da sua imagem -->
                 <br><br>
                 <p style=" text-align: justify;">Com a quantidade de ${qtdVideiras} videiras  e o número de hectares igual ${num_hectares} e distruibuindo
@@ -155,15 +156,16 @@
                 Sendo assim, com um valor de R$${precoUva} por cada quilo de uva que será vendido, irá gerar um total de R$${vendasUva}.<br><br></p>
 
                 Sendo assim, gerando um lucro total de:  <span style="font-size: 25px; color: green;"><b>R$:${lucro}</b></span>.`,
-                customClass: {
-                    popup: 'custom-modal', 
-                    confirmButton: 'swal2-confirm'
+                        customClass: {
+                            popup: 'custom-modal',
+                            confirmButton: 'swal2-confirm'
+                        }
+                    });
                 }
-            });
+            }
         }
-    }
-}
-     
-         </script>
-     </body>
-     </html>
+
+    </script>
+</body>
+
+</html>

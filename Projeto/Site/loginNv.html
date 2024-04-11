@@ -5,69 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="GrapeSci.css">
+    <link rel="stylesheet" href="style-login-cadastro.css">
     <link rel="shortcut icon" type="imagex/png" href="imagens/icon.png">
 </head>
 
 <body>
-    
-    <div>
-        <div class="header">
-            <div class="container">
-                <h1 class="titulo">GrapeSci</h1>
-                <img src="imagens/logo.png" alt="" class="uva1">
-                <ul class="navbar">
-                    <li>inicio</li>
-                    <li>simulador</li>
-                    <li>|</li>
-                    <li><a href="loginNv.html">login</a></li>
-                    <li><a href="cadastronNv.html">cadastro</a></li>
-                </ul>
+    <div class="pagina">
+        <div class="container">
+            <div class="login">
+                <div class="imagem">
+                    <div class="container">
+                        <img src="imagens/logo.png" alt="">
+                    </div>
+                </div>
+                <div class="campos">
+                    <div class="container">
+                        <div class="campo">
+                            <input type="text" placeholder="Email" id="input_senha">
+                        </div>
+                        <div class="campo">
+                            <input type="text" placeholder="Senha" id="input_usuario">
+                        </div>
+                        <div class="opcoes">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            <span>Lembrar de mim</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="botao">
+                    <div class="container">
+                        <button onclick="login()">Entrar</button>
+                        <span>Não possui uma conta <a href="cadastronNv.html">Cadastre-se</a></span>
+                    </div>
+                </div>
             </div>
         </div>
-        <br> <br>
-        <div class="subtitulo">Login</div>
-
-        <br> <br> <br>
-
-        <div class="caixa">
-        <div class="inputs">
-            <span>Usuário</span><input type="text" id="input_usuario">
-            <br>
-            <span>Senha</span><input type="text" id="input_senha">
-            <br>
-        </div>
-    
-        <br>
-    
-        <div class="botao">
-            <button onclick="login()">Login</button>
-        </div>
-        </div>
     </div>
-    
-
 </body>
 
 </html>
 
 <script>
-    function login(){
+    function login() {
         var usuario = input_usuario.value
         var senha = input_senha.value
         var indiceusuario = usuario.length
 
         if (senha < 8) {
-            alert (`Senha incorreta, digite novamente`)
+            alert(`Senha incorreta, digite novamente`)
         }
 
-        if (indiceusuario < 1){
-            alert (`Preencha o campo usuário corretamente`)
+        if (indiceusuario < 1) {
+            alert(`Preencha o campo usuário corretamente`)
         }
 
-        if (senha >= 8 && indiceusuario >= 1){
-            alert (`Login efetuado com Sucesso!`)
+        if (senha >= 8 && indiceusuario >= 1) {
+            alert(`Login efetuado com Sucesso!`)
         }
-        
+
     }
 </script>

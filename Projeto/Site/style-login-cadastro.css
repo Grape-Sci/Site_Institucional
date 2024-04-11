@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white; */
+}
+
+.container {
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+.pagina {
+  height: 100vh; /* MUDAR DEPOIS   */
+  background-image: url(imagens/fundo-uvas.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pagina .container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.header {
+  background-color: #54bd91;
+  border-bottom: 3px solid white;
+}
+
+.uva1 {
+  display: flex;
+  width: 4%;
+  margin-right: 650px;
+}
+
+.header .container {
+  justify-content: space-between;
+}
+
+.titulo {
+  color: white;
+  display: flex;
+  padding: 1px 0px;
+}
+
+.subtitulo {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  background-color: #9400d3;
+  width: fit-content;
+  border: 5px solid black;
+  border-radius: 25px;
+  border-color: white;
+  padding: 5px 10px 5px 10px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  width: 300px;
+  justify-content: space-around;
+  color: white;
+  align-items: center;
+}
+
+.navbar a {
+  font-style: normal;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: auto;
+  width: 200px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+
+.inputs input {
+  display: flex;
+  border-radius: 15px;
+  box-shadow: 0 0 5px 0px black;
+}
+
+.botao {
+  width: 100%;
+  height: 30%;
+}
+
+.botao .container {
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.botao .container button {
+  background-color: #593BB9;
+  color: #fff;
+  width: 70%;
+  height: 30%;
+  border-style: none;
+  border-radius: 15px;
+  margin-bottom: 2%;
+
+}
+
+.botao .container span {
+  font-size: 14px;
+}
+
+.botao .container a {
+  color: #593BB9;
+  text-decoration: none;
+}
+
+.login {
+  /* border: 5px white solid; */
+  height: 85%;
+  width: 39%;
+  background-color: #d7f9e9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inputs span {
+  text-align: center;
+}
+
+.imagem {
+  height: 30%;
+}
+
+.imagem .container {
+  justify-content: center;
+  align-items: center;
+}
+
+.imagem .container img {
+  padding-top: 5%;
+  width: 25%;
+}
+
+.campos {
+  height: 50%;
+}
+
+.campos .container {
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.campo {
+  height: 25%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.campo input {
+  width: 100%;
+  height: 90%;
+  border-radius: 10px;
+}
+
+.campo input::placeholder {
+  padding-left: 5%;
+}
+
+.opcoes {
+  height: 20%;
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.opcoes span{
+  font-size: 15px;
+  margin-left: 3%;
+}
+
+/* VER DEPOIS  */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 12%;
+  height: 42%;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.2s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 50%;
+  width: 30%;
+  left: 15%;
+  bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.5s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(120%);
+  -ms-transform: translateX(120%);
+  transform: translateX(120%);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
