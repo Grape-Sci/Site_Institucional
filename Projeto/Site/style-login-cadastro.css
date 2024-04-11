@@ -262,3 +262,40 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.cadastro {
+  display: flex;
+  height: 90%;
+  width: 90%;
+  background-color: #d7f9e9;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.imagemCad {
+  height: 15%;
+}
+
+.imagemCad .container img {
+  height: 100%;
+}
+
+.camposCad {
+  display: flex;
+  height: 65%;
+  width: 100%;
+  flex-direction: row;
+}
+
+.inputsCad {
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+  border: dotted red 2px;
+}
+  
+
+.botaoCad {
+  height: 20%;
+}
+
