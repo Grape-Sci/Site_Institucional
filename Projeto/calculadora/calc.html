@@ -7,8 +7,18 @@
     <title>Calculadora</title>
     <style>
         *{
-            padding: 0;
-            margin: 0; 
+  padding: 0;
+  margin: 10;
+  box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.783);
+    color: #000000;
+    font-size: 1.3rem;
         }
         .inputs{
             border-radius: 3px;
@@ -18,8 +28,10 @@
         }
         .div_inputs{
             display: flex;
-            justify-content: center;
-        }
+            justify-content: space-around;
+            align-items: center; 
+            flex-direction: column;
+             }
         .box{
             display: flex;
             justify-content: center;
@@ -30,6 +42,8 @@
             border-radius: 30px;
             padding-top: 15px;
             padding-bottom: 15px;
+            width: 19%;
+            height: 50%;
         }
         .button{
             size: 150%;
@@ -39,36 +53,33 @@
 
 <body>
     <div id="box_ipts" class="box">
-        <div id="div_inputs">
-            <center>
-            <div>
+        <div class="div_inputs">
+            <div class="div_inputs">
                 <span> Qual o valor do investimento?</span>
                 <input class ="inputs" type="number" id="ipt_investimentoValor">
             </div>
-            <div>
+            <div class="div_inputs">
                 <span> Insira o numero de videiras em cada hectare:</span>
                 <input class ="inputs" type="number" id="ipt_videirasPorHectar">
             </div>
-            <div>
+            <div class="div_inputs">
                 <span> Insira o numero de hectares:</span>
                 <input class ="inputs" type="number" id="ipt_hectares">
             </div>
-            <div>
+            <div class="div_inputs">
                 <span> Defina o tamanho padrão do hectar(considere 0.1km²):</span>
                 <input class ="inputs"type="number" id="ipt_tamanhoPadrao">
             </div>
-            <div>
+            <div class="div_inputs">
                 <span> Insira o preço por kilograma:</span>
                 <input class ="inputs" type="number" id="ipt_precoKilo">
             </div>
-            <div>
+            <div class="div_inputs">
                 <span> Quantidade de kilos de uva por videira:</span>
                 <input class ="inputs" type="number" id="ipt_qtdKilosPorVideira">
             </div>
             <button class="button">Calcular Lucro!</button>  
-        </center>
         </div>
     </div>
 </body>
-
 </html>
