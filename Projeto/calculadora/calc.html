@@ -6,46 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <style>
-        *{
-  padding: 0;
-  margin: 10;
-  box-sizing: border-box;
-}
+        * {
+            padding: 0;
+            margin: 10;
+            box-sizing: border-box;
+        }
 
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.783);
-    color: #000000;
-    font-size: 1.3rem;
+        @font-face {
+            font-family: 'League-Spartan';
+            src: url(font/LeagueSpartan-VariableFont_wght.ttf) format('truetype');
+            ;
         }
-        .inputs{
-            border-radius: 3px;
+
+        /* baixei a fonte e a coloquei na pasta 'font' e utilizei @font-face que é uma regra para adicionar uma nova fonte*/
+
+        body {
+            background-image: url('imagens1/background.png');
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.783);
+            color: #000000;
+            font-size: 1.3rem;
+            overflow: hidden;
+            font-family: 'League-Spartan', sans-serif;
+            /* Use 'League Spartan' como a primeira opção de fonte e fallback para fontes sans-serif padrão caso não esteja disponível */
+        }
+
+        .inputs {
+            border-radius: 30px;
             border-color: white;
-            border:#341cd2 1px solid;
-            box-shadow: 2px 1px 3px black;
+
         }
-        .div_inputs{
+
+        .div_inputs {
             display: flex;
             justify-content: space-around;
-            align-items: center; 
+            align-items: center;
             flex-direction: column;
-             }
-        .box{
+
+        }
+
+        .box {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 200px;
-            border:#d7f9e9 2px solid;
-            background-color: #d7f9e9;
-            border-radius: 30px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            width: 19%;
-            height: 50%;
+            background-color: #DEF5E7;
+            border-radius: 20px;
+            box-shadow: 0 0 30px 0px #5427846f;
+            width: 58%;
+            /* Defina a largura desejada para a div */
+            height: 102vh;
+            /* Define a altura da div como 80% da altura da viewport */
         }
-        .button{
+
+            #logo {
+                width: 330px;
+                /* Defina a largura desejada para a imagem */
+                height: auto;
+                /* Mantém a proporção da imagem */
+            }
+
+        .button {
             size: 150%;
         }
     </style>
@@ -53,33 +76,35 @@ body {
 
 <body>
     <div id="box_ipts" class="box">
+        <img id="logo" src="imagens1/logocompleta.png" class="logo">
         <div class="div_inputs">
             <div class="div_inputs">
                 <span> Qual o valor do investimento?</span>
-                <input class ="inputs" type="number" id="ipt_investimentoValor">
+                <input class="inputs" type="number" id="ipt_investimentoValor">
             </div>
             <div class="div_inputs">
                 <span> Insira o numero de videiras em cada hectare:</span>
-                <input class ="inputs" type="number" id="ipt_videirasPorHectar">
+                <input class="inputs" type="number" id="ipt_videirasPorHectar">
             </div>
             <div class="div_inputs">
                 <span> Insira o numero de hectares:</span>
-                <input class ="inputs" type="number" id="ipt_hectares">
+                <input class="inputs" type="number" id="ipt_hectares">
             </div>
             <div class="div_inputs">
                 <span> Defina o tamanho padrão do hectar(considere 0.1km²):</span>
-                <input class ="inputs"type="number" id="ipt_tamanhoPadrao">
+                <input class="inputs" type="number" id="ipt_tamanhoPadrao">
             </div>
             <div class="div_inputs">
                 <span> Insira o preço por kilograma:</span>
-                <input class ="inputs" type="number" id="ipt_precoKilo">
+                <input class="inputs" type="number" id="ipt_precoKilo">
             </div>
             <div class="div_inputs">
                 <span> Quantidade de kilos de uva por videira:</span>
-                <input class ="inputs" type="number" id="ipt_qtdKilosPorVideira">
+                <input class="inputs" type="number" id="ipt_qtdKilosPorVideira">
             </div>
-            <button class="button">Calcular Lucro!</button>  
+            <button class="button">Calcular Lucro!</button>
         </div>
     </div>
 </body>
+
 </html>
