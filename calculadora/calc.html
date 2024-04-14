@@ -32,13 +32,13 @@
             font-family: 'League-Spartan', sans-serif;
             /* Use 'League Spartan' como a primeira opção de fonte e fallback para fontes sans-serif padrão caso não esteja disponível */
 
-        .containerinputs{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-            margin-bottom: 310px;
-        }
+            .containerinputs {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+                margin-bottom: 310px;
+            }
 
         }
 
@@ -75,27 +75,50 @@
             display: flex;
             position: relative;
             height: 700px;
-            
+            width: auto;
+            margin-top: 0;
 
         }
 
         #logo {
             display: flex;
-            width: 330px;
+            width: 500px;
             /* Defina a largura desejada para a imagem */
             height: auto;
             /* Mantém a proporção da imagem */
             top: 0;
+            margin-top: 0;
         }
 
 
         .button {
             size: 150%;
         }
+
+        .resultado {
+            /*Copiado da box para resultado, alterando via JS o display */
+            background-color: white;
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #DEF5E7;
+            border-radius: 10px;
+            box-shadow: 0 0 30px 0px #5427846f;
+            width: 58%;
+            /* Defina a largura desejada para a div */
+            height: 99vh;
+            /* Define a altura da div como 80% da altura da viewport */
+            position: relative;
+        }
     </style>
 </head>
-
 <body>
+    <div id="div_resultado" class="resultado">
+        <p>Considerando os seguintes dados:</p>
+        <span>Você terá um lucro de: </span><br>
+        <button onclick="retorno()">Retornar</button>
+    </div>
     <div id="box_inputs" class="box">
         <div class="container">
             <img id="logo" src="imagens1/logocompleta.png" class="logo">
@@ -117,9 +140,9 @@
                 <span> Quantidade de kilos de uva por videira:</span>
                 <input class="inputs" type="number" id="ipt_qtdKilosPorVideira">
             </div>
-            <button class="button">Calcular Lucro!</button>
+            <button class="button" onclick="calculo()">Calcular Lucro!</button>
         </div>
-    </div>
+
 </body>
 
 </html>
