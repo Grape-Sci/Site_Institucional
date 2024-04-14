@@ -31,6 +31,15 @@
             overflow: hidden;
             font-family: 'League-Spartan', sans-serif;
             /* Use 'League Spartan' como a primeira opção de fonte e fallback para fontes sans-serif padrão caso não esteja disponível */
+
+        .containerinputs{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 310px;
+        }
+
         }
 
         .inputs {
@@ -53,20 +62,32 @@
             justify-content: center;
             align-items: center;
             background-color: #DEF5E7;
-            border-radius: 20px;
+            border-radius: 10px;
             box-shadow: 0 0 30px 0px #5427846f;
             width: 58%;
             /* Defina a largura desejada para a div */
-            height: 102vh;
+            height: 99vh;
             /* Define a altura da div como 80% da altura da viewport */
+            position: relative;
         }
 
-            #logo {
-                width: 330px;
-                /* Defina a largura desejada para a imagem */
-                height: auto;
-                /* Mantém a proporção da imagem */
-            }
+        .container {
+            display: flex;
+            position: relative;
+            height: 700px;
+            
+
+        }
+
+        #logo {
+            display: flex;
+            width: 330px;
+            /* Defina a largura desejada para a imagem */
+            height: auto;
+            /* Mantém a proporção da imagem */
+            top: 0;
+        }
+
 
         .button {
             size: 150%;
@@ -75,27 +96,21 @@
 </head>
 
 <body>
-    <div id="box_ipts" class="box">
-        <img id="logo" src="imagens1/logocompleta.png" class="logo">
-        <div class="div_inputs">
+    <div id="box_inputs" class="box">
+        <div class="container">
+            <img id="logo" src="imagens1/logocompleta.png" class="logo">
+        </div>
+        <div class="containerinputs">
             <div class="div_inputs">
                 <span> Qual o valor do investimento?</span>
                 <input class="inputs" type="number" id="ipt_investimentoValor">
             </div>
             <div class="div_inputs">
-                <span> Insira o numero de videiras em cada hectare:</span>
+                <span> Insira o numero de videiras:</span>
                 <input class="inputs" type="number" id="ipt_videirasPorHectar">
             </div>
             <div class="div_inputs">
-                <span> Insira o numero de hectares:</span>
-                <input class="inputs" type="number" id="ipt_hectares">
-            </div>
-            <div class="div_inputs">
-                <span> Defina o tamanho padrão do hectar(considere 0.1km²):</span>
-                <input class="inputs" type="number" id="ipt_tamanhoPadrao">
-            </div>
-            <div class="div_inputs">
-                <span> Insira o preço por kilograma:</span>
+                <span> Insira o preço da uva por kg:</span>
                 <input class="inputs" type="number" id="ipt_precoKilo">
             </div>
             <div class="div_inputs">
@@ -105,6 +120,8 @@
             <button class="button">Calcular Lucro!</button>
         </div>
     </div>
+
+
 </body>
 
 </html>
