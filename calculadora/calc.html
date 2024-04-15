@@ -13,8 +13,8 @@
         }
 
         @font-face {
-            font-family: 'Aldrich';
-            src: url(font/Aldrich-Regular.ttf) format('truetype');
+            font-family: 'League Spartan';
+            src: url(font/LeagueSpartan.ttf) format('truetype');
             ;
         }
 
@@ -29,7 +29,7 @@
             color: #000000;
             font-size: 1.1rem;
             overflow: hidden;
-            font-family: 'Aldrich', sans-serif;
+            font-family: 'League Spartan', sans-serif;
             font-weight: bold;
             /* Use 'League Spartan' como a primeira opção de fonte e fallback para fontes sans-serif padrão caso não esteja disponível */
 
@@ -88,7 +88,6 @@
 
         #logo {
             display: flex;
-
             /* Defina a largura desejada para a imagem */
             height: 45vh;
             /* Mantém a proporção da imagem */
@@ -97,16 +96,16 @@
 
 
         .button {
-            background-color: #6A49F5;
-            border: 1px solid black;
-            box-shadow: #716f6f 2px 2px 4px;
-            border-radius: 15px;
+            border: rgb(64, 255, 0) 2px outset ;
+            background-color: #634CF6;
+            box-shadow: #716f6f 4px 4px 8px;
+            border-radius: 9px;
+            font-size: larger;
             font-weight: bold;
-            padding: 12px 29px;
-            margin-top: 3px;
-            color: white;
-            font-family: 'Aldrich';
-            font-size: 1.0rem;
+            padding: 15px 32px;
+            margin-top: 5px;
+            color: rgb(255, 255, 255);
+            font-family:'League-Spartan' ;
             cursor: pointer;
         }
 
@@ -115,7 +114,7 @@
             background-color: white;
             display: none;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-evenly;
             align-items: center;
             background-color: #DEF5E7;
             border-radius: 10px;
@@ -125,13 +124,16 @@
             height: 99vh;
             /* Define a altura da div como 80% da altura da viewport */
             position: relative;
+
         }
 
 
-        p {
+
+        .sugestao p {
             text-align: center;
-            font-family: 'Aldrich';
-            font-size: 1.0rem;
+            font-weight: 700;
+            font-family: 'League Spartan';
+            font-size: 1.3rem;
             color:#54BD91
         }
 
@@ -183,14 +185,26 @@
             margin: 5px;
         }
 
-
+        .resultado p span{
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: 'League Spartan';
+            font-size: 2.5rem;
+            color:#5c0feb;
+        }
     </style>
 </head>
 
 <body>
     <div id="div_resultado" class="resultado">
-        <p>Considerando os seguintes dados:</p>
-        <span>Você terá um lucro de: </span><br>
+        <p>Considerando o valor do investimento de : <u>${invest}</u></p>
+        <p>Quantidade de videiras de <u>${qtdVideira}</u></p>
+        <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
+        <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
+        <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;"></span></p>
         <button class="button" onclick="retorno()">Retornar</button>
     </div>
     <div id="box_inputs" class="box">
@@ -222,11 +236,13 @@
                         <option>UVA RUBI</option>
                     </select>
                 </div>
+                <div id="div_sugestao" class="sugestao">
                     <p>SUGESTÕES DO PREÇO DA UVA POR KG:<br><br>
                         UVA THOMPSON: R$ 25,00<br>
                         UVA ITÁLIA: R$ 30,00<br>
                         UVA RUBI: R$ 35,00<br>
                     </p>
+                </div>
                 </div>
                 <button class="button" onclick="calculo()">CALCULAR LUCRO</button>
             </div>
