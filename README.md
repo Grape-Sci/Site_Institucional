@@ -8,5 +8,5 @@
 ![Github Badge](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
 <p>Em nosso site poderemos encontrar mais sobre nosso projeto, como uma tela nos falando mais sobre nós, membros da Grape-Sci, e outra tela que pode te dizer o quanto você tem a ganhar usando nosso projeto, 
-  e porque ele fará a difença em seu negócio</p>
+  e porque ele fará a diferença em seu negócio</p>
 
