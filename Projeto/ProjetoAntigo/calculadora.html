@@ -58,7 +58,7 @@
                     <input type="text" class="boxiC" id="valor">
                 </div>
                 <div class="col">
-                    <span class="texto">Digite o número de videiras em cada hectare:</span>
+                    <span class="texto">Digite o número de s em cada hectare:</span>
                     <input type="text" class="boxiC" id="uvas">
                 </div>
             </div>
@@ -78,7 +78,7 @@
                     <input type="text" class="boxiC" id="kilo">
                 </div>
                 <div class="col">
-                    <span class="texto">Quantidade de kilos de uva por videira:</span>
+                    <span class="texto">Quantidade de kilos de uva por :</span>
                     <input type="text" class="boxiC" id="qtdKilo">
                 </div>
             </div>
@@ -94,22 +94,22 @@
 
         function calcularlucro() {
             var investimento = Number(valor.value);  // Recebe os Valores desejado das inputs
-            var qtdVideiras = Number(uvas.value); // Recebe os Valores das inputs
+            var qtds = Number(uvas.value); // Recebe os Valores das inputs
             var num_hectares = Number(hectares.value); // Recebe os Valores das inputs
             var tamanho_hectares = Number(tamanho.value); // O tamanho padrão de um hectare equivale a 0.1 km², porém se ele tiver um maior, deverá mudar o valor de 0.1 para 0.2 e assim por diante.
             var precoUva = Number(kilo.value); // Recebe os Valores das inputs
             var qtdproduzidakilo = Number(qtdKilo.value)
             var perda = 0.21; // Esse valor representa, em base nas pesquisas realizadas, a perda na produção de uvas
 
-            var videirasperda = (qtdVideiras * num_hectares / tamanho_hectares * perda) - qtdVideiras; // Aqui é o cálculo videira em cada hecateres e a sua perda.
-            var calcporkilo = videirasperda * qtdproduzidakilo; // cada videira produz 15.7 kg de uvas
+            var sperda = (qtds * num_hectares / tamanho_hectares * perda) - qtds; // Aqui é o cálculo  em cada hecateres e a sua perda.
+            var calcporkilo = sperda * qtdproduzidakilo; // cada  produz 15.7 kg de uvas
             var vendasUva = calcporkilo * precoUva; // é o valor em que é vendido as uvas 
             var lucro = vendasUva - investimento; // Aqui o cálculo do lucro
             var mensagem = 'Não é possível realizar o cálculo. Insira valores maiores que 0!';
 
             // Um if que realiza a verificação caso os valores forem 0. Não será possível fazer contas
             if (investimento <= 0) {
-                if (qtdVideiras <= 0) {
+                if (qtds <= 0) {
                     if (num_hectares <= 0) {
                         if (tamanho_hectares <= 0.1) {
                             if (precoUva <= 0) {
@@ -133,9 +133,9 @@
                         html: `Seu investimento de: <span style="font-size: 25px"><b>R$:${investimento}</b></span><br><br>
                 <img src="imagens/logo.png" style=" width: 100px;" alt="Logo"> <!-- Substitua pelo caminho correto da sua imagem -->
                 <br><br>
-                <p style=" text-align: justify;">Com a quantidade de ${qtdVideiras} videiras  e o número de hectares igual ${num_hectares} e distruibuindo
-                esse valor pelo tamanho dos hectares de ${tamanho_hectares} junto a perda de 21% resulta em uma quantidade de videiras, resulta em uma quantidade
-                de ${calcporkilo}KG de uvas. Considerando que uma videira produz em média ${qtdproduzidakilo}KG de uva.<br><br>
+                <p style=" text-align: justify;">Com a quantidade de ${qtds} s  e o número de hectares igual ${num_hectares} e distruibuindo
+                esse valor pelo tamanho dos hectares de ${tamanho_hectares} junto a perda de 21% resulta em uma quantidade de s, resulta em uma quantidade
+                de ${calcporkilo}KG de uvas. Considerando que uma  produz em média ${qtdproduzidakilo}KG de uva.<br><br>
                 Sendo assim, com um valor de R$${precoUva} por cada quilo de uva que será vendido, irá gerar um total de R$${vendasUva}.<br><br></p>
 
                 Sendo assim, gerando um prejuízo total de:  <span style="font-size: 25px; color: red;"><b>R$:${lucro}</b></span>.`,
@@ -150,9 +150,9 @@
                         html: `Seu investimento de: <span style="font-size: 25px"><b>R$:${investimento}</b></span><br><br>
                 <img src="imagens/logo.png" style=" width: 100px;" alt="Logo"> <!-- Substitua pelo caminho correto da sua imagem -->
                 <br><br>
-                <p style=" text-align: justify;">Com a quantidade de ${qtdVideiras} videiras  e o número de hectares igual ${num_hectares} e distruibuindo
-                esse valor pelo tamanho dos hectares de ${tamanho_hectares} junto a perda de 21% resulta em uma quantidade de videiras, resulta em uma quantidade
-                de ${calcporkilo}KG de uvas. Considerando que uma videira produz em média ${qtdproduzidakilo}KG de uva.<br><br>
+                <p style=" text-align: justify;">Com a quantidade de ${qtds} s  e o número de hectares igual ${num_hectares} e distruibuindo
+                esse valor pelo tamanho dos hectares de ${tamanho_hectares} junto a perda de 21% resulta em uma quantidade de s, resulta em uma quantidade
+                de ${calcporkilo}KG de uvas. Considerando que uma  produz em média ${qtdproduzidakilo}KG de uva.<br><br>
                 Sendo assim, com um valor de R$${precoUva} por cada quilo de uva que será vendido, irá gerar um total de R$${vendasUva}.<br><br></p>
 
                 Sendo assim, gerando um lucro total de:  <span style="font-size: 25px; color: green;"><b>R$:${lucro}</b></span>.`,

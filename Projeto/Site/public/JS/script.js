@@ -9,12 +9,12 @@ function calculo() {
     var precoUsuario = Number(input_precoUsuario.value);
 
 
-    let BrazilShilling = Intl.NumberFormat('pt-BR', {
+    let lShilling = Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
         maximumSignificantDigits: 3,
     });
-    var investFormat = BrazilShilling.format(invest);
+    var investFormat = lShilling.format(invest);
 
     // VALIDAÇÃO DAS INPUTS
     if (invest == 0 || precoUsuario == 0) {
@@ -24,24 +24,24 @@ function calculo() {
     } else {
         //CALCULO
         if (tipo == 'DINHEIRO') {
-            var investFormat = BrazilShilling.format(invest);
+            var investFormat = lShilling.format(invest);
             var qtdVideira = invest / 25; // 25 reais é o valor de 1 videira
             var qtdUvas = qtdVideira * 15.7; // cada videira produz 15.7 kg de uva
             var lucro = precoUsuario * qtdUvas;
-            var lucroFormat = BrazilShilling.format(lucro);
+            var lucroFormat = lShilling.format(lucro);
             var perdaVideiras = qtdVideira * 0.21;
             var perdaLucro = ((perdaVideiras * 15.7) * precoUsuario);
-            var perdaLucroFormat = BrazilShilling.format(perdaLucro);
+            var perdaLucroFormat = lShilling.format(perdaLucro);
         }
         if (tipo == 'QUANTIDADE DE VIDEIRAS') {
 
             var preco = invest * 25; // 25 reais é o valor de 1 videira
             var qtdUvas = invest * 15.7; // invest = qtdVideiras, sendo que cada videira produz 15.7 kg de uva
             var lucro = precoUsuario * qtdUvas;
-            var lucroFormat = BrazilShilling.format(lucro);
+            var lucroFormat = lShilling.format(lucro);
             var perdaVideiras = invest * 0.21
             var perdaLucro = (perdaVideiras * 15.7) * precoUsuario
-            var perdaLucroFormat = BrazilShilling.format(perdaLucro);
+            var perdaLucroFormat = lShilling.format(perdaLucro);
         }
         // VALIDAÇÕES PARA EXIBIÇÃO
         if (tipoUva == 'UVA THOMPSON') {
