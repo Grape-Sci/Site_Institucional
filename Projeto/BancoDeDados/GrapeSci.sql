@@ -1,74 +1,75 @@
-create database GrapeSci;
+CREATE DATABASE GrapeSci;
 
-use GrapeSci;
+USE GrapeSci;
 
-drop database GrapeSci;
-
-create table Empresa (
+CREATE TABLE Empresa (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(80) not null,
-cep CHAR(8) not null,
-cnpj CHAR(14) not null unique,
-codAutentic INT not null unique
+nome VARCHAR(80) NOT NULL,
+cep CHAR(8) NOT NULL,
+cnpj CHAR(14) NOT NULL UNIQUE,
+codAutentic INT NOT NULL UNIQUE
 );
 
-create table Funcionario (
+CREATE TABLE Funcionario (
 idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(45) not null,
-cpf CHAR(11) not null unique,
-senha VARCHAR(45) not null,
-email VARCHAR(80) not null unique,
-telefone CHAR(11) not null unique,
-cargo VARCHAR(45) not null,
-constraint chkcargo check (cargo in ('Gerente', 'Funcionario')),
+nome VARCHAR(45) NOT NULL,
+cpf CHAR(11) NOT NULL UNIQUE,
+senha VARCHAR(45) NOT NULL,
+email VARCHAR(80) NOT NULL UNIQUE,
+telefone CHAR(11) NOT NULL UNIQUE,
+cargo VARCHAR(45) NOT NULL,
 fkEmpresa INT,
-foreign key (fkEmpresa) references Empresa(idEmpresa)
+CONSTRAINT chkcargo check (cargo IN ('Gerente', 'Funcionario')),
+CONSTRAINT fkFuncEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
-create table Plantacao (
+CREATE TABLE  Plantacao (
 idPlantacao INT PRIMARY KEY AUTO_INCREMENT,
-areaTotal DOUBLE not null,
+areaTotal DOUBLE NOT NULL,
 fkEmpresa INT,
-foreign key (fkEmpresa) references Empresa(idEmpresa)
+CONSTRAINT fkPlantEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
-create table Uva (
+CREATE TABLE Uva (
 idUva INT PRIMARY KEY AUTO_INCREMENT,
-nomeTipo VARCHAR(45)not null ,
-tempIdeal DOUBLE not null,
-umiIdeal DOUBLE not null);
+nomeTipo VARCHAR(45)NOT NULL ,
+tempIdeal DOUBLE NOT NULL,
+umiIdeal DOUBLE NOT NULL
+);
 
-create table Talhao (
+CREATE TABLE Talhao (
 idTalhao INT PRIMARY KEY AUTO_INCREMENT,
-qtdVieiras INT not null,
-tamAreaPlant DOUBLE not null,
-dtPlantio DATE not null,
-prevColheita DATE not null,
+qtdVieiras INT NOT NULL,
+tamAreaPlant DOUBLE NOT NULL,
+dtPlantio DATE NOT NULL,
+prevColheita DATE NOT NULL,
 fkUva INT,
 fkPlantacao INT,
-foreign key (fkUva) references Uva(idUva),
-foreign key (fkPlantacao) references Plantacao(idPlantacao));
+CONSTRAINT fkTalhaoUva FOREIGN KEY (fkUva) REFERENCES Uva(idUva),
+CONSTRAINT fkPlantTalhao FOREIGN KEY (fkPlantacao) REFERENCES Plantacao(idPlantacao)
+);
 
 
-create table Dispositivo (
+CREATE TABLE Dispositivo (
 idDispositivo INT PRIMARY KEY AUTO_INCREMENT,
 fkTalhao INT,
-foreign key (fkTalhao) references Talhao(idTalhao));
+FOREIGN KEY (fkTalhao) REFERENCES Talhao(idTalhao)
+);
 
-create table Registro (
+CREATE TABLE Registro (
 idRegistro INT PRIMARY KEY AUTO_INCREMENT,
-consultaUmi DOUBLE not null,
-consultaTemp DOUBLE not null,
-registroDt DATETIME not null,
+consultaUmi DOUBLE NOT NULL,
+consultaTemp DOUBLE NOT NULL,
+registroDt DATETIME NOT NULL,
 fkDispositivo INT,
-foreign key (fkDispositivo) references Dispositivo(idDispositivo)
+FOREIGN KEY (fkDispositivo) REFERENCES Dispositivo(idDispositivo)
 );
 
 -- Inserindo as empresas
 INSERT INTO Empresa (nome, cep, cnpj, codAutentic) VALUES 
 ('UvasLTDA', '03910091', '44834157000108', 121314),
 ('Uvitas', '05910080', '55088157000102', 262728),
-('Roxinhas', '05910080', '60078151000222' , 343536);
+('RoxINhas', '05910080', '60078151000222' , 343536);
 
 -- Inserindo os funcionários relacionados a empresa
 INSERT INTO Funcionario (nome, cpf, senha, email, telefone, cargo, fkEmpresa) VALUES 
@@ -76,7 +77,7 @@ INSERT INTO Funcionario (nome, cpf, senha, email, telefone, cargo, fkEmpresa) VA
 ('Tom Donajam', '33908953210', '11DonDon89', 'TomDonajam.gerente@bol.com.br', '11957444909', 'Gerente', 1),
 ('Rafaela Moreira', '38287926908', 'SeGreDo9575', 'Moreira_gerente1@gmail.com', '16988423151', 'Gerente', 2),
 ('Marcia Ramos', '46084956731', '0FlashBoot33', 'Marcia.Ramos@outlook.com', '16979723757', 'Funcionario', 2),
-('Leonardo Oliveira', '39190926655', '45LeozinGege45', 'Leo3828_Gerente@bol.com.br', '47991123151', 'Gerente', 3),
+('Leonardo Oliveira', '39190926655', '45LeozINGege45', 'Leo3828_Gerente@bol.com.br', '47991123151', 'Gerente', 3),
 ('Charlotte Freitas', '46060951131', '0212FreitChaCha', 'Char_Freitas@gmail.com', '47900785333', 'Funcionario', 3);
 
 INSERT INTO Plantacao (areaTotal, fkEmpresa) VALUES
@@ -84,7 +85,7 @@ INSERT INTO Plantacao (areaTotal, fkEmpresa) VALUES
 (10,2),
 (5,3);
 
-Select * from Plantacao;
+SELECT * FROM Plantacao;
 
 -- Inserindo os 3 tipos de uva
 INSERT INTO Uva (nomeTipo,tempIdeal, umiIdeal) VALUES
@@ -101,8 +102,7 @@ INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPlantio, prevColheita, fKUva, fk
 (100, 60, '2024-08-05', '2024-12-05', 2, 2), 
 (80, 40, '2024-09-05', '2025-01-05', 2, 3);
 
-select * from Talhao;
-
+SELECT * FROM Talhao;
 
 
 -- Inserindo os dispositivo de cada plantação
