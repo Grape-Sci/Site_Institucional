@@ -32,7 +32,7 @@
                             <input type="text" id="input_telefone" placeholder="Telefone">
                         </div>
                         <div class="campo">
-                            <input type="text" id="input_senha" placeholder="Senha">
+                            <input type="password" id="input_senha" placeholder="Senha">
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                             <input type="text" id="input_cargo" placeholder="Cargo">
                         </div>
                         <div class="campo">
-                            <input type="text" id="input_confirmar" placeholder="Confirmar senha">
+                            <input type="password" id="input_confirmar" placeholder="Confirmar senha">
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,30 @@ function cadastrar() {
     var cargo = input_cargo.value;
     var confirmar = input_confirmar.value;
 
-    if (senha != confirmar) alert(`Confirmação de senha inválida.`);
+    if (usuario === "" || cnpj === "" || telefone === "" || senha === "" || empresa === "" || email === "" || cargo === "" || confirmar === "") {
+        alert('Por favor, preencha todos os campos.');
+        return;
+    }
+
+    if (email.indexOf('@') === -1) {
+        alert('Email inválido. Deve ter @');
+        return;
+    }
+
+    if (senha.length < 6) {
+        alert('A senha deve ter pelo menos 8 caracteres.');
+        return;
+    }
+
+    if (cnpj.length != 14) {
+        alert("Cnpj deve conter 14 caracteres");
+        return;
+    }
+
+    if (senha != confirmar) { 
+        alert(`Confirmação de senha inválida.`);
+        return;
+    }
 
 }
 
