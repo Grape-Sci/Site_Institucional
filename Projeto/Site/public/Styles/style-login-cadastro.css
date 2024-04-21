@@ -175,6 +175,10 @@
 .campo input {
   padding: 8% 25%;
   border-radius: 10px;
+  padding-left: 15%;
+  padding-right: 15%;
+  width: 90%;
+  font-size: 20px;
 }
 
 .campo input::placeholder {
