@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="Styles/inicio.css">
+</head>
+<body style="display: flex;">
+    <div>
+        <canvas id="myChart" style="position: relative;height: 20vh; width: 60vw;"></canvas>
+      </div>
+</body>
+</html>
+<script>
+    const labels = [
+      'Semana 1',
+      'Semana 2',
+      'Semana 3',
+      'Semana 4',
+      'Semana 5',
+      'Semana 6',
+    ];
+  
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Gráfico da variação de temperatura por semana',
+        backgroundColor: 'rgb(160, 32, 240)',
+        borderColor: 'rgb(127, 0, 255)',
+        data: [22, 21, 23, 24, 25, 23, 25],
+      }]
+    };
+  
+    const config = {
+      type: 'line',
+      data: data,
+      options: {}
+    };
+  </script>
+  <script>
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  </script>
