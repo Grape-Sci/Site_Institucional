@@ -15,9 +15,16 @@
     .navBar {
       display: flex;
       flex-direction: column;
-      background-color: black;
+      background-color: rgb(22, 238, 2);
       width: 20%;
       height: 100%;
+      justify-content: space-between;
+    }
+    .navBar h2{
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .pagina {
       display: flex;
@@ -31,15 +38,19 @@
      align-items: center;
      width: 80%;
     }
+    /* space-beetween na tag navBar para futuros elementos */
   </style>
 </head>
-
 <body style="display: flex;">
   <div class="pagina">
 
-
     <div class="navBar">
       <img src="img/GrapeSci.png" >
+      <h2>Bem vindo<span id="usuario"></span>!</h2>
+      <ol>
+        <li>Primeiro talhão</li>
+        <li>Segundo talhão</li>
+      </ol>
     </div>
     <div class="graficos">
       <canvas id="myChart"></canvas>
