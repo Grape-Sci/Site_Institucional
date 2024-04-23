@@ -1,7 +1,20 @@
+@font-face {
+    font-family: LeagueSpartan;
+    src: url(font/LeagueSpartan-VariableFont_wght.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
     border: 0;
+    font-family: LeagueSpartan;
+
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
 }
 
 .inicio {
@@ -9,35 +22,40 @@
     background-image: url(../img/fundo-inicio.png);
     background-size: cover;
     background-repeat: no-repeat;
+    flex-direction: column;
 }
 
 .header {
-    background-color: #593BB9;
+    background-color: #54BD91;
     height: 10%;
     width: 100%;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 1vw 1vw;
     display: flex;
     flex-direction: row;
     position: fixed;
 }
 
 .logo {
-    width: 50%;
+    width: 60%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-evenly; */
 }
 
 .logo img {
-    margin-top: 2%;
     margin-left: 3%;
-    width: 25%;
+    width: 5%;
+}
+
+.logo h1 {
+    color: #FFFF;
+    margin-left: 3%;
 }
 
 .header .container {
     height: 100%;
-    width: 50%;
+    width: 40%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -46,3 +64,91 @@
 .header .container img {
     height: 40%;
 }
+
+.header .container span {
+    font-size: 20px;
+    color: #FFFF;
+    font-weight: 600;
+}
+
+.banner {
+    height: 90%;
+    width: 100%;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: row;
+}
+
+.elemento {
+    /* border: 2px solid red; */
+    width: 50%;
+    height: 100%;
+    background-color: #54BD91;
+    border-radius: 55vw 0 0 335vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.elemento img {
+    height: 60%;
+}
+
+.empresa {
+    /* border: 2px solid black; */
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empresa img {
+    width: 60%;
+}
+
+.empresa .texto span {
+    font-size: 25px;
+    color: #593BB9;
+    text-align: justify;
+}
+
+.empresa .texto button {
+    background-color: #593BB9;
+    border-radius: 5vw;
+    width: 20%;
+    height: 10%;
+    color: #FFFF;
+}
+
+.texto {
+    width: 70%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sobre {
+    height: 100vh;
+}
+
+.cards {
+    height: 100vh;
+    background-color: #FFFF;
+}
+
+.cards .container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bloco {
+    width: 90%;
+    height: 80%;
+    border-radius: 5vw;
+    background-color: #54BD91;
+}   
