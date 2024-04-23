@@ -14,7 +14,7 @@
 
 .pagina {
   height: 100vh; /* MUDAR DEPOIS   */
-  background-image: url(../../imagens/fundo-uvas.png);
+  background-image: url(../img/fundo-uvas.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
