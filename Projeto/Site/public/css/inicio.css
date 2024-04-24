@@ -116,8 +116,9 @@
 .empresa .texto button {
     background-color: #593BB9;
     border-radius: 5vw;
-    width: 20%;
-    height: 10%;
+    width: 30%;
+    height: 20%;
+    font-size: 20px;
     color: #FFFF;
 }
 
@@ -141,7 +142,6 @@
 .cards .container {
     height: 100%;
     width: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -152,3 +152,35 @@
     border-radius: 5vw;
     background-color: #54BD91;
 }   
+
+.bloco .container {
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.card {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 2px solid red; */   
+}
+
+.card img {
+    height: 20%;
+    align-self: center;
+}
+
+.card h1 {
+    color: #593BB9;
+    font-size: 40px;
+}
+
+.card p {
+    width: 90%;
+    color: #593BB9;
+    font-size: 20px;
+    text-align: center;
+}
