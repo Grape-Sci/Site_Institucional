@@ -295,15 +295,34 @@ input:checked + .slider:before {
   flex-direction: row;
 }
 
-.inputsCad {
+.inputsCad1 {
   width: 50%;
   height: 100%;
+  margin-left: 20px;
+  padding: 0%;
 }
 
-.inputsCad .container {
+.inputsCad1 .container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-right: 0;
+
+}
+
+.inputsCad2 {
+  width: 50%;
+  height: 100%;
+  margin-right: 20px;
+  padding: none;
+}
+
+.inputsCad2 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 0%;
+
 }
 
 .botaoCad {
