@@ -81,27 +81,27 @@ function cadastrar() {
 
     if (usuario === "" || cnpj === "" || telefone === "" || senha === "" || empresa === "" || email === "" || cargo === "" || confirmar === "") {
         alert('Por favor, preencha todos os campos.');
-        return;
+        return; //elemento que será utilizado terceira sprint
     }
 
     if (email.indexOf('@') === -1) {
         alert('Email inválido. Deve ter @');
-        return;
+        return;  //elemento que será utilizado terceira sprint
     }
 
     if (senha.length < 6) {
         alert('A senha deve ter pelo menos 8 caracteres.');
-        return;
+        return;  //elemento que será utilizado terceira sprint
     }
 
     if (cnpj.length != 14) {
         alert("Cnpj deve conter 14 caracteres");
-        return;
+        return;  //elemento que será utilizado terceira sprint
     }
 
     if (senha != confirmar) { 
         alert(`Confirmação de senha inválida.`);
-        return;
+        return;  //elemento que será utilizado terceira sprint
     }
 
 }
