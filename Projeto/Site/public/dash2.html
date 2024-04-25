@@ -6,11 +6,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="Styles/inicio.css">
+  <link rel="stylesheet" href="css/dashgeral.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div id="div_pai">
+      <div id="nav_bar">
+        <div id="cont_navbar" class="container">    
+          <img src="/home/aluno/Documentos/FelipeG/Site_Institucional/Projeto/Site/public/img/prof.png" alt="">
+          <p>Olá, <span>Fernando</span>, seja bem vindo!</p>
+          <ul>
+            <li class="option"><span>Home</span></li>
+            <li class="option"><a href="">Talhões</a></li>
+          </ul>
+          <img src="/home/aluno/Documentos/FelipeG/Site_Institucional/Projeto/Site/public/img/grape_sci_titulo.png" alt="">
+          <span><a href="">Sair</a></span>
+        </div>
+      </div>
+      <div id="container_dash">
+        <div id="div_kpis">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div id="grafico">
+          <canvas id="myChart"></canvas>
+        </div>      
+      </div>
+    </div>
 </body>
 </html>
-<script>
 
+
+<script>
+  const labels = [
+    'Semana 1',
+    'Semana 2',
+    'Semana 3',
+    'Semana 4',
+    'Semana 5',
+    'Semana 6',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Gráfico da variação de temperatura por semana',
+      backgroundColor: 'rgb(160, 32, 240)',
+      borderColor: 'rgb(127, 0, 255)',
+      data: [22, 21, 23, 24, 25, 23, 25],
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+</script>
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
 </script>
