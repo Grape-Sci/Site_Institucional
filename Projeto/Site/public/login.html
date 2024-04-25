@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="css/style-login-cadastro.css">
-    <link rel="shortcut icon" type="imagex/png" href="../imagens/icon.png">
+    <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
 </head>
 
 <body>
@@ -21,10 +21,10 @@
                 <div class="campos">
                     <div class="container">
                         <div class="campo">
-                            <input type="text" placeholder="Email" id="input_senha">
+                            <input type="text" placeholder="Email" id="input_usuario">
                         </div>
                         <div class="campo">
-                            <input type="password" placeholder="Senha" id="input_usuario">
+                            <input type="password" placeholder="Senha" id="input_senha">
                         </div>
                         <div class="opcoes">
                             <label class="switch">
@@ -45,6 +45,9 @@
             </div>
         </div>
     </div>
+    <div id="msg_alertas" class="msg_alertas">
+        <span class="ms" id="mensagem"></span>
+    </div>
 </body>
 
 </html>
@@ -54,18 +57,45 @@
         var usuario = input_usuario.value
         var senha = input_senha.value
         var indiceusuario = usuario.length
-
-        if (senha < 8) {
-            alert(`Senha incorreta, digite novamente`)
+        var temErro = false;
+    
+        if (senha == "" || usuario == "") {
+            msg_alertas.style.display = "block"
+            mensagem.classList.add("erro")
+            mensagem.innerHTML = `Preencha os campos corretamente`
+            temErro = true;
+            desaparecerCard()
+        }
+        else if (indiceusuario < 1) {
+            msg_alertas.style.display = "block"
+            mensagem.classList.add("erro")
+            mensagem.innerHTML = `Preencha o campo usuário corretamente`
+            temErro = true;
+            desaparecerCard()
         }
 
-        if (indiceusuario < 1) {
-            alert(`Preencha o campo usuário corretamente`)
+        if (!temErro) {
+            if (usuario == 'fernando@gmail.com' && senha == 'Brandao2024') {
+                msg_alertas.style.display = "block"
+                mensagem.classList.add("ok")
+                mensagem.innerHTML = `Redirecionando para a dashboard...`
+                desaparecerCard();
+                setTimeout(function () {
+                    window.location = "dash2.html"
+                }, 2000)
+            } else {
+                msg_alertas.style.display = "block"
+                mensagem.classList.add("erro")
+                mensagem.innerHTML = `Login ou senha inválidos`
+                desaparecerCard()
+            }
         }
 
-        if (senha >= 8 && indiceusuario >= 1) {
-            alert(`Login efetuado com Sucesso!`)
-        }
+    }
 
+    function desaparecerCard() {
+        setTimeout(function () {
+            msg_alertas.style.display = "none"
+        }, 3000)
     }
 </script>

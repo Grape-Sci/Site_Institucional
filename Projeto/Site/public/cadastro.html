@@ -11,57 +11,60 @@
 
 <body>
 
-<div class="pagina">
-    <div class="container">
-        <div class="cadastro">
-            <div class="imagemCad">
-                <div class="container">
-                    <img src="img/logo.png" alt="">
-                </div>
-            </div>
-            <div class="camposCad">
-                <div class="inputsCad1">
+    <div class="pagina">
+        <div class="container">
+            <div class="cadastro">
+                <div class="imagemCad">
                     <div class="container">
-                        <div class="campo">
-                            <input type="text" id="input_usuario" placeholder="Usuário">
+                        <img src="img/logo.png" alt="">
+                    </div>
+                </div>
+                <div class="camposCad">
+                    <div class="inputsCad1">
+                        <div class="container">
+                            <div class="campo">
+                                <input type="text" id="input_usuario" placeholder="Usuário">
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="input_cnpj" placeholder="CNPJ">
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="input_telefone" placeholder="Telefone">
+                            </div>
+                            <div class="campo">
+                                <input type="password" id="input_senha" placeholder="Senha">
+                            </div>
                         </div>
-                        <div class="campo">
-                            <input type="text" id="input_cnpj" placeholder="CNPJ">
-                        </div>
-                        <div class="campo">
-                            <input type="text" id="input_telefone" placeholder="Telefone">
-                        </div>
-                        <div class="campo">
-                            <input type="password" id="input_senha" placeholder="Senha">
+                    </div>
+                    <div class="inputsCad2">
+                        <div class="container">
+                            <div class="campo">
+                                <input type="text" id="input_empresa" placeholder="Nome da empresa">
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="input_email" placeholder="Email">
+                            </div>
+                            <div class="campo">
+                                <input type="text" id="input_cargo" placeholder="Cargo">
+                            </div>
+                            <div class="campo">
+                                <input type="password" id="input_confirmar" placeholder="Confirmar senha">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="inputsCad2">
+                <div class="botaoCad">
                     <div class="container">
-                        <div class="campo">
-                            <input type="text" id="input_empresa" placeholder="Nome da empresa">
-                        </div>
-                        <div class="campo">
-                            <input type="text" id="input_email" placeholder="Email">
-                        </div>
-                        <div class="campo">
-                            <input type="text" id="input_cargo" placeholder="Cargo">
-                        </div>
-                        <div class="campo">
-                            <input type="password" id="input_confirmar" placeholder="Confirmar senha">
-                        </div>
+                        <button onclick="cadastrar()">Cadastrar</button>
+                        <span>Já possui uma conta? <a href="login.html">Login</a></span>
                     </div>
-                </div>
-            </div>
-            <div class="botaoCad">
-                <div class="container">
-                    <button onclick="cadastrar()">Cadastrar</button>
-                    <span>Já possui uma conta? <a href="login.html">Login</a></span>
                 </div>
             </div>
         </div>
+        <div id="msg_alertas" class="msg_alertas">
+            <span class="ms" id="mensagem"></span>
+        </div>
     </div>
-</div>
 
 </body>
 
@@ -69,41 +72,66 @@
 
 <script>
 
-function cadastrar() {
-    var usuario = input_usuario.value;
-    var cnpj = input_cnpj.value;
-    var telefone = input_telefone.value;
-    var senha = input_senha.value;
-    var empresa = input_empresa.value;
-    var email = input_email.value;
-    var cargo = input_cargo.value;
-    var confirmar = input_confirmar.value;
+    function cadastrar() {
+        var usuario = input_usuario.value;
+        var cnpj = input_cnpj.value;
+        var telefone = input_telefone.value;
+        var senha = input_senha.value;
+        var empresa = input_empresa.value;
+        var email = input_email.value;
+        var cargo = input_cargo.value;
+        var confirmar = input_confirmar.value;
+        var temErro = false;
 
-    if (usuario === "" || cnpj === "" || telefone === "" || senha === "" || empresa === "" || email === "" || cargo === "" || confirmar === "") {
-        alert('Por favor, preencha todos os campos.');
-        return; //elemento que será utilizado terceira sprint
+        if (usuario == "" || cnpj == "" || telefone == "" || senha == "" || empresa == "" || email == "" || cargo == "" || confirmar == "") {
+            msg_alertas.style.display = "block"
+            mensagem.classList.add("erro")
+            mensagem.innerHTML = `Preencha os campos corretamente`
+            temErro = true;
+            desaparecerCard()
+        } else if (email.indexOf('@') == -1) {
+            msg_alertas.style.display = "block"
+            mensagem.classList.add("erro")
+            mensagem.innerHTML = `Insira um e-mail válido`
+            temErro = true;
+            desaparecerCard()
+        }
+        else if (senha.length < 6) {
+            msg_alertas.style.display = "block"
+            mensagem.classList.add("erro")
+            mensagem.innerHTML = `A senha deve conter ao mínimo 5 caracteres`
+            temErro = true;
+            desaparecerCard()
+        } else if (cnpj.length != 14) {
+            msg_alertas.style.display = "block"
+            mensagem.classList.add("erro")
+            mensagem.innerHTML = `Insira um CNPJ válido`
+            temErro = true;
+            desaparecerCard()
+        } else if (senha != confirmar) {
+            msg_alertas.style.display = "block"
+            mensagem.classList.add("erro")
+            mensagem.innerHTML = `Suas senhas estão diferentes`
+            temErro = true;
+            desaparecerCard()
+        }
+
+        if (!temErro) {
+            msg_alertas.style.display = "block"
+            mensagem.classList.add("ok")
+            mensagem.innerHTML = `Redirecionando para o Login`
+            desaparecerCard()
+            setTimeout(function () {
+                window.location = "login.html"
+            }, 2000)
+        }
+
     }
 
-    if (email.indexOf('@') === -1) {
-        alert('Email inválido. Deve ter @');
-        return;  //elemento que será utilizado terceira sprint
+    function desaparecerCard() {
+        setTimeout(function () {
+            msg_alertas.style.display = "none"
+        }, 3000)
     }
-
-    if (senha.length < 6) {
-        alert('A senha deve ter pelo menos 8 caracteres.');
-        return;  //elemento que será utilizado terceira sprint
-    }
-
-    if (cnpj.length != 14) {
-        alert("Cnpj deve conter 14 caracteres");
-        return;  //elemento que será utilizado terceira sprint
-    }
-
-    if (senha != confirmar) { 
-        alert(`Confirmação de senha inválida.`);
-        return;  //elemento que será utilizado terceira sprint
-    }
-
-}
 
 </script>
