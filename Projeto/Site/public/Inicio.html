@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/inicio.css">
     <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
+    
     <title>Grape Sci</title>
 </head>
 
 <body>
-    <div class="inicio">
+    <div class="inicio" id="inicio">
         <!-- Este é o css do header da página -->
         <div class="header">
             <div class="logo">
@@ -18,9 +19,9 @@
                 <h1>GrapeSci</h1>
             </div>
             <div class="container">
-                <span>Início</span>
-                <span>Sobre</span>
-                <span>Calculadora</span>
+                <span><a href="#inicio">Início</a></span>
+                <span><a href="#sobre">Sobre</a></span>
+                <span><a href="#calc">Calculadora</a></span>
                 <img src="img/perfil.png" alt="">
             </div>
         </div>
@@ -44,7 +45,7 @@
         </div>
     </div>
     <!-- Aqui virá a parte do sobre nós  -->
-    <div class="sobre">
+    <div class="sobre" id="sobre">
         <div class="container">
             <h1>Quem somos</h1>
             <div class="box">
@@ -103,8 +104,68 @@
             </div>
         </div>
     </div>
-    <!-- Aqui virá a parte da Calculadora -->
 
+    <div class="calculadora" id="calc">
+        <div class="container">
+            <div class="caixa">
+                <div class="logoCalc">
+                    <img src="img/GrapeSci.png">
+                </div>
+                <div class="campos">
+                    <div class="campo">
+                        <span>Qual será seu tipo de investimento?</span>
+                        <select id="select_tipo">
+                            <option>Dinheiro</option>
+                            <option>Quantidade de videiras</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <span>Digite de acordo com a opção selecionada:</span>
+                        <input type="number" id="input_invest">
+                    </div>
+
+                    <div class="campo">
+                        <span> Preço da uva por kg:</span>
+                        <input type="number" id="input_precoUsuario">
+                    </div>
+
+                    <div class="campo">
+                        <span> Qual o tipo de uva?</span>
+                        <select id="select_tipoUva">
+                            <option>Uva Thompson</option>
+                            <option>Uva Itália</option>
+                            <option>Uva Rubi</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <p>SUGESTÕES DO PREÇO DA UVA POR KG:
+                        <p>UVA THOMPSON: R1 25,00</p>
+                        <p>UVA ITÁLIA: R1 30,00</p>
+                        <p>UVA RUBI: R1 35,00</p>
+                </p> -->
+                <div class="botao">
+                    <button class="button" onclick="calculo()">Calcular Lucro</button>
+                </div>
+            </div>
+            <div class="imagemCard">
+                <div id="div_resultado" class="resultado">
+                    <p>Considerando o valor do investimento de : <u>${invest}</u></p>
+                    <p>Quantidade de videiras de <u>${qtdVideira}</u></p>
+                    <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
+                    <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
+                    <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;"></span></p>
+                    <button class="button" onclick="retorno()">Retornar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </body>
 
 </html>
+
+<script src="JS/script.js">
+
+
+</script>

@@ -5,123 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 10;
-            box-sizing: border-box;
-        }
-
-        @font-face {
-            font-family: 'League-Spartan';
-            src: url(font/LeagueSpartan-VariableFont_wght.ttf) format('truetype');
-            ;
-        }
-
-        /* baixei a fonte e a coloquei na pasta 'font' e utilizei @font-face que é uma regra para adicionar uma nova fonte*/
-
-        body {
-            background-image: url('../imagens/fundo-uvas.png');
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.783);
-            color: #000000;
-            font-size: 1.3rem;
-            overflow: hidden;
-            font-family: 'League-Spartan', sans-serif;
-            /* Use 'League Spartan' como a primeira opção de fonte e fallback para fontes sans-serif padrão caso não esteja disponível */
-
-        .containerinputs{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-            margin-bottom: 310px;
-        }
-
-        }
-
-        .inputs {
-            border-radius: 30px;
-            border-color: white;
-
-        }
-
-        .div_inputs {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-
-        }
-
-        .box {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #DEF5E7;
-            border-radius: 10px;
-            box-shadow: 0 0 30px 0px #5427846f;
-            width: 58%;
-            /* Defina a largura desejada para a div */
-            height: 99vh;
-            /* Define a altura da div como 80% da altura da viewport */
-            position: relative;
-        }
-
-        .container {
-            display: flex;
-            position: relative;
-            height: 700px;
-            
-
-        }
-
-        #logo {
-            display: flex;
-            width: 330px;
-            /* Defina a largura desejada para a imagem */
-            height: auto;
-            /* Mantém a proporção da imagem */
-            top: 0;
-        }
-
-
-        .button {
-            size: 150%;
-        }
-    </style>
+    <link rel="stylesheet" href="css/calculadora.css">
 </head>
 
 <body>
-    <div id="box_inputs" class="box">
+    <!-- <div id="div_resultado" class="resultado">
+        <p>Considerando o valor do investimento de : <u>${invest}</u></p>
+        <p>Quantidade de videiras de <u>${qtdVideira}</u></p>
+        <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
+        <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
+        <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;"></span></p>
+        <button class="button" onclick="retorno()">Retornar</button>
+    </div> -->
+    <div class="calculadora">
         <div class="container">
-            <img id="logo" src="img/logo.png" class="logo">
-        </div>
-        <div class="containerinputs">
-            <div class="div_inputs">
-                <span> Qual o valor do investimento?</span>
-                <input class="inputs" type="number" id="ipt_investimentoValor">
-            </div>
-            <div class="div_inputs">
-                <span> Insira o numero de videiras:</span>
-                <input class="inputs" type="number" id="ipt_videirasPorHectar">
-            </div>
-            <div class="div_inputs">
-                <span> Insira o preço da uva por kg:</span>
-                <input class="inputs" type="number" id="ipt_precoKilo">
-            </div>
-            <div class="div_inputs">
-                <span> Quantidade de kilos de uva por videira:</span>
-                <input class="inputs" type="number" id="ipt_qtdKilosPorVideira">
-            </div>
-            <button class="button">Calcular Lucro!</button>
-        </div>
-    </div>
+            <div class="box">
+                <div class="logo">
+                    <img src="img/GrapeSci.png">
+                </div>
+                <div class="campos">
+                    <div class="campo">
+                        <span>Qual será seu tipo de investimento?</span>
+                        <select id="select_tipo">
+                            <option>Dinheiro</option>
+                            <option>Quantidade de videiras</option>
+                        </select>
+                    </div>
 
+                    <div class="campo">
+                        <span>Digite de acordo com a opção selecionada:</span>
+                        <input type="number" id="input_invest">
+                    </div>
+
+                    <div class="campo">
+                        <span> Preço da uva por kg:</span>
+                        <input type="number" id="input_precoUsuario">
+                    </div>
+
+                    <div class="campo">
+                        <span> Qual o tipo de uva?</span>
+                        <select id="select_tipoUva">
+                            <option>Uva Thompson</option>
+                            <option>Uva Itália</option>
+                            <option>Uva Rubi</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <p>SUGESTÕES DO PREÇO DA UVA POR KG:
+                        <p>UVA THOMPSON: R1 25,00</p>
+                        <p>UVA ITÁLIA: R1 30,00</p>
+                        <p>UVA RUBI: R1 35,00</p>
+                </p> -->
+                <div class="botao">
+                    <button class="button" onclick="calculo()">Calcular Lucro</button>
+                </div>
+            </div>
+            <div class="imagem">
+                <img src="imagens1/lucro.png" alt="">
+            </div>
+        </div>
+
+    </div>
 
 </body>
 
 </html>
+<script src="script.js"></script>

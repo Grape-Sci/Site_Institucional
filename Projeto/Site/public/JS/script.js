@@ -1,4 +1,5 @@
 var contagemCalculo = 0
+div_resultado.style.display = "none"
 function calculo() {
     // ESPAÇO PARA ADIÇÃO DA FORMULA E VARIAVEIS
     var tipo = select_tipo.value;
@@ -46,7 +47,7 @@ function calculo() {
         // VALIDAÇÕES PARA EXIBIÇÃO
         if (tipoUva == 'UVA THOMPSON') {
             if (tipo == 'QUANTIDADE DE VIDEIRAS') {
-                div_resultado.style = "display:flex"
+                div_resultado.style.display = "display:flex"
                 box_inputs.style = "display:none"
                 div_resultado.innerHTML = `<img id="logo" src="imagens1/logocompleta.png" class="logo">
                 <p>Considerando o valor do investimento de : <u>${invest}</u> videiras</p>
@@ -56,7 +57,7 @@ function calculo() {
                 <button class="button" onclick="retorno()">Retornar</button>`
                 console.log(`Calculo número ${contagemCalculo}º feito!`)
             } else {
-                div_resultado.style = "display:flex"
+                div_resultado.style.display = "display:flex"
                 box_inputs.style = "display:none"
                 div_resultado.innerHTML = `<img id="logo" src="imagens1/logocompleta.png" class="logo">
                 <p>Considerando o valor do investimento de : <u>${investFormat}</u></p>
@@ -69,7 +70,7 @@ function calculo() {
             }
         } else if (tipoUva == 'UVA ITÁLIA') {
             if (tipo == 'QUANTIDADE DE VIDEIRAS') {
-                div_resultado.style = "display:flex"
+                div_resultado.style.display = "display:flex"
                 box_inputs.style = "display:none"
                 div_resultado.innerHTML = `<img id="logo" src="imagens1/logocompleta.png" class="logo">
                 <p>Considerando o valor do investimento de : <u>${invest}</u> videiras</p>
