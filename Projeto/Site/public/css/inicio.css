@@ -239,8 +239,7 @@ h1 {
     display: flex;
     justify-content: center;
     font-family: LeagueSpartan;
-    font-weight: bold;
-    border-bottom: 7px solid rgb(255, 255, 255);
+    font-weight: bold;  
 }
 
 .card h2 {
