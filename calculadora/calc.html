@@ -5,247 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 10;
-            box-sizing: border-box;
-        }
-
-        @font-face {
-            font-family: 'League Spartan';
-            src: url(font/Aldrich-Regular.ttf) format('truetype');
-            ;
-        }
-
-        /* baixei a fonte e a coloquei na pasta 'font' e utilizei @font-face que é uma regra para adicionar uma nova fonte*/
-
-        body {
-            background-image: url('imagens1/background.png');
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.783);
-            color: #000000;
-            font-size: 1.2rem;
-            overflow: hidden;
-            font-family: 'League Spartan', sans-serif;
-            font-weight: bold;
-            /* Use 'League Spartan' como a primeira opção de fonte e fallback para fontes sans-serif padrão caso não esteja disponível */
-
-            .containerinputs {
-                position: relative;
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                flex-direction: column;
-                margin-bottom: 10px;
-            }
-
-        }
-
-        .inputs {
-            border-radius: 30px;
-            border-color: white;
-            padding: 4.5px; /* Adicionando preenchimento */
-        }
-
-
-
-        
-        .div_inputs {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-
-        }
-
-        .box {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #DEF5E7;
-            border-radius: 10px;
-            box-shadow: 0 0 30px 0px #5427846f;
-            width: 58%;
-            /* Defina a largura desejada para a div */
-            height: 99vh;
-            /* Define a altura da div como 80% da altura da viewport */
-            position: relative;
-        }
-
-        .container {
-            display: flex;
-            position: relative;
-            justify-content: center;
-            align-items: center;
-            height: 160px;
-            width: 160px;
-
-        }
-
-        #logo {
-            display: flex;
-            /* Defina a largura desejada para a imagem */
-            height: 45vh;
-            /* Mantém a proporção da imagem */
-            top: 0;
-        }
-
-
-        .button {
-            border: rgb(64, 255, 0) 2px outset ;
-            background-color: #634CF6;
-            box-shadow: #716f6f 4px 4px 8px;
-            border-radius: 9px;
-            font-size: larger;
-            font-weight: bold;
-            padding: 13px 30px;
-            margin-top: 10px;
-            color: rgb(255, 255, 255);
-            font-family:'League-Spartan' ;
-            cursor: pointer;
-        }
-
-        .resultado {
-            /*Copiado da box para resultado, alterando via JS o display */
-            background-color: white;
-            display: none;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-            background-color: #DEF5E7;
-            border-radius: 10px;
-            box-shadow: 0 0 30px 0px #5427846f;
-            width: 58%;
-            /* Defina a largura desejada para a div */
-            height: 99vh;
-            /* Define a altura da div como 80% da altura da viewport */
-            position: relative;
-
-        }
-
-
-
-        .sugestao p {
-            text-align: center;
-            font-weight: 700;
-            font-family: 'League Spartan';
-            font-size: 1.2rem;
-            color:#54BD91
-        }
-
-        .div_inputs1 {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-            margin: 3px;
-
-        }
-
-        .div_inputs2 {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-            margin-bottom: 15px;
-
-
-        }
-
-        .div_inputs3 {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-            margin: 10px;
-
-        }
-
-        .div_inputs4 {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-            margin: 10px;
-        }
-
-        .select{
-      
-            padding: 4.5px; /* Adicionando um pouco de preenchimento */
-            border: 2px solid #54BD91; /* Adicionando uma borda */
-            border-radius: 10px; /* Adicionando bordas arredondadas */
-            background-color: white; /* Cor de fundo */
-            width: 175px; /* Largura do select */
-            font-size: 13.7px; /* Tamanho da fonte */
-            font-weight: bold;
-            margin: 5px;
-        }
-
-        .resultado p span{
-            display: flex;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-family: 'League Spartan';
-            font-size: 2.5rem;
-            color:#5c0feb;
-        }
-    </style>
+    <link rel="stylesheet" href="calculadora.css">
 </head>
 
 <body>
-    <div id="div_resultado" class="resultado">
+    <!-- <div id="div_resultado" class="resultado">
         <p>Considerando o valor do investimento de : <u>${invest}</u></p>
         <p>Quantidade de videiras de <u>${qtdVideira}</u></p>
         <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
         <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
         <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;"></span></p>
         <button class="button" onclick="retorno()">Retornar</button>
-    </div>
-    <div id="box_inputs" class="box">
+    </div> -->
+    <div class="calculadora">
         <div class="container">
-            <img id="logo" src="imagens1/logocompleta.png" class="logo">
-        </div>
-        <div class="containerinputs">
-            <div class="div_inputs1">
-                <div class="div_inputs">
-                    <span> QUAL SERÁ O TIPO DE INVESTIMENTO?</span>
-                    <select class="select" id="select_tipo">
-                        <option>DINHEIRO</option>
-                        <option>QUANTIDADE DE VIDEIRAS</option>
-                    </select><br>
+            <div class="box">
+                <div class="logo">
+                    <img src="imagens1/logocompleta.png">
                 </div>
-                <div class="div_inputs2">
-                    <span>DIGITE DE ACORDO COM A OPÇÃO SELECIONADA:</span>
-                    <input class="inputs" type="number" id="input_invest">
+                <div class="campos">
+                    <div class="campo">
+                        <span>Qual será seu tipo de investimento?</span>
+                        <select id="select_tipo">
+                            <option>Dinheiro</option>
+                            <option>Quantidade de videiras</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <span>Digite de acordo com a opção selecionada:</span>
+                        <input type="number" id="input_invest">
+                    </div>
+
+                    <div class="campo">
+                        <span> Preço da uva por kg:</span>
+                        <input type="number" id="input_precoUsuario">
+                    </div>
+
+                    <div class="campo">
+                        <span> Qual o tipo de uva?</span>
+                        <select id="select_tipoUva">
+                            <option>Uva Thompson</option>
+                            <option>Uva Itália</option>
+                            <option>Uva Rubi</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="div_inputs3">
-                    <span> PREÇO DA UVA POR KG:</span>
-                    <input class="inputs" type="number" id="input_precoUsuario">
+                <!-- <p>SUGESTÕES DO PREÇO DA UVA POR KG:
+                        <p>UVA THOMPSON: R1 25,00</p>
+                        <p>UVA ITÁLIA: R1 30,00</p>
+                        <p>UVA RUBI: R1 35,00</p>
+                </p> -->
+                <div class="botao">
+                    <button class="button" onclick="calculo()">Calcular Lucro</button>
                 </div>
-                <div class="div_inputs4">
-                    <span> QUAL É O TIPO DE UVA?</span>
-                    <select class="select" id="select_tipoUva">
-                        <option>UVA THOMPSON</option>
-                        <option>UVA ITÁLIA</option>
-                        <option>UVA RUBI</option>
-                    </select>
-                </div>
-                <div id="div_sugestao" class="sugestao">
-                    <p>SUGESTÕES DO PREÇO DA UVA POR KG:<br><br>
-                        UVA THOMPSON: R$ 25,00<br>
-                        UVA ITÁLIA: R$ 30,00<br>
-                        UVA RUBI: R$ 35,00<br>
-                    </p>
-                </div>
-                </div>
-                <button class="button" onclick="calculo()">CALCULAR LUCRO</button>
             </div>
+            <div class="imagem">
+                <img src="imagens1/lucro.png" alt="">
+            </div>
+        </div>
+
+    </div>
 
 </body>
 
