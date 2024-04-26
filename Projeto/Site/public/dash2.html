@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="ptbr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="css/dashgeral.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body>
-    <div id="div_pai">
-      <div id="nav_bar">
-        <div id="cont_navbar" class="container">
-          <img
-            src="img/prof.png"
-            alt=""
-          />
-          <p>Olá, <span>Fernando</span>, seja bem vindo!</p>
-          <ul>
-            <li class="option"><span>Home</span></li>
-            <li class="option"><a href="">Talhões</a></li>
-          </ul>
-          <img
-            src="img/grape_sci_titulo.png"
-            alt=""
-          />
-          <span><a href="">Sair</a></span>
-        </div>
-      </div>
-      <div id="container_dash">
-        <div id="div_kpis">
-          <span id="spanKpi1">Quantidade de talhões em perigo: <span>XX</span></span>
-          <span id="spanKpi2">Quantidade de talhões em alerta: <span>YY</span></span>
-          <span id="spanKpi3">Quantidade de talhões em normalidade: <span>ZZ  </span></span>
-        </div>
-        <hr style="border-top: 2px double ;">
-        <div id="grafico">
-          <canvas id="myChart"></canvas>
-          <canvas id="myChart2"></canvas>
-        </div>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/dashgeral.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div id="div_pai">
+    <div id="nav_bar">
+      <div id="cont_navbar" class="container">
+        <img src="img/prof.png" alt="" />
+        <p>Olá, <span>Fernando</span>, seja bem vindo!</p>
+        <ul>
+          <li class="option"><span>Home</span></li>
+          <li class="option"><a href="">Talhões</a></li>
+        </ul>
+        <img src="img/grape_sci_titulo.png" alt="" />
+        <span><a href="">Sair</a></span>
       </div>
     </div>
-  </body>
+    <div id="container_dash">
+      <div id="div_kpis">
+        <span id="spanKpi1">Quantidade de talhões em perigo: <span>XX</span></span>
+        <span id="spanKpi2">Quantidade de talhões em alerta: <span>YY</span></span>
+        <span id="spanKpi3">Quantidade de talhões em normalidade: <span>ZZ </span></span>
+      </div>
+      <hr style="border-top: 2px double ;">
+      <div id="grafico">
+        <canvas id="myChart"></canvas>
+        <canvas id="myChart2"></canvas>
+      </div>
+      <br>
+      <div id="bottom">
+        <div id="talhoes">
+          <p><a href="">Talhão 1</a>    |Temp Max:<span>XX</span>/Umidade Max:<span>YY</span></p><br>
+          <p><a href="">Talhão 2</a>    |Temp Max:<span>XX</span>/Umidade Max:<span>YY</span></p><br>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</body>
+
 </html>
 
 <script>
@@ -67,7 +72,7 @@
     labels: labels,
     datasets: [
       {
-        label: "Gráfico da variação de temperatura por semana",
+        label: "Gráfico da variação de temperatura por semana em todos os talhões(média)",
         backgroundColor: "#FF0000",
         borderColor: "#FF0000",
         data: [22, 21, 23, 24, 25, 23, 25],
@@ -79,7 +84,7 @@
     labels: labels2,
     datasets: [
       {
-        label: "Gráfico da variação de umidade por semana",
+        label: "Gráfico da variação de temperatura por semana em todos os talhões(média)",
         backgroundColor: "#1C02F7",
         borderColor: "#1C02F7",
         data: [70, 89, 85, 76, 75, 79, 84],
