@@ -38,7 +38,7 @@
     z-index: 2;
 }
 
-.header .container a{
+.header .container a {
     text-decoration: none;
     color: #ffff;
 }
@@ -313,12 +313,87 @@ h1 {
     width: 36%;
 }
 
+.linha2 {
+    display: flex;
+    height: 15%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#linha2 {
+    width: 80vw;
+
+}
+
+/*Rodapé*/
+
+.footer {
+    height: 130px;
+    background-color: #b07fc0;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer .rodape {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.rodape p {
+    font-family: League Spartan;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.baixo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 23px;
+    background-color:#5a047c;
+    color: #fff;
+}
+
+.quadrante li {
+    color: white;
+    padding: 3px;
+    font-size: 16px;
+    list-style: none;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+.listinha a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color:#5a047c;
+
+}
+.listinha img{
+    width: 1em;
+    margin-left: 6px;
+}
+
+
+/*CALCULADORA CSS*/
+
 .calculadora {
     height: 100vh;
     background-color: #54BD91
 }
 
-.calculadora .container { 
+.calculadora .container {
     width: 90%;
     height: 100%;
     flex-direction: row;
