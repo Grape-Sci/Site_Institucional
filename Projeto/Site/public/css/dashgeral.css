@@ -176,7 +176,7 @@ p {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgb(228, 217, 217);
 }
 
@@ -221,17 +221,26 @@ p {
   justify-content: center;
   align-items: start;
   text-decoration: none;
-  margin-top: 15px;
-  margin-left: 30%;
+  position: absolute;
+  left: 20%;
   width: 70%;
   background-color: rgb(160, 156, 156);
-  height: 100%;
+  top: 65%;
 }
-
+#talhoes p{
+  background-color: #FFF;
+  padding: 5px;
+  font-size: 25px;
+}
+#talhoes a{
+  background-color: #FFF;
+  padding: 5px;
+  font-size: 25px;
+  color: orange;
+}
 #bottom {
-  display: flex;
   background-color: rgb(160, 156, 156);
-  height: 100%;
+  height: 100vh;
   border: 1px solid;
   border-radius: 3px;
 }
