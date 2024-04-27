@@ -68,6 +68,7 @@ p {
 .pags ul li a {
   text-decoration: none;
   color: #FFF;
+  font-size: 25px;
 }
 
 .pags ul li {
@@ -143,33 +144,36 @@ p {
 
 #div_kpis #spanKpi1 {
   background-color: white;
-  color: red;
+  color:red;
   padding: 80px 7px;
-  margin-right: 10px;
+  margin-right: 40px;
   margin-left: 350px;
-  border-radius: 3%;
-  border: 2px #C64A31;
-  border-style: solid ;
+  border-radius: 7%;
+  border: 5px ;
+  box-shadow: 3px 3px 5px  grey;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 }
 
 #div_kpis #spanKpi2 {
   background-color: white;
-  color: rgb(236, 142, 18);
+  color: orange;
   padding: 80px 7px;
-  margin-right: 10px;
-  border-radius: 3%;
-  border: 2px  #DACE3F;
-  border-style: solid ;
+  margin-right: 40px;
+  border-radius: 7%;
+  border: 5px ;
+  box-shadow: 3px 3px 15px  grey;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #div_kpis #spanKpi3 {
   background-color: white;
   padding: 80px 7px;
   margin-right: 10px;
-  border-radius: 3%;
-  border: 2px grey;
-  border-style: solid ;
+  border-radius: 7%;
+  border: 5px;
+  box-shadow: 3px 3px 15px  grey;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #container_dash {
@@ -178,6 +182,7 @@ p {
   width: 100%;
   height: 100vh;
   background-color: rgb(228, 217, 217);
+  overflow-y: hidden;
 }
 
 #grafico {
@@ -186,8 +191,9 @@ p {
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
-  margin-top: 100px;
+  margin-top: 35px;
   margin-left: 150px;
+  margin-bottom: 35px;
 }
 
 .option {
@@ -225,7 +231,7 @@ p {
   left: 20%;
   width: 70%;
   background-color: rgb(160, 156, 156);
-  top: 65%;
+  top: 60%;
 }
 #talhoes p{
   background-color: #FFF;
@@ -238,10 +244,15 @@ p {
   font-size: 25px;
   color: orange;
 }
+#talhoes h1{
+  font-weight: 700;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+}
 #bottom {
   background-color: rgb(160, 156, 156);
   height: 100vh;
-  border: 1px solid;
+  border: 2px solid;
   border-radius: 3px;
 }
 
