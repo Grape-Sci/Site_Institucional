@@ -6,11 +6,11 @@
 }
 
 * {
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     border: 0;
     font-family: LeagueSpartan;
-
 }
 
 .container {
@@ -448,37 +448,50 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 70%;
+    width: 100%;
     height: 20%;
-    margin-left: 45%;
-    /* border: 2px solid red; */
+    
 
 }
 
 .campo input {
-    align-self: flex-start;
-    padding: 9px;
+    flex-direction: column;
+    padding: 4px;
     border-radius: 10px;
     border: 2px solid black;
+    margin-bottom: 4%;
     
 }
 
 .campo select {
-    padding: 5px;
+    padding: 4px;
     font-family: LeagueSpartan;
     font-size: 15px;
-    align-self: flex-start;
-    border-radius: 0.5vh;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 4%;
 }
 
 .campo span {
-    align-self: flex-start;
     font-family: LeagueSpartan;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+.campo p{
+    font-family: LeagueSpartan;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: justify;
+    margin-bottom: 1%;
+    color:#593BB9;
+
 }
 
 .botao {
-    height: 20%;
-    width: 70%;
+    height: 12%;
+    width: 65%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -486,11 +499,14 @@ h1 {
 
 .botao button {
     color: #FFFF;
+    font-weight: larger;
+    font-size: 20px;
+    width: 48%;
     border-radius: 2vw;
-    border: none;
+    border: 3px solid #83fed7;
     background-color: #593BB9;
-    width: 50%;
-    height: 30%;
+    padding: 5%;
+    margin-top: 3%;
 }
 
 .imagemCard {
