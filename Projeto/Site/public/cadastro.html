@@ -89,7 +89,7 @@
             mensagem.innerHTML = `Preencha os campos corretamente`
             temErro = true;
             desaparecerCard()
-        } else if (email.indexOf('@') == -1) {
+        } else if (email.indexOf('@') < 0 && email.indexOf('.') < 0) {
             msg_alertas.style.display = "block"
             mensagem.classList.add("erro")
             mensagem.innerHTML = `Insira um e-mail válido`
@@ -116,10 +116,10 @@
             desaparecerCard()
         }
 
-        if (!temErro) {
+        if (temErro == false) {
             msg_alertas.style.display = "block"
             mensagem.classList.add("ok")
-            mensagem.innerHTML = `Redirecionando para o Login`
+            mensagem.innerHTML = `Redirecionando para o Login...`
             desaparecerCard()
             setTimeout(function () {
                 window.location = "login.html"
