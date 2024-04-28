@@ -49,6 +49,7 @@ function calculo() {
         if (tipoUva == 'Uva Thompson') {
             if (tipo == 'Quantidade de videiras') {
                 div_imagem.style.display = "none"
+                div_tela.style.display = "block"
                 div_tela.innerHTML = 
                 `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o investimento de: <span>${invest} Videiras</span></p>
@@ -61,6 +62,7 @@ function calculo() {
                 console.log(`Calculo número ${contagemCalculo}º feito!`)
             } else {
                 div_imagem.style.display = "none"
+                div_tela.style.display = "block"
                 div_tela.innerHTML = 
                 `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${investFormat}</span></p>
@@ -74,6 +76,7 @@ function calculo() {
         } else if (tipoUva == 'Uva Itália') {
             if (tipo == 'Quantidade de videiras') {
                 div_imagem.style.display = "none"
+                div_tela.style.display = "block"
                 div_tela.innerHTML = 
                 `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${invest} Videiras</span></p>
@@ -86,6 +89,7 @@ function calculo() {
             }
             else {
                 div_imagem.style.display = "none"
+                div_tela.style.display = "block"
                 div_tela.innerHTML = 
                 `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${investFormat}</span></p>
@@ -99,6 +103,7 @@ function calculo() {
         } else if (tipoUva == 'Uva Rubi') {
             if (tipo == 'Quantidade de videiras') {
                 div_imagem.style.display = "none"
+                div_tela.style.display = "block"
                 div_tela.innerHTML = 
                 `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${invest} Videiras</span></p>
@@ -110,6 +115,7 @@ function calculo() {
                 `
             } else {
                 div_imagem.style.display = "none"
+                div_tela.style.display = "block"
                 div_tela.innerHTML = 
                 `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${investFormat} Videiras</span></p>
@@ -126,7 +132,7 @@ function calculo() {
 
 }
 function retorno() {
-    div_resultado.style = "display:none"
+    div_tela.style = "display:none"
     div_imagem.style = "display:block"
 
 }
