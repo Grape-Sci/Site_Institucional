@@ -178,26 +178,28 @@
     justify-content: space-evenly;
 }
 
-.cardPrincipal {
-    border-radius: 2vw;
+.cardsPrincipais {
     width: 60%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    background-color: #D8C4FA;
-    flex-direction: column;
-    overflow-y: auto;
-}
-
-.cardSecundario {
-    border-radius: 2vw;
-    width: 30%;
-    height: 100%;
+    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    scroll-behavior: smooth;
-    /* background-color: #D8C4FA; */
+}
+
+.listaTalhoes {
+    border-radius: 2vw;
+    background-color: #D8C4FA;
+    width: 100%;
+    height: 70%;
+}
+
+.listaTalhoes .container {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
 .card {
@@ -211,7 +213,7 @@
     align-items: center;
 }
 
-.nomePlantacao {
+.nomeTalhao {
     width: 25%;
     height: 90%;
     display: flex;
@@ -221,57 +223,54 @@
     justify-content: center;
 }
 
-.nomePlantacao h1 {
+.nomeTalhao h1 {
     font-size: 35px;
 }
 
-.nomePlantacao h2 {
+.nomeTalhao h2 {
     font-size: 22px;
 }
 
-.infoPlantacoes {
-    width: 58%;
+.infoTalhoes {
+    width: 70%;
     height: 90%;
     /* border: 2px solid red; */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 }
 
 .info {
-    width: 100%;
+    width: 30%;
     height: 90%;
     /* border: 2px solid red; */
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.infoPlantacoes h2 {
-    font-size: 30px;
-    font-weight: 400;
-}
-
-.cardMetrica {
-    width: 25%;
-    height: 80%;
-    display: flex;
     flex-direction: column;
+    display: flex;
     justify-content: space-evenly;
     align-items: center;
-    /* border: 2px solid red; */
 }
 
-.cardMetrica span {
-    background-color: #FFF;
-    border-radius: 0.1vw;
+.info h1 {
+    font-size: 30px;
+}
+
+.situacao {
+    width: 100%;
+    height: 50%;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    font-size: 20px;
-    height: 50%;
+}
+
+.situacao img {
+    height: 80%;
+}
+
+.situacao span {
+    margin-left: 3%;
+    font-size: 22px;
     font-weight: 500;
 }
 
@@ -287,7 +286,7 @@
     color: red;
 }
 
-.botaoPlantacoes {
+.botaoTalhao {
     width: 22%;
     height: 90%;
     /* border: 2px solid red; */
@@ -296,7 +295,7 @@
     align-items: center;
 }
 
-.botaoPlantacoes button {
+.botaoTalhao button {
     color: black;
     font-size: 20px;
     background-color: #54BD91;
@@ -306,45 +305,98 @@
     border: none;
 }
 
-.cardQtdPlantacoes {
+
+.metricaPlantacoes {
     border-radius: 2vw;
     background-color: #D8C4FA;
-    width: 90%;
-    height: 45%;
+    width: 100%;
+    height: 25%; 
 }
 
-.cardQtdPlantacoes .container {
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.cardAreaTotal {
-    border-radius: 2vw;
-    background-color: #D8C4FA;
-    width: 90%;
-    height: 45%;
-}
-
-.cardAreaTotal .container {
+.metricaPlantacoes .container {
     height: 100%;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
 }
 
-.cardQtdPlantacoes .container span {
+.metricaPlantacoes .container .informacoes {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.metricaPlantacoes .container .situacao {
+    width: 20%;
+    height: 90%;
+    /* border: 2px solid red; */
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.metricaPlantacoes .container .situacao span {
+    font-size: 30px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    background-color: #FFF;
+    align-items: center;
+    height: 60%;
+    border-radius: 1vw;
+}
+
+.cardSecundario {
+    border-radius: 2vw;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-color: #D8C4FA; */
+}
+
+.cardQtdtalhoes {
+    border-radius: 2vw;
+    background-color: #D8C4FA;
+    width: 90%;
+    height: 45%;
+}
+
+.cardQtdtalhoes .container {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cardArea {
+    border-radius: 2vw;
+    background-color: #D8C4FA;
+    width: 90%;
+    height: 45%;
+}
+
+.cardArea .container {
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cardQtdtalhoes .container span {
     font-size: 50px;
     font-weight: 500;
 }
 
-.cardAreaTotal .container span {
+.cardArea .container span {
     font-size: 50px;
     font-weight: 500;
 }
 
-.cardQtdPlantacoes .container .titulo {
+.cardQtdtalhoes .container .titulo {
     width: 100%;
     height: 30%;
     display: flex;
@@ -352,7 +404,7 @@
     justify-content: center;
 }
 
-.cardQtdPlantacoes .container .informacaoQtd {
+.cardQtdtalhoes .container .informacaoQtd {
     width: 100%;
     height: 60%;
     display: flex;
@@ -360,7 +412,7 @@
     justify-content: center;
 }
 
-.cardAreaTotal .container .titulo {
+.cardArea .container .titulo {
     width: 100%;
     height: 30%;
     display: flex;
@@ -368,7 +420,7 @@
     justify-content: center;
 }
 
-.cardAreaTotal .container .informacaoQtd {
+.cardArea .container .informacaoQtd {
     width: 100%;
     height: 60%;
     display: flex;
