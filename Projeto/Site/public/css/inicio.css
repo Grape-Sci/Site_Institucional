@@ -5,6 +5,12 @@
     src: url(font/LilyScriptOne-Regular.ttf)
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 * {
     margin: 0;
     padding: 0;
