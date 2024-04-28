@@ -505,20 +505,46 @@ h1 {
     height: 70%;
 }
 
-.resultado {
-    /*Copiado da box para resultado, alterando via JS o display */
-    background-color: white;
-    display: none;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: #DEF5E7;
-    border-radius: 10px;
-    box-shadow: 0 0 30px 0px #5427846f;
-    width: 58%;
-    /* Defina a largura desejada para a div */
-    height: 99vh;
-    /* Define a altura da div como 80% da altura da viewport */
-    position: relative;
 
+.tela_resultado p{
+    font-size: 19px;
+    font-family: LeagueSpartan;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    margin-top: 1%;
+    margin-bottom: 3%;
+}
+
+.tela_resultado span{
+    font-size: 22px;
+    font-family: LeagueSpartan;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    text-align: center;
+}
+
+.tela_resultado #tipouva{
+    font-size: 18px;
+    font-family: LeagueSpartan;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    text-align: center;
+    margin: 3% 13% 3% 13%;
+}
+
+.tela_resultado .button{
+    background-color: #593BB9;
+    padding: 2%;
+    font-size: 17px;
+    border-radius: 40px;
+    border: 10px solid white;
+    color: white;
+    font-family: LeagueSpartan;
+    font-weight: bold;
+    
 }

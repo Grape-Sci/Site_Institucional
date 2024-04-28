@@ -1,5 +1,6 @@
 var contagemCalculo = 0
-div_resultado.style.display = "none"
+div_imagem.style.display = "block"
+
 function calculo() {
     // ESPAÇO PARA ADIÇÃO DA FORMULA E VARIAVEIS
     var tipo = select_tipo.value;
@@ -24,7 +25,7 @@ function calculo() {
         //  else if(REGRA DE NEGOCIO PARA VALIDAR )
     } else {
         //CALCULO
-        if (tipo == 'DINHEIRO') {
+        if (tipo == 'Dinheiro') {
             var investFormat = lShilling.format(invest);
             var qtdVideira = invest / 25; // 25 reais é o valor de 1 videira
             var qtdUvas = qtdVideira * 15.7; // cada videira produz 15.7 kg de uva
@@ -34,7 +35,7 @@ function calculo() {
             var perdaLucro = ((perdaVideiras * 15.7) * precoUsuario);
             var perdaLucroFormat = lShilling.format(perdaLucro);
         }
-        if (tipo == 'QUANTIDADE DE VIDEIRAS') {
+        if (tipo == 'Quantidade de videiras') {
 
             var preco = invest * 25; // 25 reais é o valor de 1 videira
             var qtdUvas = invest * 15.7; // invest = qtdVideiras, sendo que cada videira produz 15.7 kg de uva
@@ -45,75 +46,79 @@ function calculo() {
             var perdaLucroFormat = lShilling.format(perdaLucro);
         }
         // VALIDAÇÕES PARA EXIBIÇÃO
-        if (tipoUva == 'UVA THOMPSON') {
-            if (tipo == 'QUANTIDADE DE VIDEIRAS') {
-                div_resultado.style.display = "display:flex"
-                box_inputs.style = "display:none"
-                div_resultado.innerHTML = `<img id="logo" src="imagens1/logocompleta.png" class="logo">
-                <p>Considerando o valor do investimento de : <u>${invest}</u> videiras</p>
-                <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
-                <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
-                <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;">${perdaLucroFormat}</span></p><br>por safra!
-                <button class="button" onclick="retorno()">Retornar</button>`
+        if (tipoUva == 'Uva Thompson') {
+            if (tipo == 'Quantidade de videiras') {
+                div_imagem.style.display = "none"
+                div_tela.innerHTML = 
+                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                <p>Considerando o investimento de: <span>${invest} Videiras</span></p>
+                <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
+                <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
+                <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
+                <p id="tipouva"><span style="color: #d049e4">Uvas Thompson</span> São apreciadas tanto como uva de mesa quanto para processamento em passas, sucos e geleias. As videiras são capazes de crescer em uma variedade de climas, a sua produtividade é elevada e são relativamente fáceis de cultivar.</p>
+                <p><button class="button" onclick="retorno()">Retornar</button></p>
+                `
                 console.log(`Calculo número ${contagemCalculo}º feito!`)
             } else {
-                div_resultado.style.display = "display:flex"
-                box_inputs.style = "display:none"
-                div_resultado.innerHTML = `<img id="logo" src="imagens1/logocompleta.png" class="logo">
-                <p>Considerando o valor do investimento de : <u>${investFormat}</u></p>
-                <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
-                <p>Quantidade de videiras de <u>${qtdVideira}</u></p>
-                <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
-                <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;">${perdaLucroFormat}</span></p><br>por safra!
-                <button class="button" onclick="retorno()">Retornar</button>`
-                console.log(`Calculo número ${contagemCalculo}º feito!`)
+                div_imagem.style.display = "none"
+                div_tela.innerHTML = 
+                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                <p>Considerando o valor do investimento de: <span>${investFormat}</span></p>
+                <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
+                <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
+                <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
+                <p id="tipouva"><span style="color: #d049e4">Uvas Thompson</span> São apreciadas tanto como uva de mesa quanto para processamento em passas, sucos e geleias. As videiras são capazes de crescer em uma variedade de climas, a sua produtividade é elevada e são relativamente fáceis de cultivar.</p>
+                <p><button class="button" onclick="retorno()">Retornar</button></p>
+                `
             }
-        } else if (tipoUva == 'UVA ITÁLIA') {
-            if (tipo == 'QUANTIDADE DE VIDEIRAS') {
-                div_resultado.style.display = "display:flex"
-                box_inputs.style = "display:none"
-                div_resultado.innerHTML = `<img id="logo" src="imagens1/logocompleta.png" class="logo">
-                <p>Considerando o valor do investimento de : <u>${invest}</u> videiras</p>
-            <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
-            <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
-            <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;">${perdaLucroFormat}</span></p><br>por safra!
-            <button class="button" onclick="retorno()">Retornar</button>`
-                console.log(`Calculo número ${contagemCalculo}º feito!`)
+        } else if (tipoUva == 'Uva Itália') {
+            if (tipo == 'Quantidade de videiras') {
+                div_imagem.style.display = "none"
+                div_tela.innerHTML = 
+                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                <p>Considerando o valor do investimento de: <span>${invest} Videiras</span></p>
+                <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
+                <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
+                <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
+                <p id="tipouva"><span style="color: #d049e4">Uvas Itália</span> Popular para consumo direto e para a produção de vinhos brancos e espumantes, ou seja, proporciona flexibilidade para os produtores e para os destinos de sua colheita. A plantação é viável em uma variedade de climas, além do seu potencial ser de alta produtividade.</p>
+                <p><button class="button" onclick="retorno()">Retornar</button></p>
+                `
             }
             else {
-                div_resultado.style = "display:flex"
-                box_inputs.style = "display:none"
-                div_resultado.innerHTML = `<img id="logo" src="imagens1/logocompleta.png" class="logo">
-                <p>Considerando o valor do investimento de : <u>${investFormat}</u></p>
-                <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
-                <p>Quantidade de videiras de <u>${qtdVideira}</u></p>
-                <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
-                <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;">${perdaLucroFormat}</span></p><br>por safra!
-                <button class="button" onclick="retorno()">Retornar</button>`
-                console.log(`Calculo número ${contagemCalculo}º feito!`)
+                div_imagem.style.display = "none"
+                div_tela.innerHTML = 
+                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                <p>Considerando o valor do investimento de: <span>${investFormat}</span></p>
+                <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
+                <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
+                <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
+                <p id="tipouva"><span style="color: #d049e4">Uvas Itália</span> Popular para consumo direto e para a produção de vinhos brancos e espumantes, ou seja, proporciona flexibilidade para os produtores e para os destinos de sua colheita. A plantação é viável em uma variedade de climas, além do seu potencial ser de alta produtividade.</p>
+                <p><button class="button" onclick="retorno()">Retornar</button></p>
+                `
             }
-        } else if (tipoUva == 'UVA RUBI') {
-            if (tipo == 'QUANTIDADE DE VIDEIRAS') {
-                div_resultado.style = "display:flex"
-                box_inputs.style = "display:none"
-                div_resultado.innerHTML = `<img id="logo" src="imagens1/logocompleta.png" class="logo">
-                <p>Considerando o valor do investimento de : <u>${invest}</u> videiras</p>
-            <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
-            <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
-            <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;">${perdaLucroFormat}</span></p><br>por safra!
-            <button class="button" onclick="retorno()">Retornar</button>`
-                console.log(`Calculo número ${contagemCalculo}º feito!`)
+        } else if (tipoUva == 'Uva Rubi') {
+            if (tipo == 'Quantidade de videiras') {
+                div_imagem.style.display = "none"
+                div_tela.innerHTML = 
+                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                <p>Considerando o valor do investimento de: <span>${invest} Videiras</span></p>
+                <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
+                <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
+                <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
+                <p id="tipouva"><span style="color: #d049e4">Uvas Rubi</span> É prospera para plantação em diversos climas, conhecida por seus potenciais benefícios à saúde. Sua tonalidade vermelha vibrante e tamanho generoso a tornam visualmente cativante para os consumidores, além da sua durabilidade pós-colheita.</p>
+                <p><button class="button" onclick="retorno()">Retornar</button></p>
+                `
             } else {
-                div_resultado.style = "display:flex"
-                box_inputs.style = "display:none"
-                div_resultado.innerHTML = `<img id="logo" src="imagens1/logocompleta.png" class="logo">
-                <p>Considerando o valor do investimento de : <u>${investFormat}</u></p>
-                <p>Quantidade de uvas de <u>${qtdUvas}</u></p>
-                <p>Quantidade de videiras de <u>${qtdVideira}</u></p>
-                <p>Você terá um lucro de: <span style="color: #54BD91;font-family: 'League-Spartan';font-weight: 700;">${lucroFormat}</span></p><br>
-                <p>Caso você não usasse nosso sistema você perderia: <span span style="color: #ff0000;font-family: 'League-Spartan';font-weight: 700;">${perdaLucroFormat}</span></p><br>por safra!
-                <button class="button" onclick="retorno()">Retornar</button>`
-                console.log(`Calculo número ${contagemCalculo}º feito!`)
+                div_imagem.style.display = "none"
+                div_tela.innerHTML = 
+                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                <p>Considerando o valor do investimento de: <span>${investFormat} Videiras</span></p>
+                <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
+                <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
+                <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
+                <p id="tipouva"><span style="color: #d049e4">Uvas Rubi</span> É prospera para plantação em diversos climas, conhecida por seus potenciais benefícios à saúde. Sua tonalidade vermelha vibrante e tamanho generoso a tornam visualmente cativante para os consumidores, além da sua durabilidade pós-colheita.</p>
+                <p><button class="button" onclick="retorno()">Retornar</button></p>
+                `
             }
         }
     }
@@ -122,6 +127,6 @@ function calculo() {
 }
 function retorno() {
     div_resultado.style = "display:none"
-    box_inputs.style = "display:flex"
+    div_imagem.style = "display:block"
 
 }
