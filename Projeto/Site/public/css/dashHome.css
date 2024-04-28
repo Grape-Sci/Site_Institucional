@@ -52,7 +52,7 @@
 .navBar hr {
     width: 100%;
     color: #FFFF;
-    border-top: 1.7px solid #FFF;
+    border-top: 0.45vh solid #FFF;
 }
 
 .pags {
@@ -89,7 +89,7 @@
 .profile {
     width: 100%;
     height: 40%;
-}  
+}
 
 .profile .container {
     height: 100%;
@@ -132,9 +132,245 @@
 .plantacoes {
     width: 80%;
     height: 100%;
-    border: 2px solid red;
+    /* border: 2px solid red; */
+    background-image: url(../img/fundo-dash.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
 }
 
 .titulo {
+    width: 100%;
+    height: 20%;
+    /* border: 2px solid red; */
+}
 
+.titulo .container {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titulo .container h1 {
+    font-size: 70px
+}
+
+.titulo .container h2 {
+    margin-top: 0.5%;
+    font-size: 40px;
+    color: #8445F2;
+}
+
+.caixas {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.caixas .container {
+    width: 100%;
+    height: 90%;
+    justify-content: space-evenly;
+}
+
+.cardPrincipal {
+    border-radius: 2vw;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #D8C4FA;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.cardSecundario {
+    border-radius: 2vw;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-color: #D8C4FA; */
+}
+
+.card {
+    margin-top: 5%;
+    width: 95%;
+    height: 20%;
+    border-radius: 2vw;
+    background-color: #f0e4fc;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nomePlantacao {
+    width: 25%;
+    height: 90%;
+    display: flex;
+    margin-left: 3%;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nomePlantacao h1 {
+    font-size: 35px;
+}
+
+.nomePlantacao h2 {
+    font-size: 22px;
+}
+
+.infoPlantacoes {
+    width: 58%;
+    height: 90%;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info {
+    width: 100%;
+    height: 90%;
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.infoPlantacoes h2 {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.cardMetrica {
+    width: 25%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.cardMetrica span {
+    background-color: #FFF;
+    border-radius: 0.1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    font-size: 20px;
+    height: 50%;
+    font-weight: 500;
+}
+
+#seguro {
+    color: rgb(0, 173, 0);
+}
+
+#alerta {
+    color: rgb(196, 196, 1);
+}
+
+#perigo {
+    color: red;
+}
+
+.botaoPlantacoes {
+    width: 22%;
+    height: 90%;
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botaoPlantacoes button {
+    color: black;
+    font-size: 20px;
+    background-color: #54BD91;
+    width: 80%;
+    height: 40%;
+    border-radius: 2vw;
+    border: none;
+}
+
+.cardQtdPlantacoes {
+    border-radius: 2vw;
+    background-color: #D8C4FA;
+    width: 90%;
+    height: 45%;
+}
+
+.cardQtdPlantacoes .container {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cardAreaTotal {
+    border-radius: 2vw;
+    background-color: #D8C4FA;
+    width: 90%;
+    height: 45%;
+}
+
+.cardAreaTotal .container {
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cardQtdPlantacoes .container span {
+    font-size: 0px;
+    font-weight: 500;
+}
+
+.cardAreaTotal .container span {
+    font-size: 0px;
+    font-weight: 500;
+}
+
+.cardQtdPlantacoes .container .titulo {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardQtdPlantacoes .container .informacaoQtd {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardAreaTotal .container .titulo {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardAreaTotal .container .informacaoQtd {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
