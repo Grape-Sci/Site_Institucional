@@ -50,8 +50,8 @@ function calculo() {
             if (tipo == 'Quantidade de videiras') {
                 div_imagem.style.display = "none"
                 div_tela.style.display = "block"
-                div_tela.innerHTML = 
-                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                div_tela.innerHTML =
+                    `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o investimento de: <span>${invest} Videiras</span></p>
                 <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
                 <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
@@ -63,8 +63,8 @@ function calculo() {
             } else {
                 div_imagem.style.display = "none"
                 div_tela.style.display = "block"
-                div_tela.innerHTML = 
-                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                div_tela.innerHTML =
+                    `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${investFormat}</span></p>
                 <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
                 <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
@@ -77,8 +77,8 @@ function calculo() {
             if (tipo == 'Quantidade de videiras') {
                 div_imagem.style.display = "none"
                 div_tela.style.display = "block"
-                div_tela.innerHTML = 
-                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                div_tela.innerHTML =
+                    `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${invest} Videiras</span></p>
                 <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
                 <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
@@ -90,8 +90,8 @@ function calculo() {
             else {
                 div_imagem.style.display = "none"
                 div_tela.style.display = "block"
-                div_tela.innerHTML = 
-                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                div_tela.innerHTML =
+                    `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${investFormat}</span></p>
                 <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
                 <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
@@ -104,8 +104,8 @@ function calculo() {
             if (tipo == 'Quantidade de videiras') {
                 div_imagem.style.display = "none"
                 div_tela.style.display = "block"
-                div_tela.innerHTML = 
-                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                div_tela.innerHTML =
+                    `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${invest} Videiras</span></p>
                 <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
                 <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
@@ -116,8 +116,8 @@ function calculo() {
             } else {
                 div_imagem.style.display = "none"
                 div_tela.style.display = "block"
-                div_tela.innerHTML = 
-                `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
+                div_tela.innerHTML =
+                    `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85"></p> 
                 <p>Considerando o valor do investimento de: <span>${investFormat} Videiras</span></p>
                 <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
                 <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
@@ -135,4 +135,8 @@ function retorno() {
     div_tela.style = "display:none"
     div_imagem.style = "display:block"
 
+}
+
+function login() {
+    window.location = "login.html"
 }

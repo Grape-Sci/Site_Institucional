@@ -60,7 +60,15 @@
 .logo h1 {
     color: #FFFF;
     margin-left: 3%;
+    font-size: 40px;
+    font-weight: 1000;
 }
+
+.logo h1 span {
+    color: #593BB9;
+    font-size: 40px;
+}
+
 
 .header .container {
     height: 100%;
@@ -72,6 +80,7 @@
 
 .header .container img {
     height: 40%;
+    cursor: pointer;
 }
 
 .header .container span {
@@ -262,7 +271,6 @@ h1 {
     width: 100%;
     justify-content: center;
     align-items: center;
-
 }
 
 
@@ -294,7 +302,7 @@ h1 {
     align-items: center;
     justify-content: space-evenly;
     border: 2px solid black;
-    border-radius: 5vw;
+    border-radius: 2vw 0.5vw 2vw 0.5vw;
     margin-bottom: 5%;
 }
 

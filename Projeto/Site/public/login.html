@@ -56,7 +56,7 @@
     function login() {
         var usuario = input_usuario.value
         var senha = input_senha.value
-        var indiceusuario = usuario.length
+        var indiceUsuario = usuario.indexOf('@')
         var temErro = false;
     
         if (senha == "" || usuario == "") {
@@ -66,7 +66,7 @@
             temErro = true;
             desaparecerCard()
         }
-        else if (indiceusuario < 1) {
+        else if (indiceUsuario < 0) {
             msg_alertas.style.display = "block"
             mensagem.classList.add("erro")
             mensagem.innerHTML = `Preencha o campo usuário corretamente`
@@ -74,12 +74,11 @@
             desaparecerCard()
         }
 
-        if (temErro==false) {
+        if (temErro == false) {
             if (usuario == 'fernando@gmail.com' && senha == 'Brandao2024') {
                 msg_alertas.style.display = "block"
                 mensagem.classList.add("ok")
                 mensagem.innerHTML = `Redirecionando para a dashboard...`
-                desaparecerCard();
                 setTimeout(function () {
                     window.location = "dashHome.html"
                 }, 2000)
