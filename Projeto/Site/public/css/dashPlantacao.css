@@ -337,7 +337,7 @@
     align-items: center;
 }
 
-.situacao span {
+.metricaPlantacoes .container .situacao span {
     font-size: 30px;
     width: 50%;
     display: flex;
@@ -346,7 +346,6 @@
     align-items: center;
     height: 60%;
     border-radius: 1vw;
-
 }
 
 .cardSecundario {

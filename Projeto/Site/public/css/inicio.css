@@ -5,18 +5,12 @@
     src: url(font/LilyScriptOne-Regular.ttf)
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
 * {
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     border: 0;
     font-family: LeagueSpartan;
-
 }
 
 .container {
@@ -365,7 +359,7 @@ h1 {
     justify-content: center;
     align-items: center;
     height: 23px;
-    background-color:#5a047c;
+    background-color: #5a047c;
     color: #fff;
 }
 
@@ -378,15 +372,17 @@ h1 {
     font-weight: bold;
 
 }
+
 .listinha a {
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color:#5a047c;
+    color: #5a047c;
 
 }
-.listinha img{
+
+.listinha img {
     width: 1em;
     margin-left: 6px;
 }
@@ -466,7 +462,7 @@ h1 {
     padding: 9px;
     border-radius: 10px;
     border: 2px solid black;
-    
+
 }
 
 .campo select {
@@ -515,38 +511,38 @@ h1 {
 }
 
 
-.tela_resultado p{
+.tela_resultado p {
     font-size: 19px;
     font-family: LeagueSpartan;
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    align-items: center;  
+    align-items: center;
     margin-top: 1%;
     margin-bottom: 3%;
 }
 
-.tela_resultado span{
+.tela_resultado span {
     font-size: 22px;
     font-family: LeagueSpartan;
     display: flex;
     flex-direction: column;
-    align-items: center;  
+    align-items: center;
     text-align: center;
 }
 
-.tela_resultado #tipouva{
+.tela_resultado #tipouva {
     font-size: 18px;
     font-family: LeagueSpartan;
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    align-items: center;  
+    align-items: center;
     text-align: center;
     margin: 3% 13% 3% 13%;
 }
 
-.tela_resultado .button{
+.tela_resultado .button {
     background-color: #593BB9;
     padding: 2%;
     font-size: 17px;
@@ -555,5 +551,5 @@ h1 {
     color: white;
     font-family: LeagueSpartan;
     font-weight: bold;
-    
+
 }
