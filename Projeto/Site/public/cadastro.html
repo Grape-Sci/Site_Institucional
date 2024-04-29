@@ -11,7 +11,7 @@
 
 <body>
 
-    <div class="pagina" style="display: none;">
+    <div class="pagina" style="display: block;" id="div_cadastro">
         <div class="container">
             <div class="cadastro">
                 <div class="imagemCad">
@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <div class="pagina">
+    <div class="pagina" style="display: none;" id="div_confirmacao">
         <div class="container">
             <div class="confirmacaoCad">
                 <div class="imagem">
@@ -81,7 +81,7 @@
                             <p>Insira o código enviado:</p>
                         </div>
                         <div class="campo">
-                            <input type="text" placeholder="Código" id="codigo">
+                            <input type="text" placeholder="Código" id="input_codigo">
                         </div>
                     </div>
                 </div>
@@ -91,6 +91,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="msg_alertasConf" class="msg_alertas">
+            <span class="ms" id="mensagemConf"></span>
         </div>
     </div>
 
@@ -145,22 +148,39 @@
         }
 
         if (temErro == false) {
-            msg_alertas.style.display = "block"
-            mensagem.classList.add("ok")
-            mensagem.innerHTML = `Redirecionando para o Login...`
+            div_cadastro.style = 'display:none'
+            div_confirmacao.style = 'display:block'
+        }
+    }
+
+    function enviar() {
+        var codigo = input_codigo.value
+
+        if (codigo == 'A1B2C3') {
+            msg_alertasConf.style.display = "block"
+            mensagemConf.classList.add("ok")
+            mensagemConf.innerHTML = `Redirecionando para o Login...`
             desaparecerCard()
             setTimeout(function () {
                 window.location = "login.html"
             }, 2000)
-
-
+        } else {
+            msg_alertasConf.style.display = "block"
+            mensagemConf.classList.add("erro")
+            mensagemConf.innerHTML = `Código de confirmação inválido`
+            desaparecerCardConf()
         }
-
     }
 
     function desaparecerCard() {
         setTimeout(function () {
             msg_alertas.style.display = "none"
+        }, 3000)
+    }
+
+    function desaparecerCardConf() {
+        setTimeout(function () {
+            msg_alertasConf.style.display = "none"
         }, 3000)
     }
 
