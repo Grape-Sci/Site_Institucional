@@ -11,7 +11,7 @@
 
 <body>
 
-    <div class="pagina">
+    <div class="pagina" style="display: none;">
         <div class="container">
             <div class="cadastro">
                 <div class="imagemCad">
@@ -63,6 +63,34 @@
         </div>
         <div id="msg_alertas" class="msg_alertas">
             <span class="ms" id="mensagem"></span>
+        </div>
+    </div>
+
+    <div class="pagina">
+        <div class="container">
+            <div class="login">
+                <div class="imagem">
+                    <div class="container">
+                        <img src="img/logo.png" alt="">
+                    </div>
+                </div>
+                <div class="campos">
+                    <div class="container">
+                        <div class="confirmacao">
+                            <h3>Precisamos confirmar sua identidade!</h3>
+                            <p>Insira o código enviado:</p>
+                        </div>
+                        <div class="campo">
+                            <input type="text" placeholder="Código" id="codigo">
+                        </div>
+                    </div>
+                </div>
+                <div class="botao">
+                    <div class="container">
+                        <button onclick="enviar()">Enviar</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -124,6 +152,8 @@
             setTimeout(function () {
                 window.location = "login.html"
             }, 2000)
+
+
         }
 
     }
