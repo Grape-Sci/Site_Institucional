@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Talhão</title>
+  <title>Talhão 2</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
@@ -41,12 +41,12 @@
     <div class="talhao">
       <div class="titulo">
         <div class="container">
-          <h1>Talhão 1</h1>
+          <h1>Talhão 2</h1>
         </div>
       </div>
       <div class="kpi">
         <div class="tipoUva">
-          <label>Uva Rubi</label>
+          <label>Uva Thompson</label>
         </div>
         <div class="colheita">
           <div class="colheitatitulo">
@@ -70,10 +70,10 @@
         <div class="caixa1">
           <div class="graficos">
             <div class="graficotemp">
-              GASP COLOCAR GRÁFICO TEMPERATURA
+              <canvas id="myChart"></canvas>
             </div>
             <div class="graficoumi">
-              AQUI FICA O DE UMIDADE
+              <canvas id="myChart2"></canvas>
             </div>
           </div>
         </div>
@@ -115,4 +115,69 @@
 </body>
 
 </html>
-<script src="JS/dash.js"></script>
+<script src="JS/dash.js">
+
+</script>
+<script>
+  const labels = [
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+  ];
+
+  const labels2 = [
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Temperatura medida nas ultimas 5 horas',
+      backgroundColor: '#FF2D00',
+      borderColor: '#FF2D00',
+      data: [24, 27, 24, 26, 27, 25],
+    }]
+  };
+
+
+  const data2 = {
+    labels: labels2,
+    datasets: [{
+      label: 'Umidade medida nas ultimas 5 horas',
+      backgroundColor: '#009BFF',
+      borderColor: '#009BFF',
+      data: [55, 54, 55, 49, 51, 45],
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+
+  const config2 = {
+    type: 'line',
+    data: data2,
+    options: {}
+  };
+  
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+  const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config2
+  );
+</script>
+ 

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talhão 1</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
+  <link rel="stylesheet" href="css/dashTalhao.css" />
+</head>
+
+<body>
+  <div class="pagina">
+    <div class="navBar">
+      <div class="logo">
+        <div class="container">
+          <img src="img/logo.png" alt="" />
+        </div>
+      </div>
+      <hr>
+      <div class="pags">
+        <div class="container">
+          <span><a href="dashHome.html">Home</a></span>
+          <span><a href="dashPlantacao.html">Plantação</a></span>
+          <span><a id="agora" href="dashTalhao.html">Talhões</a></span>
+          </ul>
+        </div>
+      </div>
+      <div class="profile">
+        <div class="container">
+          <div class="imagem">
+            <img src="img/fazendeiro.png" alt="">
+          </div>
+          <span>Usuário</span>
+          <button onclick="sair()">Sair</button>
+        </div>
+      </div>
+    </div>
+    <div class="talhao">
+      <div class="titulo">
+        <div class="container">
+          <h1>Talhão 1</h1>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="tipoUva">
+          <label>Uva Itália</label>
+        </div>
+        <div class="colheita">
+          <div class="colheitatitulo">
+            <p>Previsão de colheita:</p>
+          </div>
+          <div class="prevcolheita">
+            <label>150 Dias</label><p><img src="img/prevUva.png" width="45px"></p>
+          </div>
+        </div>
+        <div class="atraso">
+          <div class="atrasotitulo">
+            <p>Previsão de atraso:</p>
+          </div>
+          <div class="prevatraso">
+            <label>4 Dias</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="caixas">
+        <div class="caixa1">
+          <div class="graficos">
+            <div class="graficotemp">
+              <canvas id="myChart"></canvas>
+            </div>
+            <div class="graficoumi">
+              <canvas id="myChart2"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="caixa2">
+          <div class="titulo1">
+            <p>ULTIMAS 24H</p>
+          </div>
+          <div class="botoes">
+            <button onclick="temp()">TEMPERATURA</button>
+            <img src="img/relogio.png" width= "80px">
+            <button onclick="umi()">UMIDADE</button>
+            
+          </div>
+          <div class="titulo2">
+            <p>SITUAÇÃO POR HORA:</p>
+          </div>
+          <div class="situacao">
+            <div class="seguro">
+              <p>4 - Seguro</p>
+            </div>
+            <div class="alerta">
+              <p>2 - Alerta</p>
+            </div>
+            <div class="perigo">
+              <p>1 - Perigo</p>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  </div>
+  </div>
+</body>
+
+</html>
+<script src="JS/dash.js">
+
+</script>
+<script>
+  const labels = [
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+  ];
+
+  const labels2 = [
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Temperatura medida nas ultimas 5 horas',
+      backgroundColor: '#FF2D00',
+      borderColor: '#FF2D00',
+      data: [24, 23, 22, 22, 21, 22],
+    }]
+  };
+
+
+  const data2 = {
+    labels: labels2,
+    datasets: [{
+      label: 'Umidade medida nas ultimas 5 horas',
+      backgroundColor: '#009BFF',
+      borderColor: '#009BFF',
+      data: [55, 61, 58, 63, 65, 58],
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+
+  const config2 = {
+    type: 'line',
+    data: data2,
+    options: {}
+  };
+  
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+  const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config2
+  );
+</script>
+ 
