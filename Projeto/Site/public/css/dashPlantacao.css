@@ -110,7 +110,7 @@
 }
 
 .imagem img {
-    height: 80%;
+    height: 98%;
 }
 
 .profile .container span {
@@ -426,4 +426,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+button{
+    cursor: pointer;
 }
