@@ -70,7 +70,7 @@
 
 .pags .container span {
     font-weight: 700;
-    font-size: 50px;
+    font-size: 35px;
     color: black;
     align-self: flex-start;
     padding-left: 10%;
@@ -114,17 +114,17 @@
 }
 
 .profile .container span {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
 }
 
 .profile .container button {
     width: 50%;
-    height: 10%;
+    height: 15%;
     background-color: #8445F2;
     border-radius: 20px;
     color: #FFF;
-    font-size: 20px;
+    font-size: 18px;
     border: 0.2vw solid #FFF;
     cursor: pointer;
 }
@@ -154,12 +154,12 @@
 }
 
 .titulo .container h1 {
-    font-size: 70px
+    font-size: 50px
 }
 
 .titulo .container h2 {
     margin-top: 0.5%;
-    font-size: 40px;
+    font-size: 30px;
     color: #8445F2;
 }
 
@@ -222,11 +222,11 @@
 }
 
 .nomePlantacao h1 {
-    font-size: 35px;
+    font-size: 25px;
 }
 
 .nomePlantacao h2 {
-    font-size: 22px;
+    font-size: 15px;
 }
 
 .infoPlantacoes {
@@ -249,7 +249,7 @@
 }
 
 .infoPlantacoes h2 {
-    font-size: 30px;
+    font-size: 22px;
     font-weight: 400;
 }
 
@@ -270,7 +270,7 @@
     align-items: center;
     justify-content: center;
     width: 50%;
-    font-size: 20px;
+    font-size: 17px;
     height: 50%;
     font-weight: 500;
 }
@@ -298,7 +298,7 @@
 
 .botaoPlantacoes button {
     color: black;
-    font-size: 20px;
+    font-size: 18px;
     background-color: #54BD91;
     width: 80%;
     height: 40%;
@@ -334,13 +334,25 @@
     flex-direction: column;
 }
 
+.cardQtdPlantacoes .container h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.cardAreaTotal .container h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+
 .cardQtdPlantacoes .container span {
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 500;
 }
 
 .cardAreaTotal .container span {
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 500;
 }
 
@@ -375,6 +387,7 @@
     align-items: center;
     justify-content: center;
 }
-button{
+
+button {
     cursor: pointer;
 }
