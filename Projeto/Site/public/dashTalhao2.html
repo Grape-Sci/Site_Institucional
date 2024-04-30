@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Talhão 2</title>
+  <title>Talhão 1</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
@@ -53,15 +53,16 @@
             <p>Previsão de colheita:</p>
           </div>
           <div class="prevcolheita">
-            <label>150 Dias</label><p><img src="img/prevUva.png" width="45px"></p>
+            <label>30 Dias</label>
+            <p><img src="img/prevUva.png" width="45px"></p>
           </div>
         </div>
-        <div class="atraso">
-          <div class="atrasotitulo">
-            <p>Previsão de atraso:</p>
+        <div class="alerta">
+          <div class="alertatitulo">
+            <p>Situação:</p>
           </div>
-          <div class="prevatraso">
-            <label>4 Dias</label>
+          <div class="alertasitu">
+            <label style="color:yellow">Alerta</label>
           </div>
         </div>
       </div>
@@ -70,43 +71,56 @@
         <div class="caixa1">
           <div class="graficos">
             <div class="graficotemp">
-              <canvas id="myChart"></canvas>
+              <div class="fundo">
+                <canvas id="myChart"></canvas>
+              </div>
             </div>
             <div class="graficoumi">
-              <canvas id="myChart2"></canvas>
+              <div class="fundo">
+                <canvas id="myChart2"></canvas>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="caixa2">
-          <div class="titulo1">
-            <p>ULTIMAS 24H</p>
-          </div>
-          <div class="botoes">
-            <button onclick="temp()">TEMPERATURA</button>
-            <img src="img/relogio.png" width= "80px">
-            <button onclick="umi()">UMIDADE</button>
-            
-          </div>
-          <div class="titulo2">
-            <p>SITUAÇÃO POR HORA:</p>
-          </div>
-          <div class="situacao">
-            <div class="seguro">
-              <p>4 - Seguro</p>
-            </div>
-            <div class="alerta">
-              <p>2 - Alerta</p>
-            </div>
-            <div class="perigo">
-              <p>1 - Perigo</p>
+
+          <div class="sub1">
+            <div class="metrica">
+              <label>Métrica</label>
+              <label>Temperatura Ideal:</label>
+              <p>Entre 18°C e 28°C  </p>
+              <label>Umidade ideal:</label>
+              <p>Entre 60% e 70%</p>
             </div>
           </div>
+
+          <div class="sub2">
+            <div class="titulo2">
+              <p>Temperatura</p>
+            </div>
+            <div class="situacao">
+              <div class="vermelho">
+                <p>Mínima: 21°C</p>
+              </div>
+              <div class="vermelho">
+                <p>Máxima: 24°C</p>
+              </div>
+              <div class="titulo2">
+                <p>Umidade</p>
+              </div>
+              <div class="azul">
+                <p>Mínima: 55%</p>
+              </div>
+              <div class="azul">
+                <p>Máxima: 65%</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
   </div>
 
@@ -119,28 +133,28 @@
 
 </script>
 <script>
-  const labels = [
-    '12:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-    '17:00',
+ const labels = [
+    '10:30',
+    '10:31',
+    '10:32',
+    '10:33',
+    '10:34',
+    '10:35',
   ];
 
   const labels2 = [
-    '12:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-    '17:00',
+    '10:30',
+    '10:31',
+    '10:32',
+    '10:33',
+    '10:34',
+    '10:35',
   ];
 
   const data = {
     labels: labels,
     datasets: [{
-      label: 'Temperatura medida nas ultimas 5 horas',
+      label: 'Temperatura em tempo real',
       backgroundColor: '#FF2D00',
       borderColor: '#FF2D00',
       data: [24, 27, 24, 26, 27, 25],
@@ -151,7 +165,7 @@
   const data2 = {
     labels: labels2,
     datasets: [{
-      label: 'Umidade medida nas ultimas 5 horas',
+      label: 'Umidade em tempo real',
       backgroundColor: '#009BFF',
       borderColor: '#009BFF',
       data: [55, 54, 55, 49, 51, 45],
@@ -180,4 +194,3 @@
     config2
   );
 </script>
- 
