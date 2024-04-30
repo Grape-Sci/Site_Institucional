@@ -18,9 +18,9 @@ const HABILITAR_OPERACAO_INSERIR = true;
 const serial = async (
     valoresDht11Umidade,
     valoresDht11Temperatura,
-    valoresLuminosidade,
-    valoresLm35Temperatura,
-    valoresChave
+    // valoresLuminosidade,
+    // valoresLm35Temperatura,
+    // valoresChave
 ) => {
     let poolBancoDados = ''
 
