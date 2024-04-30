@@ -415,3 +415,35 @@ input:checked + .slider:before {
   color: #018ace;
   border-radius: 5px;
 }
+
+.confirmacaoCad {
+    height: 85%;
+    width: 39%;
+    background-color: #d7f9e9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.confirmacaoCad .imagem {
+  height: 18%;
+  padding-top: 2%;
+}
+
+.confirmacaoCad .campos {
+  height: 60%;
+}
+
+.confirmacaoCad .botao {
+  height: 22%;
+}
+
+.confirmacaoText {
+  font-size: 22px;
+  color: #593BB9;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
