@@ -15,7 +15,7 @@
             <div class="login">
                 <div class="imagem">
                     <div class="container">
-                        <img src="img/logo.png" alt="">
+                        <img onclick="inicio()" src="img/logo.png" alt="">
                     </div>
                 </div>
                 <div class="campos">
@@ -94,5 +94,9 @@
         setTimeout(function () {
             msg_alertas.style.display = "none"
         }, 3000)
+    }
+
+    function inicio() {
+        window.location = 'Inicio.html'
     }
 </script>

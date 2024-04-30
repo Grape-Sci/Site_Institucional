@@ -15,7 +15,7 @@
         <div class="container">
             <div class="cadastro">
                 <div class="imagemCad">
-                    <div class="container">
+                    <div class="container" onclick="inicio()">
                         <img src="img/logo.png" alt="">
                     </div>
                 </div>
@@ -45,7 +45,11 @@
                                 <input type="text" id="input_email" placeholder="Email">
                             </div>
                             <div class="campo">
-                                <input type="text" id="input_cargo" placeholder="Cargo">
+                                <select id="select_cargo">
+                                        <option value="0" selected disabled>Selecione seu cargo:</option>
+                                        <option value="1">Gerente</option>
+                                        <option value="2">Funcionário</option>
+                                </select>
                             </div>
                             <div class="campo">
                                 <input type="password" id="input_confirmar" placeholder="Confirmar senha">
@@ -70,7 +74,7 @@
         <div class="container">
             <div class="confirmacaoCad">
                 <div class="imagem">
-                    <div class="container">
+                    <div class="container" onclick="inicioConf()">
                         <img src="img/logo.png" alt="">
                     </div>
                 </div>
@@ -110,11 +114,11 @@
         var senha = input_senha.value;
         var empresa = input_empresa.value;
         var email = input_email.value;
-        var cargo = input_cargo.value;
+        var cargo = select_cargo.value;
         var confirmar = input_confirmar.value;
         var temErro = false;
 
-        if (usuario == "" || cnpj == "" || telefone == "" || senha == "" || empresa == "" || email == "" || cargo == "" || confirmar == "") {
+        if (usuario == "" || cnpj == "" || telefone == "" || senha == "" || empresa == "" || email == "" || cargo == 0 || confirmar == "") {
             msg_alertas.style.display = "block"
             mensagem.classList.add("erro")
             mensagem.innerHTML = `Preencha os campos corretamente`
@@ -184,4 +188,11 @@
         }, 3000)
     }
 
+    function inicio() {
+        window.location = 'Inicio.html';
+    }
+
+    function inicioConf() {
+        window.location = 'Inicio.html';
+    }
 </script>
