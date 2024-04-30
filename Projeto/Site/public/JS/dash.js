@@ -1,5 +1,5 @@
 function sair (){
-    window.location = "inicio.html";
+    window.location = "Inicio.html";
 }
 function monitorar (){
     window.location = "dashPlantacao.html";
