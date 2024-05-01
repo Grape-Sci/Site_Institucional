@@ -34,6 +34,15 @@ function calculo() {
             var perdaVideiras = qtdVideira * 0.21;
             var perdaLucro = ((perdaVideiras * 15.7) * precoUsuario);
             var perdaLucroFormat = lShilling.format(perdaLucro);
+
+            var perdaMes = 0;
+           
+            for (cont = 1; cont <= 12; cont++) {
+                perdaMes += (perdaLucro / 12);
+
+                alert(`Mês ${cont}, sua perda sem o projeto será de R$ ${perdaMes.toFixed()}`)
+            }
+            
         }
         if (tipo == 'Quantidade de videiras') {
 
