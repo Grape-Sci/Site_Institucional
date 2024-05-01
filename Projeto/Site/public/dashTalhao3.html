@@ -145,6 +145,7 @@
 
 </script>
 <script>
+  // Definindo os rótulos (labels) para o eixo x do primeiro gráfico (temperatura)
   const labels = [
     '12:00',
     '12:01',
@@ -154,6 +155,7 @@
     '12:05',
   ];
 
+  // Definindo os rótulos (labels) para o eixo x do segundo gráfico (umidade) (mesmos rótulos do primeiro gráfico)
   const labels2 = [
     '12:00',
     '12:01',
@@ -163,46 +165,52 @@
     '12:05',
   ];
 
+  // Definindo os dados para o primeiro gráfico (temperatura)
   const data = {
     labels: labels,
     datasets: [{
       label: 'Temperatura em tempo real',
       backgroundColor: '#FF2D00',
       borderColor: '#FF2D00',
-      data: [24, 23, 22, 22, 21, 22],
+      data: [24, 23, 22, 22, 21, 22], // Dados de temperatura
     }]
   };
 
 
+  // Definindo os dados para o segundo gráfico (umidade)
   const data2 = {
     labels: labels2,
     datasets: [{
       label: 'Umidade em tempo real',
       backgroundColor: '#009BFF',
       borderColor: '#009BFF',
-      data: [55, 61, 58, 63, 65, 58],
+      data: [55, 61, 58, 63, 65, 58], // Dados de umidade
     }]
   };
 
+  // Configuração do primeiro gráfico (temperatura)
   const config = {
     type: 'line',
     data: data,
-    options: {}
+    options: {} // Você pode adicionar opções de configuração aqui, se necessário
   };
 
+  // Configuração do segundo gráfico (umidade)
   const config2 = {
     type: 'line',
     data: data2,
-    options: {}
+    options: {} // Você pode adicionar opções de configuração aqui, se necessário
   };
 
+  // Criando o primeiro gráfico (temperatura) utilizando a biblioteca Chart.js
   const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
+    document.getElementById('myChart'), // Local onde o gráfico será renderizado
+    config // Configuração do gráfico
   );
 
+  // Criando o segundo gráfico (umidade) utilizando a biblioteca Chart.js
   const myChart2 = new Chart(
-    document.getElementById('myChart2'),
-    config2
+    document.getElementById('myChart2'), // Local onde o gráfico será renderizado
+    config2 // Configuração do gráfico
   );
 </script>
