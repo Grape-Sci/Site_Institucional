@@ -150,6 +150,7 @@
 }
 
 .imagem .container img {
+  cursor: pointer;
   padding-top: 5%;
   width: 25%;
 }
@@ -281,6 +282,7 @@ input:checked + .slider:before {
 }
 
 .imagemCad {
+  cursor: pointer;
   height: 15%;
 }
 
@@ -322,7 +324,17 @@ input:checked + .slider:before {
   flex-direction: column;
   justify-content: space-around;
   margin-left: 0%;
+}
 
+.campo select {
+  padding: 8% 25%;
+  border-radius: 10px;
+  padding-left: 15%;
+  padding-right: 15%;
+  width: 100%;
+  font-size: 20px;
+  background-color: white;
+  color: gray;
 }
 
 .botaoCad {
