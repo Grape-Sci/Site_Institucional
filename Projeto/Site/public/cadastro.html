@@ -46,9 +46,9 @@
                             </div>
                             <div class="campo">
                                 <select id="select_cargo">
-                                        <option value="0" selected disabled>Selecione seu cargo:</option>
-                                        <option value="1">Gerente</option>
-                                        <option value="2">Funcionário</option>
+                                    <option value="0" selected disabled>Selecione seu cargo:</option>
+                                    <option value="1">Gerente</option>
+                                    <option value="2">Funcionário</option>
                                 </select>
                             </div>
                             <div class="campo">
@@ -107,62 +107,79 @@
 
 <script>
 
-function cadastrar() {
-    // Captura os valores dos campos do formulário
-    var usuario = input_usuario.value;
-    var cnpj = input_cnpj.value;
-    var telefone = input_telefone.value;
-    var senha = input_senha.value;
-    var empresa = input_empresa.value;
-    var email = input_email.value;
-    var cargo = select_cargo.value;
-    var confirmar = input_confirmar.value;
-    var temErro = false; // Variável para rastrear erros de validação
+    function cadastrar() {
+        // Captura os valores dos campos do formulário
+        var usuario = input_usuario.value;
+        var cnpj = input_cnpj.value;
+        var telefone = input_telefone.value;
+        var senha = input_senha.value;
+        var empresa = input_empresa.value;
+        var email = input_email.value;
+        var cargo = select_cargo.value;
+        var confirmar = input_confirmar.value;
+        var temErro = false; // Variável para rastrear erros de validação
 
-    // Verifica se algum campo obrigatório está vazio
-    if (usuario == "" || cnpj == "" || telefone == "" || senha == "" || empresa == "" || email == "" || cargo == 0 || confirmar == "") {
-        // Exibe uma mensagem de erro e marca que há um erro
-        msg_alertas.style.display = "block";
-        mensagem.classList.add("erro");
-        mensagem.innerHTML = `Preencha os campos corretamente`;
-        temErro = true;
-        desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
-    } else if (email.indexOf('@') < 0 && email.indexOf('.') < 0) { // Verifica se o e-mail é válido
-        // Exibe uma mensagem de erro e marca que há um erro
-        msg_alertas.style.display = "block";
-        mensagem.classList.add("erro");
-        mensagem.innerHTML = `Insira um e-mail válido`;
-        temErro = true;
-        desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
-    } else if (senha.length < 6) { // Verifica se a senha tem pelo menos 6 caracteres
-        // Exibe uma mensagem de erro e marca que há um erro
-        msg_alertas.style.display = "block";
-        mensagem.classList.add("erro");
-        mensagem.innerHTML = `A senha deve conter ao mínimo 5 caracteres`;
-        temErro = true;
-        desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
-    } else if (cnpj.length != 14) { // Verifica se o CNPJ tem 14 caracteres
-        // Exibe uma mensagem de erro e marca que há um erro
-        msg_alertas.style.display = "block";
-        mensagem.classList.add("erro");
-        mensagem.innerHTML = `Insira um CNPJ válido`;
-        temErro = true;
-        desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
-    } else if (senha != confirmar) { // Verifica se a senha e a confirmação de senha coincidem
-        // Exibe uma mensagem de erro e marca que há um erro
-        msg_alertas.style.display = "block";
-        mensagem.classList.add("erro");
-        mensagem.innerHTML = `Suas senhas estão diferentes`;
-        temErro = true;
-        desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
-    }
+        // Verifica se algum campo obrigatório está vazio
+        if (usuario == "" || cnpj == "" || telefone == "" || senha == "" || empresa == "" || email == "" || cargo == 0 || confirmar == "") {
+            // Exibe uma mensagem de erro e marca que há um erro
+            msg_alertas.style.display = "block";
+            mensagem.classList.add("erro");
+            mensagem.innerHTML = `Preencha os campos corretamente`;
+            temErro = true;
+            desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
+        } else if (email.indexOf('@') < 0 && email.indexOf('.') < 0) { // Verifica se o e-mail é válido
+            // Exibe uma mensagem de erro e marca que há um erro
+            msg_alertas.style.display = "block";
+            mensagem.classList.add("erro");
+            mensagem.innerHTML = `Insira um e-mail válido`;
+            temErro = true;
+            desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
+        } else if (senha.length < 6) { // Verifica se a senha tem pelo menos 6 caracteres
+            // Exibe uma mensagem de erro e marca que há um erro
+            msg_alertas.style.display = "block";
+            mensagem.classList.add("erro");
+            mensagem.innerHTML = `A senha deve conter ao mínimo 5 caracteres`;
+            temErro = true;
+            desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
+        } else if (cnpj.length != 14) { // Verifica se o CNPJ tem 14 caracteres
+            // Exibe uma mensagem de erro e marca que há um erro
+            msg_alertas.style.display = "block";
+            mensagem.classList.add("erro");
+            mensagem.innerHTML = `Insira um CNPJ válido`;
+            temErro = true;
+            desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
+        } else if (senha != confirmar) { // Verifica se a senha e a confirmação de senha coincidem
+            // Exibe uma mensagem de erro e marca que há um erro
+            msg_alertas.style.display = "block";
+            mensagem.classList.add("erro");
+            mensagem.innerHTML = `Suas senhas estão diferentes`;
+            temErro = true;
+            desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
+        }
 
-    // Se não houver erros, oculta o formulário de cadastro e exibe uma mensagem de confirmação
-    if (temErro == false) {
-        div_cadastro.style = 'display:none';
-        div_confirmacao.style = 'display:block';
+        // Se não houver erros, oculta o formulário de cadastro e exibe uma mensagem de confirmação
+        if (cargo == 1) {
+            if (temErro == false) {
+                div_cadastro.style = 'display:none';
+                div_confirmacao.style = 'display:block';
+            }
+        } else if (cargo == 2) {
+            msg_alertas.style.display = "block"
+            mensagem.classList.add("ok")
+            mensagem.innerHTML = `Redirecionando para o Login...`
+            desaparecerCard()
+            setTimeout(function () {
+                window.location = "login.html"
+            }, 2000)
+        }
+
+        function desaparecerCard() {
+            setTimeout(function () {
+                msg_alertas.style.display = "none"
+            }, 3000)
+        }
+
     }
-}
 
 
     function enviar() {
