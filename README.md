@@ -1,6 +1,6 @@
 <h2>Este é o repositório do projeto Grape-Sci destinado a coisas de nosso Site Institucional, e documentação de nosso projeto</h2>
 
-<p>Aqui poderemos encontrar nosso Site Instituciional, que é feito utilizando as linguagens:</p>
+<p>Aqui poderemos encontrar nosso Site Institucional, que é feito utilizando as linguagens:</p>
 
 
 ![Github Badge](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
