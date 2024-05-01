@@ -155,7 +155,6 @@
   background-color: rgb(150, 231, 130);
   border-radius: 20px;
   border: 4px solid rgb(105, 228, 74);
-
 }
 
 .titulo .container h1 {
@@ -226,7 +225,7 @@
 
 .alerta {
   height: 100%;
-  width: 29%;
+  width: 30%;
   background-color: #D8C4FA;
   border-radius: 20px;
   display: flex;
@@ -238,7 +237,7 @@
 
 .alerta .alertatitulo {
   width: 100%;
-  height: 28%;
+  height: 30%;
   display: flex;
   font-weight: bold;
   justify-content: center;
@@ -250,7 +249,6 @@
   width: 100%;
   height: 50%;
   display: flex;
-  color: rgb(240, 8, 8);
   font-size: 26px;
   font-weight: bold;
   justify-content: center;
@@ -259,71 +257,57 @@
 }
 
 .caixas {
-  width: 95%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-
 }
 
-.caixas .caixa1 {
+.caixa1 {
   width: 100%;
-  height: 90%;
 }
 
-.caixa1 .graficos {
-  width: 95%;
-  height: 95%;
-  margin-left: 8%;
-
+.graficos {
+  margin: 0 40px;
 }
 
-.graficos .fundo{
-  width: 98%;
-  height: 94%;
+.fundo{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #ffffff; 
 }
 
 .graficos .graficotemp {
-  width: 95%;
-  height: 48%;
   background-color: #8445F2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 3%;
+  margin-bottom: 10px;
+  padding:5px;
   border: 13px solid #D8C4FA;
 }
 
 .graficos .graficoumi {
-  width: 95%;
-  height: 48%;
   background-color: #8445F2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 10px;
+  padding:5px;
   border: 13px solid #D8C4FA;
 }
 
-.caixas .caixa2 {
-  width: 57%;
+.caixa2 {
+  width: 50%;
   height: 95%;
-  margin-left: 3%;
+  margin-right: 5%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-end;
 }
 
-.caixa2 .sub1 {
-  width: 80%;
-  height: 33%;
-  background-color: #D8C4FA;
+  .sub1 {
+  width: 100%;
+  height: 25%;
+  background-color:#D8C4FA;
   border-radius: 20px;
   border: 3px solid #8445F2;
   display: flex;
@@ -333,7 +317,7 @@
 }
 
 .titulo1 p{
-  font-size: 22px;
+  font-size: 20px;
   color: #8445F2;
 }
 
@@ -346,77 +330,145 @@
   align-items: center;
 }
 .metrica label{
-  font-weight: bold;
-  font-size: 24px;
   margin-bottom: 1%;
-  margin-top: 1%;
+  font-weight: bold;
+  font-size: 21px;
   color: #000000;
 }
 .metrica p{
   margin-bottom: 2%;
   font-weight: bold;
-  font-size: 23px;
+  font-size: 22px;
   color:#8445F2;
 }
 
+.containersitu{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 
-.caixa2 .sub2 {
-  width: 80%;
-  height: 60%;
+}
+
+.sub2 {
+  width: 100%;
+  height: 34%;
   background-color: #D8C4FA;
   border-radius: 20px;
   border: 3px solid #8445F2;
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+}
+
+.labelsub2 {
+  padding: 10px 0;
+}
+
+.labelsub2 label {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.titulo2 {
+  height: 10%;
+  width: 100%;
   display: flex;
+  justify-content: center;
   flex-direction: row;
-
-}
-
-.sub2 .titulo2 {
-  height: 6%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
   align-items: center;
   font-weight: bold;
 }
 
-.sub2 .situacao {
-  height: 60%;
-  width: 100%;
+.titulo2 p {
+  font-size: 20px;
+}
+.titulo2 label{
+  margin-left: 10%;
   display: flex;
-  flex-direction: ro;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+
+}
+
+.situacoes {
+  display: flex;  
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 
-.situacao .azul {
-  width: 40%;
-  height: 60%;
-  padding: 2px;
+.situacao1 {
+  display: block;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.situacao2 {
+  flex-direction: row;
+}
+
+.situacao2 .azul {
+  padding: 13px;
+  margin: 5px 5px;
   background-color: white;
   border-radius: 10px;
   border: 2px solid #000000;
   display: flex;
-  justify-content: center;
-  align-items: center;
   color: rgb(72, 161, 245);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 3%;
 }
 
-.situacao .vermelho {
-  width: 40%;
-  height: 60%;
-  padding: 2px;
+.situacao1 .vermelho {
+  padding: 13px;
+  margin: 5px 5px;
   background-color: white;
   border-radius: 10px;
   border: 2px solid #000000;
   display: flex;
+  color: red;
+  font-size: 19px;
+  font-weight: bold;
+
+}
+
+
+.subexplicacao {
+  width: 100%;
+  height: 32%;
+  background-color:#D8C4FA;
+  border-radius: 20px;
+  border: 3px solid #8445F2;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: red;
-  font-size: 20px;
+}
+
+.explicacao{
+  height: 90%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-weight: bold;
-  margin-bottom: 3%;
+  font-size: 20px;
+}
+.explicacao label{
+  margin: 7px 4px;
+ 
+}
+.segurocor{
+  color: green;
+}
+.alertacor{
+  color: yellow;
+}
+.perigocor{
+  color: red;
 }

@@ -62,7 +62,7 @@
             <p>Situação:</p>
           </div>
           <div class="alertasitu">
-            <label>Perigo</label>
+            <label style="color: green;">Seguro</label>
           </div>
         </div>
       </div>
@@ -72,22 +72,21 @@
           <div class="graficos">
             <div class="graficotemp">
               <div class="fundo">
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart" width="100%" height="33px"></canvas>
               </div>
             </div>
             <div class="graficoumi">
               <div class="fundo">
-                <canvas id="myChart2"></canvas>
+                <canvas id="myChart2" width="100%" height="33px"></canvas>
               </div>
             </div>
           </div>
         </div>
 
         <div class="caixa2">
-
           <div class="sub1">
             <div class="metrica">
-              <label>Métrica</label>
+              <label>Metrica</label>
               <label>Temperatura Ideal:</label>
               <p>Entre 20°C e 30°C </p>
               <label>Umidade ideal:</label>
@@ -95,36 +94,49 @@
             </div>
           </div>
 
+          <div class="subexplicacao">
+            <div class="explicacao">
+              <label><span class="segurocor">SEGURO:</span> Intervalo ideal, sem estar a 2% ou a 2°C de distância dos limites.</label>
+              <label><span class="alertacor">ALERTA:</span> Estando a 2% ou a 2°C de distância do intervalo ideal.</label>
+              <label><span class="perigocor">PERIGO:</span> Sendo menor ou maior em relação a métrica ideal.</label>
+            </div>
+          </div>
+
           <div class="sub2">
-            <div class="titulo2">
-              <p>Temperatura</p>
+            <div class="labelsub2">
+              <label>Dentro das 24 Horas</label>
             </div>
-            <div class="situacao">
-              <div class="vermelho">
-                <p>Mínima: 21°C</p>
+            <div class="situacoes">
+              <div class="situacao1">
+                <div class="titulo2">
+                  <label>TEMPERATURA:</label>
+                </div>
+                <div class="vermelho">
+                  <p>Mínima: 21°C</p>
+                </div>
+                <div class="vermelho">
+                  <p>Máxima: 24°C</p>
+                </div>
               </div>
-              <div class="vermelho">
-                <p>Máxima: 24°C</p>
-              </div>
-              <div class="titulo2">
-                <p>Umidade</p>
-              </div>
-              <div class="azul">
-                <p>Mínima: 55%</p>
-              </div>
-              <div class="azul">
-                <p>Máxima: 65%</p>
+                
+              <div class="situacao2">
+                <div class="titulo2">
+                  <label>UMIDADE:</label>
+                </div>
+                <div class="azul">
+                  <p>Mínima: 55%</p>
+                </div>
+                <div class="azul">
+                  <p>Máxima: 65%</p>
+                </div>
               </div>
             </div>
+
+
           </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-  </div>
-
-  </div>
   </div>
 </body>
 
