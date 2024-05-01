@@ -1,11 +1,10 @@
-// Importa os módulos necessários
-// não altere!
+// Constante para importar os modulos que a aplicação precisa para rodar 
 const serialport = require('serialport'); // Módulo para comunicação serial
 const express = require('express'); // Módulo para criar um servidor web
 const mysql = require('mysql2'); // Módulo para conectar ao MySQL
 
 // Constantes para configurações
-// não altere!
+// Porta de entrada e saída
 const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
@@ -74,7 +73,7 @@ const serial = async (
         // valoresLm35Temperatura.push(lm35Temperatura);
         // valoresChave.push(chave);
 
-        // Insere os dados no banco de dados (se habilitado)
+        // Insere os dados no banco de dados (se habilitado o true) 
         if (HABILITAR_OPERACAO_INSERIR) {
 
             // altere!
