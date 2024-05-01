@@ -1,9 +1,9 @@
-create database GrapeSci;
+CREATE DATABASE GrapeSci;
 
-use GrapeSci;
+USE GrapeSci;
 
 
-create table Empresa (
+CREATE TABLE Empresa (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(80) not null,
 cep CHAR(8) not null,
@@ -12,7 +12,7 @@ codAutentic INT not null unique
 );
 
 -- Uma empresa pode ter vários funcionarios
-create table Funcionario (
+CREATE TABLE Funcionario (
 idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(45) not null,
 cpf CHAR(11) not null unique,
@@ -26,7 +26,7 @@ foreign key (fkEmpresa) references Empresa(idEmpresa)
 );
 
 -- Uma empresa pode ter várias plantações (obs: 1 plantação pode ter vários talhões)
-create table Plantacao (
+CREATE TABLE Plantacao (
 idPlantacao INT PRIMARY KEY AUTO_INCREMENT,
 areaTotal DOUBLE not null,
 fkEmpresa INT,
@@ -34,14 +34,14 @@ foreign key (fkEmpresa) references Empresa(idEmpresa)
 );
 
 -- trabalhamos somente com 3 tipos de uva sendo elas: uva thompson, uva rubi e uva italia
-create table Uva (
+CREATE TABLE Uva (
 idUva INT PRIMARY KEY AUTO_INCREMENT,
 nomeTipo VARCHAR(45)not null,
 tempIdeal DOUBLE not null,
 umiIdeal DOUBLE not null);
 
 -- Cada talhão só pode ter 1 tipo de uva e 1 plantação pode ter vários talhões
-create table Talhao (
+CREATE TABLE Talhao (
 idTalhao INT PRIMARY KEY AUTO_INCREMENT,
 qtdVieiras INT not null,
 tamAreaPlant DOUBLE not null,
@@ -53,14 +53,14 @@ foreign key (fkUva) references Uva(idUva),
 foreign key (fkPlantacao) references Plantacao(idPlantacao));
 
 -- cada talhão deve ter apenas 1 dispostivo
-create table Dispositivo (
+CREATE TABLE Dispositivo (
 idDispositivo INT PRIMARY KEY AUTO_INCREMENT,
 nomeSensor VARCHAR (45),
 fkTalhao INT,
 foreign key (fkTalhao) references Talhao(idTalhao));
 
 -- 1 dispositivo pode realizar vários registros
-create table Registro (
+CREATE TABLE Registro (
 idRegistro INT PRIMARY KEY AUTO_INCREMENT,
 consultaUmi DOUBLE not null,
 consultaTemp DOUBLE not null,
@@ -69,7 +69,7 @@ fkDispositivo INT,
 foreign key (fkDispositivo) references Dispositivo(idDispositivo)
 );
 
-select * from Registro;
+SELECT * from Registro;
 
 -- Inserindo as empresas
 INSERT INTO Empresa (nome, cep, cnpj, codAutentic) VALUES 
@@ -91,7 +91,7 @@ INSERT INTO Plantacao (areaTotal, fkEmpresa) VALUES
 (10,2),
 (5,3);
 
-Select * from Plantacao;
+SELECT * from Plantacao;
 
 -- Inserindo os 3 tipos de uva
 INSERT INTO Uva (nomeTipo,tempIdeal, umiIdeal) VALUES
@@ -109,7 +109,7 @@ INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPlantio, prevColheita, fKUva, fk
 (100, 60, '2024-08-05', '2024-12-05', 2, 2), 
 (80, 40, '2024-09-05', '2025-01-05', 2, 3);
 
-select * from Talhao;
+SELECT * from Talhao;
 
 
 -- Inserindo os dispositivo de cada plantação
@@ -187,4 +187,4 @@ d.nomeSensor From Registro as r, Dispositivo as d);
 SELECT * FROM teste;
 
 -- Selecionando da view teste os dados dos sensor2 e do sensor1 e ordenando pelo seus nomes em ordem crescente
-SELECT * FROM teste WHERE nomeSensor = 'Sensor2' or nomeSensor = 'Sensor1'order by nomeSensor;
+SELECT * FROM teste WHERE nomeSensor = 'Sensor2' or nomeSensor = 'Sensor1' ORDER BY nomeSensor;
