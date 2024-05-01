@@ -155,7 +155,15 @@
             mensagem.innerHTML = `Suas senhas estão diferentes`;
             temErro = true;
             desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
+        } else if (empresa != "UvaLTDA") {
+             // Exibe uma mensagem de erro e marca que há um erro
+             msg_alertas.style.display = "block";
+            mensagem.classList.add("erro");
+            mensagem.innerHTML = `Essa empresa não é valida`;
+            temErro = true;
+            desaparecerCard(); // Chama uma função para ocultar algum elemento HTML
         }
+
 
         // Se não houver erros, oculta o formulário de cadastro e exibe uma mensagem de confirmação
         if (cargo == 1) {
@@ -164,13 +172,15 @@
                 div_confirmacao.style = 'display:block';
             }
         } else if (cargo == 2) {
-            msg_alertas.style.display = "block"
-            mensagem.classList.add("ok")
-            mensagem.innerHTML = `Redirecionando para o Login...`
-            desaparecerCard()
-            setTimeout(function () {
-                window.location = "login.html"
-            }, 2000)
+            if (temErro == false) {
+                msg_alertas.style.display = "block"
+                mensagem.classList.add("ok")
+                mensagem.innerHTML = `Redirecionando para o Login...`
+                desaparecerCard()
+                setTimeout(function () {
+                    window.location = "login.html"
+                }, 2000) 
+            }
         }
 
         function desaparecerCard() {
