@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Talhão 1</title>
+  <title>Talhão 2</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
   <link rel="stylesheet" href="css/dashTalhao.css" />
 </head>
 
-<body onload="exibirTalhao()">
-  <div class="pagina" >
+<body>
+  <div class="pagina">
     <div class="navBar">
       <div class="logo">
         <div class="container">
@@ -41,19 +41,19 @@
     <div class="talhao">
       <div class="titulo">
         <div class="container">
-          <h1 id="tituloTalhao"></h1>
+          <h1>Talhão 2</h1>
         </div>
       </div>
       <div class="kpi">
         <div class="tipoUva">
-          <label>Uva Itália</label>
+          <label>Uva Thompson</label>
         </div>
         <div class="colheita">
           <div class="colheitatitulo">
             <p>Previsão de colheita:</p>
           </div>
           <div class="prevcolheita">
-            <label>150 Dias</label>
+            <label>60 Dias</label>
             <p><img src="img/prevUva.png" width="45px"></p>
           </div>
         </div>
@@ -62,7 +62,7 @@
             <p>Situação:</p>
           </div>
           <div class="alertasitu">
-            <label style="color: green;">Seguro</label>
+            <label style="color: yellow;">Alerta</label>
           </div>
         </div>
       </div>
@@ -86,11 +86,11 @@
         <div class="caixa2">
           <div class="sub1">
             <div class="metrica">
-              <label>Metrica</label>
+              <label>Métrica</label>
               <label>Temperatura Ideal:</label>
-              <p>Entre 20°C e 30°C </p>
+              <p>Entre 18°C e 28°C </p>
               <label>Umidade ideal:</label>
-              <p>Entre 50% e 60%</p>
+              <p>Entre 60% e 70%.</p>
             </div>
           </div>
 
@@ -112,10 +112,10 @@
                   <label>TEMPERATURA:</label>
                 </div>
                 <div class="vermelho">
-                  <p>Mínima: 21°C</p>
+                  <p>Mínima: 18°C</p>
                 </div>
                 <div class="vermelho">
-                  <p>Máxima: 24°C</p>
+                  <p>Máxima: 20°C</p>
                 </div>
               </div>
                 
@@ -124,10 +124,10 @@
                   <label>UMIDADE:</label>
                 </div>
                 <div class="azul">
-                  <p>Mínima: 55%</p>
+                  <p>Mínima: 61%</p>
                 </div>
                 <div class="azul">
-                  <p>Máxima: 65%</p>
+                  <p>Máxima: 60%</p>
                 </div>
               </div>
             </div>
@@ -145,7 +145,7 @@
 
 </script>
 <script>
-  // Definindo os rótulos para o eixo x de cada gráfico
+  // Definindo os rótulos (labels) para o eixo x do gráfico de temperatura
   const labels = [
     '12:00',
     '12:01',
@@ -155,6 +155,7 @@
     '12:05',
   ];
 
+  // Definindo os rótulos (labels) para o eixo x do gráfico de umidade (mesmos rótulos do gráfico de temperatura)
   const labels2 = [
     '12:00',
     '12:01',
@@ -164,52 +165,52 @@
     '12:05',
   ];
 
-  // Definindo os dados para o gráfico de temperatura em tempo real
+  // Definindo os dados para o gráfico de temperatura
   const data = {
     labels: labels,
     datasets: [{
       label: 'Temperatura em tempo real',
       backgroundColor: '#FF2D00',
       borderColor: '#FF2D00',
-      data: [24, 23, 22, 22, 21, 22], // Dados de temperatura
+      data: [18, 20, 19, 18, 19, 18], // Dados de temperatura
     }]
   };
 
-  // Definindo os dados para o gráfico de umidade em tempo real
+
+  // Definindo os dados para o gráfico de umidade
   const data2 = {
     labels: labels2,
     datasets: [{
       label: 'Umidade em tempo real',
       backgroundColor: '#009BFF',
       borderColor: '#009BFF',
-      data: [55, 61, 58, 63, 65, 58], // Dados de umidade
+      data: [61, 60, 65, 61, 61, 60], // Dados de umidade
     }]
   };
 
-  // Configurações para o gráfico de temperatura em tempo real
+  // Configuração do primeiro gráfico (temperatura)
   const config = {
     type: 'line',
     data: data,
     options: {}
   };
 
-  // Configurações para o gráfico de umidade em tempo real
+  // Configuração do segundo gráfico (umidade)
   const config2 = {
     type: 'line',
     data: data2,
     options: {}
   };
 
-  // Criando a instância do gráfico de temperatura em tempo real
+  // Criando o primeiro gráfico (temperatura) utilizando a biblioteca Chart.js
   const myChart = new Chart(
-    document.getElementById('myChart'), // ID do elemento HTML onde o gráfico será renderizado
-    config // Configurações do gráfico
+    document.getElementById('myChart'), // Local onde o gráfico será renderizado
+    config // Configuração do gráfico
   );
 
-  // Criando a instância do gráfico de umidade em tempo real
+  // Criando o segundo gráfico (umidade) utilizando a biblioteca Chart.js
   const myChart2 = new Chart(
-    document.getElementById('myChart2'), // ID do elemento HTML onde o gráfico será renderizado
-    config2 // Configurações do gráfico
+    document.getElementById('myChart2'), // Local onde o gráfico será renderizado
+    config2 // Configuração do gráfico
   );
 </script>
-
