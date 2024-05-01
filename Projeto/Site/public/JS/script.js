@@ -1,10 +1,14 @@
 var contagemCalculo = 0
 div_imagem.style.display = "block"
 
+var perdaLucroFormat = 0;
+var perdaLucro = 0;
+var invest = 0;
+
 function calculo() {
     // ESPAÇO PARA ADIÇÃO DA FORMULA E VARIAVEIS
     var tipo = select_tipo.value;
-    var invest = Number(input_invest.value);
+    invest = Number(input_invest.value);
     var tipoUva = select_tipoUva.value;
     var qtdVideira = 0;
     var preco = 0;
@@ -32,17 +36,9 @@ function calculo() {
             var lucro = precoUsuario * qtdUvas;
             var lucroFormat = lShilling.format(lucro);
             var perdaVideiras = qtdVideira * 0.21;
-            var perdaLucro = ((perdaVideiras * 15.7) * precoUsuario);
-            var perdaLucroFormat = lShilling.format(perdaLucro);
+            perdaLucro = ((perdaVideiras * 15.7) * precoUsuario);
+            perdaLucroFormat = lShilling.format(perdaLucro);
 
-            var perdaMes = 0;
-           
-            for (cont = 1; cont <= 12; cont++) {
-                perdaMes += (perdaLucro / 12);
-
-                alert(`Mês ${cont}, sua perda sem o projeto será de R$ ${perdaMes.toFixed()}`)
-            }
-            
         }
         if (tipo == 'Quantidade de videiras') {
 
@@ -51,7 +47,7 @@ function calculo() {
             var lucro = precoUsuario * qtdUvas;
             var lucroFormat = lShilling.format(lucro);
             var perdaVideiras = invest * 0.21
-            var perdaLucro = (perdaVideiras * 15.7) * precoUsuario
+            perdaLucro = (perdaVideiras * 15.7) * precoUsuario
             var perdaLucroFormat = lShilling.format(perdaLucro);
         }
         // VALIDAÇÕES PARA EXIBIÇÃO
@@ -67,6 +63,7 @@ function calculo() {
                 <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
                 <p id="tipouva"><span style="color: #d049e4">Uvas Thompson</span> São apreciadas tanto como uva de mesa quanto para processamento em passas, sucos e geleias. As videiras são capazes de crescer em uma variedade de climas, a sua produtividade é elevada e são relativamente fáceis de cultivar.</p>
                 <p><button class="button" onclick="retorno()">Retornar</button></p>
+                <p><button class="button" onclick="mensal()">Mostar anual</button></p>
                 `
                 console.log(`Calculo número ${contagemCalculo}º feito!`)
             } else {
@@ -80,6 +77,7 @@ function calculo() {
                 <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
                 <p id="tipouva"><span style="color: #d049e4">Uvas Thompson</span> São apreciadas tanto como uva de mesa quanto para processamento em passas, sucos e geleias. As videiras são capazes de crescer em uma variedade de climas, a sua produtividade é elevada e são relativamente fáceis de cultivar.</p>
                 <p><button class="button" onclick="retorno()">Retornar</button></p>
+                <p><button class="button" onclick="mensal()">Mostar anual</button></p>
                 `
             }
         } else if (tipoUva == 'Uva Itália') {
@@ -94,6 +92,7 @@ function calculo() {
                 <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
                 <p id="tipouva"><span style="color: #d049e4">Uvas Itália</span> Popular para consumo direto e para a produção de vinhos brancos e espumantes, ou seja, proporciona flexibilidade para os produtores e para os destinos de sua colheita. A plantação é viável em uma variedade de climas, além do seu potencial ser de alta produtividade.</p>
                 <p><button class="button" onclick="retorno()">Retornar</button></p>
+                <p><button class="button" onclick="mensal()">Mostar anual</button></p>
                 `
             }
             else {
@@ -107,6 +106,7 @@ function calculo() {
                 <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
                 <p id="tipouva"><span style="color: #d049e4">Uvas Itália</span> Popular para consumo direto e para a produção de vinhos brancos e espumantes, ou seja, proporciona flexibilidade para os produtores e para os destinos de sua colheita. A plantação é viável em uma variedade de climas, além do seu potencial ser de alta produtividade.</p>
                 <p><button class="button" onclick="retorno()">Retornar</button></p>
+                <p><button class="button" onclick="mensal()">Mostar anual</button></p>
                 `
             }
         } else if (tipoUva == 'Uva Rubi') {
@@ -121,6 +121,7 @@ function calculo() {
                 <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
                 <p id="tipouva"><span style="color: #d049e4">Uvas Rubi</span> É prospera para plantação em diversos climas, conhecida por seus potenciais benefícios à saúde. Sua tonalidade vermelha vibrante e tamanho generoso a tornam visualmente cativante para os consumidores, além da sua durabilidade pós-colheita.</p>
                 <p><button class="button" onclick="retorno()">Retornar</button></p>
+                <p><button class="button" onclick="mensal()">Mostar anual</button></p>
                 `
             } else {
                 div_imagem.style.display = "none"
@@ -133,6 +134,7 @@ function calculo() {
                 <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
                 <p id="tipouva"><span style="color: #d049e4">Uvas Rubi</span> É prospera para plantação em diversos climas, conhecida por seus potenciais benefícios à saúde. Sua tonalidade vermelha vibrante e tamanho generoso a tornam visualmente cativante para os consumidores, além da sua durabilidade pós-colheita.</p>
                 <p><button class="button" onclick="retorno()">Retornar</button></p>
+                 <p><button class="button" onclick="mensal()">Mostar anual</button></p>
                 `
             }
         }
@@ -149,3 +151,22 @@ function retorno() {
 function login() {
     window.location = "login.html"
 }
+
+function mensal() {
+    div_tela.innerHTML = "";
+
+    var perdaMes = 0;
+    div_tela.innerHTML =
+        `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85""></p> 
+        <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">R$ ${perdaLucro}</span></p>
+        <h2 style="margin-left: 100px; color: #593BB9"> Anualmente falando: </h2>
+    `
+
+    for (cont = 1; cont <= 12; cont++) {
+        perdaMes += (perdaLucro / 12);
+
+        div_tela.innerHTML += `<br><h3 style="margin-left: 100px;">Mês ${cont} sua perda será de R$${perdaMes.toFixed(2)}</h3>`
+    }
+
+    div_tela.innerHTML += `<br><p><button class="button" onclick="retorno()">Retornar</button></p>`
+}   
