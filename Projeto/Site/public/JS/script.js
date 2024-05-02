@@ -90,7 +90,7 @@ function calculo() {
                 <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
                 <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
                 <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
-                <p id="tipouva"><span style="color: #d049e4">Uvas Itália</span> Popular para consumo direto e para a produção de vinhos brancos e espumantes, ou seja, proporciona flexibilidade para os produtores e para os destinos de sua colheita. A plantação é viável em uma variedade de climas, além do seu potencial ser de alta produtividade.</p>
+                <p id="tipouva"><span style="color: #d049e4">Uvas Itália</span> Popular para consumo direto e para a produção de vinhos brancos e espumantes, ou seja, proporciona flexibilidade para os produtores e para os destinos de sua colheita. A plantação é viável em uma variedade de climas, além da sua alta produtividade.</p>
                 <p><button class="button" onclick="retorno()">Retornar</button></p>
                 <p><button class="button" onclick="mensal()">Mostar anual</button></p>
                 `
@@ -104,7 +104,7 @@ function calculo() {
                 <p>Quantidade de uvas: <span>${qtdUvas} Kg</span></p>
                 <p>Você terá um lucro de: <span style="color: #54BD91">${lucroFormat}<span></p>
                 <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">${perdaLucroFormat}</span></p>
-                <p id="tipouva"><span style="color: #d049e4">Uvas Itália</span> Popular para consumo direto e para a produção de vinhos brancos e espumantes, ou seja, proporciona flexibilidade para os produtores e para os destinos de sua colheita. A plantação é viável em uma variedade de climas, além do seu potencial ser de alta produtividade.</p>
+                <p id="tipouva"><span style="color: #d049e4">Uvas Itália</span> Popular para consumo direto e para a produção de vinhos brancos e espumantes, ou seja, proporciona flexibilidade para os produtores e para os destinos de sua colheita. A plantação é viável em uma variedade de climas, além da sua alta produtividade.</p>
                 <p><button class="button" onclick="retorno()">Retornar</button></p>
                 <p><button class="button" onclick="mensal()">Mostar anual</button></p>
                 `
@@ -158,14 +158,14 @@ function mensal() {
     var perdaMes = 0;
     div_tela.innerHTML =
         `<p><img src="img/uvalogo.png" id="uvalogo" width="85" height="85""></p> 
-        <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">R$ ${perdaLucro}</span></p>
+        <p>Caso você não usasse nosso sistema você perderia (por safra):<span style="color: #ff0000;">R$ ${perdaLucro.toFixed(2)}</span></p>
         <h2 style="margin-left: 100px; color: #593BB9"> Anualmente falando: </h2>
     `
 
     for (cont = 1; cont <= 12; cont++) {
         perdaMes += (perdaLucro / 12);
 
-        div_tela.innerHTML += `<br><h3 style="margin-left: 100px;">Mês ${cont} sua perda será de R$${perdaMes.toFixed(2)}</h3>`
+        div_tela.innerHTML += `<br><label>Mês ${cont} sua perda será de R$${perdaMes.toFixed(2)}</label>`
     }
 
     div_tela.innerHTML += `<br><p><button class="button" onclick="retorno()">Retornar</button></p>`
