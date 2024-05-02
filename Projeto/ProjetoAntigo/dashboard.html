@@ -57,3 +57,79 @@
         }
     });
 </script>
+<script>
+    // Função para calcular o lucro
+    function calcularlucro() {
+        // Captura os valores das inputs
+        var investimento = Number(valor.value);
+        var qtds = Number(uvas.value);
+        var num_hectares = Number(hectares.value);
+        var tamanho_hectares = Number(tamanho.value);
+        var precoUva = Number(kilo.value);
+        var qtdproduzidakilo = Number(qtdKilo.value)
+        var perda = 0.21; // Taxa de perda na produção de uvas
+
+        // Calcula a perda de uvas em cada hectare
+        var sperda = (qtds * num_hectares / tamanho_hectares * perda) - qtds;
+        // Calcula a quantidade total de uvas produzidas
+        var calcporkilo = sperda * qtdproduzidakilo;
+        // Calcula o valor total das uvas vendidas
+        var vendasUva = calcporkilo * precoUva;
+        // Calcula o lucro
+        var lucro = vendasUva - investimento;
+        var mensagem = 'Não é possível realizar o cálculo. Insira valores maiores que 0!';
+
+        // Verifica se algum dos valores é menor ou igual a zero
+        if (investimento <= 0 || qtds <= 0 || num_hectares <= 0 || tamanho_hectares <= 0.1 || precoUva <= 0) {
+            // Exibe mensagem de erro se algum valor for zero ou menor
+            Swal.fire({
+                icon: "error",
+                title: "NÃO FOI POSSÍVEL REALIZAR O CÁLCULO",
+                text: "Os números têm que ser diferentes de 0",
+                customClass: {
+                    popup: 'custom-modal',
+                    confirmButton: 'swal2-confirm1'
+                }
+            });
+        } else {
+            // Exibe o resultado do cálculo
+            if (lucro < investimento) {
+                // Se houver prejuízo
+                Swal.fire({
+                    title: "Investimento em Vinhedo",
+                    html: `Seu investimento de: <span style="font-size: 25px"><b>R$:${investimento}</b></span><br><br>
+                            <!-- Insira o caminho correto da imagem -->
+                            <img src="imagens/logo.png" style=" width: 100px;" alt="Logo"> 
+                            <br><br>
+                            <p style="text-align: justify;">Com a quantidade de ${qtds} s  e o número de hectares igual ${num_hectares} e distribuindo
+                            esse valor pelo tamanho dos hectares de ${tamanho_hectares} junto a perda de 21% resulta em uma quantidade de s, resulta em uma quantidade
+                            de ${calcporkilo}KG de uvas. Considerando que uma  produz em média ${qtdproduzidakilo}KG de uva.<br><br>
+                            Sendo assim, com um valor de R$${precoUva} por cada quilo de uva que será vendido, irá gerar um total de R$${vendasUva}.<br><br></p>
+                            Sendo assim, gerando um prejuízo total de:  <span style="font-size: 25px; color: red;"><b>R$:${lucro}</b></span>.`,
+                    customClass: {
+                        popup: 'custom-modal',
+                        confirmButton: 'swal2-confirm'
+                    }
+                });
+            } else {
+                // Se houver lucro
+                Swal.fire({
+                    title: "Investimento em Vinhedo",
+                    html: `Seu investimento de: <span style="font-size: 25px"><b>R$:${investimento}</b></span><br><br>
+                            <!-- Insira o caminho correto da imagem -->
+                            <img src="imagens/logo.png" style=" width: 100px;" alt="Logo"> 
+                            <br><br>
+                            <p style="text-align: justify;">Com a quantidade de ${qtds} s  e o número de hectares igual ${num_hectares} e distribuindo
+                            esse valor pelo tamanho dos hectares de ${tamanho_hectares} junto a perda de 21% resulta em uma quantidade de s, resulta em uma quantidade
+                            de ${calcporkilo}KG de uvas. Considerando que uma  produz em média ${qtdproduzidakilo}KG de uva.<br><br>
+                            Sendo assim, com um valor de R$${precoUva} por cada quilo de uva que será vendido, irá gerar um total de R$${vendasUva}.<br><br></p>
+                            Sendo assim, gerando um lucro total de:  <span style="font-size: 25px; color: green;"><b>R$:${lucro}</b></span>.`,
+                    customClass: {
+                        popup: 'custom-modal',
+                        confirmButton: 'swal2-confirm'
+                    }
+                });
+            }
+        }
+    }
+</script>

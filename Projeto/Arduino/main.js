@@ -94,72 +94,44 @@ const serial = async (
     });
 }
 
-
 // não altere!
 // Função para criar e configurar o servidor web
 const servidor = (
     valoresDht11Umidade,
     valoresDht11Temperatura
-    // valoresLuminosidade,
-    // valoresLm35Temperatura,
-    // valoresChave
 ) => {
-    const app = express();
+    const app = express(); // Importa e instancia o Express.js para criar um servidor
 
-    // Configurações de CORS
-    app.use((request, response, next) => {
+    app.use((request, response, next) => { // Define middleware para habilitar o CORS
         response.header('Access-Control-Allow-Origin', '*');
         response.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
         next();
     });
 
-    // Inicia o servidor na porta especificada
-    app.listen(SERVIDOR_PORTA, () => {
+    app.listen(SERVIDOR_PORTA, () => { // Inicia o servidor na porta definida
         console.log(`API executada com sucesso na porta ${SERVIDOR_PORTA}`);
     });
 
-    // Define os endpoints da API para cada tipo de sensor
+    // Define endpoints para obter os dados de umidade e temperatura do sensor DHT11
     app.get('/sensores/dht11/umidade', (_, response) => {
         return response.json(valoresDht11Umidade);
     });
     app.get('/sensores/dht11/temperatura', (_, response) => {
         return response.json(valoresDht11Temperatura);
     });
-    // app.get('/sensores/luminosidade', (_, response) => {
-    //     return response.json(valoresLuminosidade);
-    // });
-    // app.get('/sensores/lm35/temperatura', (_, response) => {
-    //     return response.json(valoresLm35Temperatura);
-    // });
-    // app.get('/sensores/chave', (_, response) => {
-    //     return response.json(valoresChave);
-    // });
 }
 
-// Função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
-    // Arrays para armazenar os valores dos sensores
     const valoresDht11Umidade = [];
     const valoresDht11Temperatura = [];
-    // const valoresLuminosidade = [];
-    // const valoresLm35Temperatura = [];
-    // const valoresChave = [];
 
-    // Inicia a comunicação serial
-    await serial(
+    await serial( // Chama uma função chamada "serial" para obter os dados do sensor DHT11
         valoresDht11Umidade,
         valoresDht11Temperatura
-        // valoresLuminosidade,
-        // valoresLm35Temperatura,
-        // valoresChave
     );
 
-    // Inicia o servidor web
-    servidor(
+    servidor( // Inicia o servidor web com os dados obtidos do sensor
         valoresDht11Umidade,
         valoresDht11Temperatura
-        // valoresLuminosidade,
-        // valoresLm35Temperatura,
-        // valoresChave
     );
 })();
