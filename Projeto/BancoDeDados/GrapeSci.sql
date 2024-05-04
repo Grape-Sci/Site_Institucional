@@ -1,9 +1,9 @@
-CREATE DATABASE GrapeSci;
+create database GrapeSci;
 
-USE GrapeSci;
+use GrapeSci;
 
 
-CREATE TABLE Empresa (
+create table Empresa (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(80) not null,
 cep CHAR(8) not null,
@@ -12,8 +12,8 @@ codAutentic INT not null unique
 );
 
 -- Uma empresa pode ter vários funcionarios
-CREATE TABLE Funcionario (
-idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
+create table Funcionario (
+idFuncionario INT auto_increment,
 nome VARCHAR(45) not null,
 cpf CHAR(11) not null unique,
 senha VARCHAR(45) not null,
@@ -22,11 +22,12 @@ telefone CHAR(11) not null unique,
 cargo VARCHAR(45) not null,
 constraint chkcargo check (cargo in ('Gerente', 'Funcionario')),
 fkEmpresa INT,
+primary key (idFuncionario, fkempresa),
 foreign key (fkEmpresa) references Empresa(idEmpresa)
 );
 
 -- Uma empresa pode ter várias plantações (obs: 1 plantação pode ter vários talhões)
-CREATE TABLE Plantacao (
+create table Plantacao (
 idPlantacao INT PRIMARY KEY AUTO_INCREMENT,
 areaTotal DOUBLE not null,
 fkEmpresa INT,
@@ -34,42 +35,46 @@ foreign key (fkEmpresa) references Empresa(idEmpresa)
 );
 
 -- trabalhamos somente com 3 tipos de uva sendo elas: uva thompson, uva rubi e uva italia
-CREATE TABLE Uva (
+create table Uva (
 idUva INT PRIMARY KEY AUTO_INCREMENT,
 nomeTipo VARCHAR(45)not null,
-tempIdeal DOUBLE not null,
-umiIdeal DOUBLE not null);
+tempMax DOUBLE not null,
+tempMin DOUBLE not null,
+umiMin DOUBLE not null,
+umiMax DOUBLE not null);
 
 -- Cada talhão só pode ter 1 tipo de uva e 1 plantação pode ter vários talhões
-CREATE TABLE Talhao (
-idTalhao INT PRIMARY KEY AUTO_INCREMENT,
+create table Talhao (
+idTalhao INT AUTO_INCREMENT,
 qtdVieiras INT not null,
 tamAreaPlant DOUBLE not null,
 dtPlantio DATE not null,
 prevColheita DATE not null,
 fkUva INT,
 fkPlantacao INT,
+primary key (idTalhao, fkPlantacao),
 foreign key (fkUva) references Uva(idUva),
 foreign key (fkPlantacao) references Plantacao(idPlantacao));
 
 -- cada talhão deve ter apenas 1 dispostivo
-CREATE TABLE Dispositivo (
+create table Dispositivo (
 idDispositivo INT PRIMARY KEY AUTO_INCREMENT,
 nomeSensor VARCHAR (45),
 fkTalhao INT,
 foreign key (fkTalhao) references Talhao(idTalhao));
 
 -- 1 dispositivo pode realizar vários registros
-CREATE TABLE Registro (
-idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+create table Registro (
+idRegistro INT AUTO_INCREMENT,
 consultaUmi DOUBLE not null,
 consultaTemp DOUBLE not null,
 registroDt DATETIME not null,
 fkDispositivo INT,
+primary key (idRegistro, fkDispositivo),
 foreign key (fkDispositivo) references Dispositivo(idDispositivo)
 );
 
-SELECT * from Registro;
+select * from Registro;
 
 -- Inserindo as empresas
 INSERT INTO Empresa (nome, cep, cnpj, codAutentic) VALUES 
@@ -91,13 +96,13 @@ INSERT INTO Plantacao (areaTotal, fkEmpresa) VALUES
 (10,2),
 (5,3);
 
-SELECT * from Plantacao;
+Select * from Plantacao;
 
 -- Inserindo os 3 tipos de uva
-INSERT INTO Uva (nomeTipo,tempIdeal, umiIdeal) VALUES
-('Uva Thompson Seedless', 21.0, 60.0),
-('Uva Italia', 25.0, 55.0),
-('Uva Rubi', 20.0, 65.0);
+INSERT INTO Uva (nomeTipo, tempMax, tempMin, umiMin, umiMax) VALUES
+('Uva Thompson Seedless', 28.0, 18.0, 60, 70),
+('Uva Italia', 30.0, 20.0, 50, 60),
+('Uva Rubi', 25.0, 15.0, 60, 70);
 
 
 -- Inserindo os talhões relacionadas a cada platação correspondente a cada empresa
@@ -109,7 +114,7 @@ INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPlantio, prevColheita, fKUva, fk
 (100, 60, '2024-08-05', '2024-12-05', 2, 2), 
 (80, 40, '2024-09-05', '2025-01-05', 2, 3);
 
-SELECT * from Talhao;
+select * from Talhao;
 
 
 -- Inserindo os dispositivo de cada plantação
@@ -172,7 +177,7 @@ JOIN Registro ON Dispositivo.idDispositivo = Registro.fkDispositivo;
 
 
 -- JOIN entre os dispostivos e os registros
-SELECT D.idDispositivo,D.nomeSensor, R.consultaUmi, R.consultaTemp, R.registroDt, U.umiIdeal,U.tempIdeal
+SELECT D.idDispositivo,D.nomeSensor, R.consultaUmi, R.consultaTemp, R.registroDt, U.umiMin,U.umiMax, U.tempMin,U.tempMax
 FROM Dispositivo AS D
 JOIN Registro AS R ON D.idDispositivo = R.fkDispositivo
 JOIN Talhao as T ON T.idTalhao = D.fkTalhao
@@ -187,4 +192,4 @@ d.nomeSensor From Registro as r, Dispositivo as d);
 SELECT * FROM teste;
 
 -- Selecionando da view teste os dados dos sensor2 e do sensor1 e ordenando pelo seus nomes em ordem crescente
-SELECT * FROM teste WHERE nomeSensor = 'Sensor2' or nomeSensor = 'Sensor1' ORDER BY nomeSensor;
+SELECT * FROM teste WHERE nomeSensor = 'Sensor2' or nomeSensor = 'Sensor1'order by nomeSensor;
