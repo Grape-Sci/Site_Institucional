@@ -8,7 +8,8 @@ idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(80) not null,
 cep CHAR(8) not null,
 cnpj CHAR(14) not null unique,
-codAutentic INT not null unique
+codAutenticF INT not null unique,
+codAutenticG INT not null unique
 );
 
 -- Uma empresa pode ter vários funcionarios
@@ -77,10 +78,10 @@ foreign key (fkDispositivo) references Dispositivo(idDispositivo)
 select * from Registro;
 
 -- Inserindo as empresas
-INSERT INTO Empresa (nome, cep, cnpj, codAutentic) VALUES 
-('UvasLTDA', '03910091', '44834157000108', 121314),
-('Uvitas', '05910080', '55088157000102', 262728),
-('Roxinhas', '05910080', '60078151000222' , 343536);
+INSERT INTO Empresa (nome, cep, cnpj, codAutenticF, codAutenticG) VALUES 
+('UvasLTDA', '03910091', '44834157000108', 121314, 998566),
+('Uvitas', '05910080', '55088157000102', 262728, 232311),
+('Roxinhas', '05910080', '60078151000222' , 343536, 777390);
 
 -- Inserindo os funcionários relacionados a empresa
 INSERT INTO Funcionario (nome, cpf, senha, email, telefone, cargo, fkEmpresa) VALUES 
@@ -148,7 +149,7 @@ UPDATE Dispositivo SET Fator = 1.2 WHERE idDispositivo = 3;
 SELECT * FROM Dispositivo;
 
 -- Atualizando o código de autenticação de uma empresa
-UPDATE Empresa SET codAutentic = 111213 WHERE idEmpresa = 1;
+UPDATE Empresa SET codAutenticF = 111213 WHERE idEmpresa = 1;
 
 -- Selecionar a tabela uva 
 SELECT * FROM Uva;
@@ -167,7 +168,7 @@ JOIN Talhao AS t ON p.idPlantacao = t.fkPlantacao;
 
 
 -- JOIN entre Empresa, Plantação, Talhão, Uva, Dispositivo e registro (completo)
-SELECT Dispositivo.idDispositivo, Registro.*, Empresa.nome AS nome_empresa, Plantacao.areaTotal AS area_total_plantio, Talhao.tamAreaPlant AS tamanho_do_talhão, Uva.nomeTipo AS tipo_uva, Talhao.qtdVieiras AS qtd_vieira_plantada, Talhao.dtPlantio AS data_plantação, Talhao.prevColheita AS previsão_colheita
+SELECT Dispositivo.idDispositivo, Registro.*, Empresa.nome AS nome_empresa, Empresa.codAutenticF,Empresa.codAutenticG, Plantacao.areaTotal AS area_total_plantio, Talhao.tamAreaPlant AS tamanho_do_talhão, Uva.nomeTipo AS tipo_uva, Talhao.qtdVieiras AS qtd_vieira_plantada, Talhao.dtPlantio AS data_plantação, Talhao.prevColheita AS previsão_colheita
 FROM Talhao
 JOIN Plantacao ON Plantacao.idPlantacao = Talhao.fkPlantacao
 JOIN Empresa ON Empresa.idEmpresa = Plantacao.fkEmpresa
