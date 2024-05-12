@@ -9,6 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
   <link rel="stylesheet" href="css/cadastroDash.css" />
+
 </head>
 
 <body>
@@ -54,18 +55,19 @@
         <div class="linha"></div>
         <div class="titulocampo">
           <div class="tituloesquerdo">
-            <p>Área total:</p>
+            <p>Área total (ha) :</p>
           </div>
           <div class="titulodireito">
-            <p>Escolha um ID:</p>
+            <p>Cadastre um ID:</p>
           </div>
         </div>
         <div class="campoinput"></div>
         <div class="titulocampo">
-          <div class="tituloesquerdo"><input id="input_area" type="text" placeholder="Digite o tamanho"></div>
+          <div class="tituloesquerdo"><input id="input_areaTotal" type="text" placeholder="Digite o tamanho"></div>
           <div class="titulodireito"><input id="input_id" type="number" placeholder="Digite o número"></div>
+          <div id="div_mensagem"></div>
         </div>
-        <button onclick="adicionar()">Adicionar</button>
+        <button onclick="adicionarP()">Adicionar</button>
       </div>
       <div class="caixas">
         <div class="talhao">
@@ -88,33 +90,89 @@
           <div class="containertalhao2">
             <div class="inputs_esquerda">
               <div class="quadrante1">
-                <p>Área do talhão em m²:</p>
-                <input id="input_area" type="number" placeholder="Digite a área">
+                <p>Área do talhão (ha) :</p>
+                <input id="input_areaPlantio" type="number" placeholder="Digite a área">
               </div>
               <div class="quadrante2">
-              <p>Data de plantio:</p>
-              <input id="input_data" type="date" placeholder="dd/mm/aaaa">
+                <p>Data de plantio:</p>
+                <input id="input_dtPlantio" type="date" placeholder="dd/mm/aaaa">
 
               </div>
             </div>
 
             <div class="inputs_direita">
-              
-            <div class="quadrante3">
-              <p>Quantidade de videiras:</p>
-              <input id="input_qtdVideiras" type="number" placeholder="Digite o número">
-            </div>
 
-            <div class="quadrante4">
-              <p>Selecione o tipo de uva:</p>
-              <select id="select_tipoUva" type="number">
-                <option value="#">Tipo de uva</option>
-                <option value="i">Itália</option>
-                <option value="t">Thompson</option>
-                <option value="r">Rubi</option>
-              </select>
+              <div class="quadrante3">
+                <p>Quantidade de videiras:</p>
+                <input id="input_qtdVideiras" type="number" placeholder="Digite o número">
+              </div>
+
+              <div class="quadrante4">
+                <p>Selecione o tipo de uva:</p>
+                <select id="select_nomeTipo" type="number">
+                  <option value="#">Tipo de uva</option>
+                  <option value="i">Itália</option>
+                  <option value="t">Thompson</option>
+                  <option value="r">Rubi</option>
+                </select>
+              </div>
             </div>
           </div>
+          <button onclick="adicionarT()">Adicionar</button>
         </div>
-        <button onclick="adicionar()">Adicionar</button>
-      </div>
+
+        <script>
+          function adicionarP() {
+
+            var areaT = Number(input_areaTotal.value);
+            var id = Number(input_id.value);
+            var temErro = false; // Variável para rastrear erros de validação
+
+
+
+            if (isNaN(areaT) || isNaN(id) || areaT <= 0 || id <= 0) {
+              alert(`não`)
+
+            } else {
+              alert(`ok`)
+
+            }
+          }
+
+          function adicionarT() {
+
+            var selectID = Number(select_id.value);
+            var selectTipo = (select_nomeTipo.value);
+            var qtd = Number(input_qtdVideiras.value);
+            var areaPlant = Number(input_areaPlantio.value);
+            var data = Date(input_dtPlantio.value);
+
+
+            console.log(selectID)
+            console.log(selectTipo)
+            console.log(qtd)
+            console.log(areaPlant)
+            console.log(data)
+
+            if (selectID == '#' ||
+              isNaN(select_id) ||
+              selectTipo == '#' ||
+              qtd <= 0 ||
+              areaPlant <= 0 ||
+              data == "") {
+
+              alert(`não`)
+            } else {
+              alert(`ok`)
+            }
+
+
+          }
+
+
+
+
+
+
+
+        </script>
