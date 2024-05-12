@@ -78,7 +78,7 @@ function enviar() {
             buildCardMensagem("block", 'erro', "Código de confirmação inválido", true)
         }
     } else {
-        if (codigoGer == codigo) {
+        if (codigoFunc == codigo) {
             cadastrarDados(idEmpresaVar)
             buildCardMensagem("block", 'ok', "Redirecionando para o Login", false)
             setTimeout(function () {
@@ -127,7 +127,6 @@ function buildCardMensagem(display, classe, mensagem, isErro) {
 }
 
 function cadastrarDados(idEmpresa) {
-    console.log(idEmpresa)
     fetch(`/usuarios/cadastrarDados/:${idEmpresa}`, {
         method: "POST",
         headers: {
