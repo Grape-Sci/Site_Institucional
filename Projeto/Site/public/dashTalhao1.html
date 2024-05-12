@@ -96,15 +96,67 @@
 
           <div class="subexplicacao">
             <div class="explicacao">
-              <label><span class="segurocor">SEGURO:</span> Intervalo ideal, sem estar a 2% ou a 2°C de distância dos limites.</label>
-              <label><span class="alertacor">ALERTA:</span> Estando a 2% ou a 2°C de distância do intervalo ideal.</label>
-              <label><span class="perigocor">PERIGO:</span> Sendo menor ou maior em relação a métrica ideal.</label>
+              <div class="explicacaocanto">
+                <div class="explicacaotextocima"></div>
+                <div class="explicacaotextobaixoesq">
+                  <div class="traco"></div>
+                </div>
+              </div>
+              <div class="explicacaomeio">
+                <div class="explicacaotextocima">
+                  <div class="divminimo">
+                    <span class="perigocor">19</span>|
+                    <span class="alertacor">20</span>|
+                    <span class="alertacor">21</span>|
+                    <span class="segurocor">22</span>
+                    <span class="medidatemp">°C</span>
+                  </div>
+                  <div class="divideal">
+                    <span class="segurocor"> seguro </span>
+                  </div>
+                  <div class="divmaximo">
+                    <span class="segurocor">28</span>|
+                    <span class="alertacor">29</span>|
+                    <span class="alertacor">30</span>|
+                    <span class="perigocor">31</span>
+                    <span class="medidatemp">°C</span>
+                  </div>
+                </div>
+                <div class="explicacaotextobaixomeio">
+                  <div class="linha"></div>
+                  <div class="divlinhabaixo">
+                    <div class="divminimobaixo">
+                      <span class="perigocor"> 49</span> |
+                      <span class="alertacor"> 50</span> |
+                      <span class="alertacor"> 51</span> |
+                      <span class="segurocor"> 52 </span>
+                      <span class="medidaumi">%</span>
+                    </div>
+                    <div class="dividealbaixo">
+                      <span class="segurocor">seguro</span>
+                    </div>
+                    <div class="divmaximobaixo">
+                      <span class="segurocor">58 </span> |
+                      <span class="alertacor"> 59</span> |
+                      <span class="alertacor"> 60</span> |
+                      <span class="perigocor">61</span>
+                      <span class="medidaumi">%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="explicacaocanto">
+                <div class="explicacaotextocima"></div>
+                <div class="explicacaotextobaixodir">
+                  <div class="traco"></div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="sub2">
             <div class="labelsub2">
-              <label>Dentro das 24 Horas</label>
+              <label>Dentro das últimas 24 Horas</label>
             </div>
             <div class="situacoes">
               <div class="situacao1">
@@ -118,7 +170,7 @@
                   <p>Máxima: 24°C</p>
                 </div>
               </div>
-                
+
               <div class="situacao2">
                 <div class="titulo2">
                   <label>UMIDADE:</label>
@@ -212,4 +264,3 @@
     config2 // Configurações do gráfico
   );
 </script>
-
