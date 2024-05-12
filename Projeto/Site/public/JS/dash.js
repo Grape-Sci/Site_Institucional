@@ -1,5 +1,5 @@
 function sair() {
-    window.location = "Inicio.html";
+    window.location = "index.html";
 }
 
 function monitorar(idPlantacaoSelecionada) {
