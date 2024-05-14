@@ -63,7 +63,7 @@
         </div>
         <div class="campoinput"></div>
         <div class="titulocampo">
-          <div class="tituloesquerdo"><input id="input_areaTotal" type="text" placeholder="Digite o tamanho"></div>
+          <div class="tituloesquerdo"><input id="input_areaTotal" type="number" placeholder="Digite o tamanho"></div>
           <div class="titulodireito"><input id="input_id" type="number" placeholder="Digite o número"></div>
           <div id="div_mensagem"></div>
         </div>
@@ -83,6 +83,7 @@
               <div class="selectid">
                 <select id="select_id" type="number">
                   <option value="#">ID</option>
+                  <option>1</option>
                 </select>
               </div>
             </div>
@@ -120,59 +121,78 @@
           </div>
           <button onclick="adicionarT()">Adicionar</button>
         </div>
-
-        <script>
-          function adicionarP() {
-
-            var areaT = Number(input_areaTotal.value);
-            var id = Number(input_id.value);
-            var temErro = false; // Variável para rastrear erros de validação
-
-
-
-            if (isNaN(areaT) || isNaN(id) || areaT <= 0 || id <= 0) {
-              alert(`não`)
-
-            } else {
-              alert(`ok`)
-
-            }
-          }
-
-          function adicionarT() {
-
-            var selectID = Number(select_id.value);
-            var selectTipo = (select_nomeTipo.value);
-            var qtd = Number(input_qtdVideiras.value);
-            var areaPlant = Number(input_areaPlantio.value);
-            var data = Date(input_dtPlantio.value);
+      </div>
+    </div>
+  </div>
+  <div id="msg_alertas" class="msg_alertas">
+    <span class="ms" id="mensagem"></span>
+  </div>
+</body>
 
 
-            console.log(selectID)
-            console.log(selectTipo)
-            console.log(qtd)
-            console.log(areaPlant)
-            console.log(data)
+<script>
+  function adicionarP() {
 
-            if (selectID == '#' ||
-              isNaN(select_id) ||
-              selectTipo == '#' ||
-              qtd <= 0 ||
-              areaPlant <= 0 ||
-              data == "") {
-
-              alert(`não`)
-            } else {
-              alert(`ok`)
-            }
-
-
-          }
+    var areaT = Number(input_areaTotal.value);
+    var id = Number(input_id.value);
+    var temErro = false; // Variável para rastrear erros de validação
 
 
 
+    if (isNaN(areaT) || isNaN(id) || areaT <= 0 || id <= 0) {
+      buildCardMensagem("block", 'erro', "Preencha todos os campos da plantação<br> com números válidos", true)
+
+    } else {
+      buildCardMensagem("block", 'ok', "Plantação cadastrada com sucesso", false)
+
+    }
+  }
+
+  function adicionarT() {
+
+    var selectID = Number(select_id.value);
+    var selectTipo = (select_nomeTipo.value);
+    var qtd = Number(input_qtdVideiras.value);
+    var areaPlant = Number(input_areaPlantio.value);
+    var data = Date(input_dtPlantio.value);
+
+
+    console.log(selectID)
+    console.log(selectTipo)
+    console.log(qtd)
+    console.log(areaPlant)
+    console.log(data)
+
+    if (
+      isNaN(selectID) || // Verifica se o valor selecionado não é um número||
+      selectTipo == '#' ||
+      qtd == null ||
+      areaPlant == null ||
+      qtd <= 0 ||
+      areaPlant <= 0 ||
+      data == "") {
+
+      buildCardMensagem("block", 'erro', "Preencha todos os campos do talhão<br>com números válidos", true)
+
+    } else {
+      buildCardMensagem("block", 'ok', "Talhão cadastrado com sucesso", false)
+    }
+  }
+
+
+  function buildCardMensagem(display, classe, mensagem, isErro) {
+    const msg = document.getElementById('mensagem');
+
+    msg_alertas.style.display = display;
+    msg.classList.add(classe)
+    msg.innerHTML = mensagem;
+    temErro = isErro;
+    setTimeout(function () {
+      msg_alertas.style.display = "none"
+    }, 3000)
+  }
 
 
 
 
-        </script>
+</script>
