@@ -27,7 +27,30 @@ function listar() {
         });
 }
 
+function mascararCpf(Event){
+    var cpflength= input_cpf.value.length;
+    var ultimoChar = input_cpf.value.charAt(cpflength - 1);    // Verifica se o último caractere adicionado foi ponto ou traço
+    if (Event.key == "Backspace") {
 
+    }else{
+        if ((ultimoChar !== '.' && ultimoChar !== '-') && cpflength !== 14) {
+            if (cpflength === 3 || cpflength === 7) {
+                input_cpf.value += '.';
+            } else if (cpflength === 11) {
+                input_cpf.value += '-';
+            }
+        }
+    }
+}
+function mascararTel(Event){
+    var telefonelength= input_telefone.value.length;
+    var ultimoChar = input_telefone.value.charAt(telefonelength - 1);    // Verifica se o último caractere adicionado foi ponto ou traço
+    if (Event.key == "Backspace") {
+
+    }else{
+
+    }
+}
 function cadastrar() {
     // Captura os valores dos campos do formulário
     usuarioVar = input_usuario.value;
