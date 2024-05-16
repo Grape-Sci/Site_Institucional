@@ -22,16 +22,16 @@
                     <div class="inputsCad1">
                         <div class="container">
                             <div class="campo">
-                                <input type="text" value="Fernando Brandão" id="input_usuario" placeholder="Usuário">
+                                <input type="text" id="input_usuario" placeholder="Usuário">
                             </div>
                             <div class="campo">
-                                <input type="text" value="45035942210" id="input_cpf" placeholder="CPF">
+                                <input type="text" id="input_cpf" placeholder="CPF" maxlength="14" onkeypress="mascararCpf(Event)">
                             </div>
                             <div class="campo">
-                                <input type="text" value="11940364114" id="input_telefone" placeholder="Telefone">
+                                <input type="text" id="input_telefone" placeholder="Telefone" maxlength="15" onkeypress="mascararTel(Event)">
                             </div>
                             <div class="campo">
-                                <input type="password" value="12345678" id="input_senha" placeholder="Senha">
+                                <input type="password"  id="input_senha" placeholder="Senha">
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                                 </select>
                             </div>
                             <div class="campo">
-                                <input type="text" value="fernando@gmail.com" id="input_email" placeholder="Email">
+                                <input type="text" value="" id="input_email" placeholder="Email">
                             </div>
                             <div class="campo">
                                 <select id="select_cargo">
@@ -53,7 +53,7 @@
                                 </select>
                             </div>
                             <div class="campo">
-                                <input type="password" value="12345678" id="input_confirmarSenha"
+                                <input type="password" value="" id="input_confirmarSenha"
                                     placeholder="Confirmar senha">
                             </div>
                         </div>

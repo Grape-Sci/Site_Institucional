@@ -5,12 +5,18 @@
     src: url(font/LilyScriptOne-Regular.ttf)
 }
 
-* {
+*, html {
+
     scroll-behavior: smooth;
+}
+
+
+* {
     margin: 0;
     padding: 0;
     border: 0;
     font-family: LeagueSpartan;
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -25,6 +31,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     flex-direction: column;
+    scroll-behavior: smooth;
 }
 
 .header {
@@ -147,10 +154,17 @@
     flex-direction: column;
     justify-content: space-between;
 }
+.texto a{
+    text-decoration: none;
+    color: white;
+}
+
 
 .sobre {
     height: 100vh;
     background-color: #f0ecfd;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
 }
 
 .sobre .container {
@@ -400,7 +414,8 @@ h1 {
 
 .calculadora {
     height: 100vh;
-    background-color: #54BD91
+    background-color: #54BD91;
+    scroll-behavior: smooth;
 }
 
 .calculadora .container {
