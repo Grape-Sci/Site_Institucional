@@ -47,10 +47,21 @@ function mascararTel(Event){
     var ultimoChar = input_telefone.value.charAt(telefonelength - 1);    // Verifica se o último caractere adicionado foi ponto ou traço
     if (Event.key == "Backspace") {
 
-    }else{
-
+   
+    } else {
+        if ((ultimoChar !== '(' && ultimoChar !== ')' && ultimoChar !== '-' && ultimoChar !== ' ') && telefonelength !== 15) {
+            if (telefonelength === 0) {
+                input_telefone.value += '(';
+            } else if (telefonelength === 3) {
+                input_telefone.value += ') ';
+            } else if (telefonelength === 10) {
+                input_telefone.value += '-';
+            }
+        }
     }
 }
+          
+
 function cadastrar() {
     // Captura os valores dos campos do formulário
     usuarioVar = input_usuario.value;
