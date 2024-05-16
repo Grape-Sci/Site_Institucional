@@ -53,27 +53,20 @@
 <script>
     var emailBanco;
     var senhaBanco;
+    var temErro = false;
 
     function login() {
         var usuario = input_usuario.value
         var senha = input_senha.value
         var indiceUsuario = usuario.indexOf('@')
-        var temErro = false;
-
+        temErro = false;
+        
 
         if (senha == "" || usuario == "") {
-            msg_alertas.style.display = "block"
-            mensagem.classList.add("erro")
-            mensagem.innerHTML = `Preencha os campos corretamente`
-            temErro = true;
-            desaparecerCard()
+            buildCardMensagem("block", "erro", "Preencha os campos corretamente", true)
         }
         else if (indiceUsuario < 0) {
-            msg_alertas.style.display = "block"
-            mensagem.classList.add("erro")
-            mensagem.innerHTML = `Preencha o campo usuário corretamente`
-            temErro = true;
-            desaparecerCard()
+            buildCardMensagem("block", "erro", "Preencha o campo usuário corretamente", true)
         }
 
         if (temErro == false) {
@@ -93,27 +86,17 @@
                     if (resposta.ok) {
                         resposta.json().then((dadosUsuario) => {
                             if (dadosUsuario.length == 1) {
-                                msg_alertas.style.display = "block"
-                                mensagem.classList.add("ok")
-                                mensagem.innerHTML = `Redirecionando para a dashboard...`
+                                buildCardMensagem("block", "ok", "Redirecionando para a dashboard...", false)
                                 setTimeout(function () {
                                     window.location = "dashHome.html"
                                 }, 2000)
                             } else if (dadosUsuario.length > 1) {
-                                msg_alertas.style.display = "block"
-                                mensagem.classList.add("erro")
-                                mensagem.innerHTML = `Mais de um login e senha`
-                                desaparecerCard()
-                            } else {
-                                msg_alertas.style.display = "block"
-                                mensagem.classList.add("erro")
-                                mensagem.innerHTML = `Login ou senha inválidos`
-                                desaparecerCard()
-                            }
+                                buildCardMensagem("block", "erro", "Mais de um login e senha", false)
+                            } 
                         });
 
                     } else {
-                        throw "Houve um erro ao realizar o login!";
+                        throw buildCardMensagem("block", "erro", "Login ou senha inválidos", false);
                     }
                 })
                 .catch(function (resposta) {
@@ -123,13 +106,20 @@
 
     }
 
-    function desaparecerCard() {
+    function inicio() {
+        window.location = 'index.html'
+    }
+
+
+    function buildCardMensagem(display, classe, mensagem, isErro) {
+        const msg = document.getElementById('mensagem');
+
+        msg_alertas.style.display = display;
+        msg.classList.add(classe)
+        msg.innerHTML = mensagem;
+        temErro = isErro;
         setTimeout(function () {
             msg_alertas.style.display = "none"
         }, 3000)
-    }
-
-    function inicio() {
-        window.location = 'index.html'
     }
 </script>
