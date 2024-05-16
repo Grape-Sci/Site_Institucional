@@ -26,9 +26,9 @@
                         <div class="campo">
                             <input type="password" placeholder="Senha" id="input_senha">
                         </div>
-                        <div class="opcoes">    
-                        
-                         <!-- retirei o botão lembre de mim -->
+                        <div class="opcoes">
+
+                            <!-- retirei o botão lembre de mim -->
 
                         </div>
                     </div>
@@ -51,12 +51,16 @@
 </html>
 
 <script>
+    var emailBanco;
+    var senhaBanco;
+
     function login() {
         var usuario = input_usuario.value
         var senha = input_senha.value
         var indiceUsuario = usuario.indexOf('@')
         var temErro = false;
-    
+
+
         if (senha == "" || usuario == "") {
             msg_alertas.style.display = "block"
             mensagem.classList.add("erro")
@@ -73,19 +77,48 @@
         }
 
         if (temErro == false) {
-            if (usuario == 'fernando@gmail.com' && senha == 'Brandao2024') {
-                msg_alertas.style.display = "block"
-                mensagem.classList.add("ok")
-                mensagem.innerHTML = `Redirecionando para a dashboard...`
-                setTimeout(function () {
-                    window.location = "dashHome.html"
-                }, 2000)
-            } else {
-                msg_alertas.style.display = "block"
-                mensagem.classList.add("erro")
-                mensagem.innerHTML = `Login ou senha inválidos`
-                desaparecerCard()
-            }
+            fetch(`/usuarios/autenticar`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    emailServer: usuario,
+                    senhaServer: senha,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        resposta.json().then((dadosUsuario) => {
+                            if (dadosUsuario.length == 1) {
+                                msg_alertas.style.display = "block"
+                                mensagem.classList.add("ok")
+                                mensagem.innerHTML = `Redirecionando para a dashboard...`
+                                setTimeout(function () {
+                                    window.location = "dashHome.html"
+                                }, 2000)
+                            } else if (dadosUsuario.length > 1) {
+                                msg_alertas.style.display = "block"
+                                mensagem.classList.add("erro")
+                                mensagem.innerHTML = `Mais de um login e senha`
+                                desaparecerCard()
+                            } else {
+                                msg_alertas.style.display = "block"
+                                mensagem.classList.add("erro")
+                                mensagem.innerHTML = `Login ou senha inválidos`
+                                desaparecerCard()
+                            }
+                        });
+
+                    } else {
+                        throw "Houve um erro ao realizar o login!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
         }
 
     }

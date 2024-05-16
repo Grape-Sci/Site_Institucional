@@ -28,8 +28,17 @@ function cadastrarDados(usuario, telefone, senha, email, cpf, idEmpresa, cargo) 
     return database.executar(instrucaoSql);
 }
 
+function autenticar(senha, email) {
+    var instrucaoSql = `SELECT nome, cargo, email FROM Funcionario WHERE email = '${email}' AND senha = '${senha}' ;`;
+    
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+   
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     listarEmpresas,
     buscarCodigoEmpresa,
-    cadastrarDados
+    cadastrarDados,
+    autenticar
 };

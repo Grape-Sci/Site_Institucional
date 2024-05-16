@@ -7,12 +7,16 @@ router.get("/listarEmpresas", function (req, res) {
     usuariosController.listarEmpresas(req, res);
 });
 
-router.get("/buscarCodigoEmpresa/:idEmpresa", function(req, res) {
-    usuariosController.buscarCodigoEmpresa(req,res);
+router.get("/buscarCodigoEmpresa/:idEmpresa", function (req, res) {
+    usuariosController.buscarCodigoEmpresa(req, res);
 });
 
-router.post("/cadastrarDados/:idEmpresa", function(req, res) {
+router.post("/cadastrarDados/:idEmpresa", function (req, res) {
     usuariosController.cadastrarDados(req, res)
 });
+
+router.post("/autenticar", function (req, res) {
+    usuariosController.autenticar(req, res)
+})
 
 module.exports = router;
