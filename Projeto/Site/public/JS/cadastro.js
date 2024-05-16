@@ -18,7 +18,7 @@ function listar() {
         .then(function (resposta) {
             resposta.json().then((empresas) => {
                 empresas.forEach((empresa) => {
-                    select_empresa.innerHTML += `<option selected value='${empresa.idEmpresa}'>${empresa.nome}</option>`;
+                    select_empresa.innerHTML += `<option value='${empresa.idEmpresa}'>${empresa.nome}</option>`;
                 });
             });
         })
