@@ -11,6 +11,8 @@ var cpfVar;
 var cargoVar;
 var idEmpresaVar;
 
+
+
 function listar() {
     fetch("/usuarios/listarEmpresas", {
         method: "GET",
@@ -27,12 +29,12 @@ function listar() {
         });
 }
 
-function mascararCpf(Event){
-    var cpflength= input_cpf.value.length;
+function mascararCpf(Event) {
+    var cpflength = input_cpf.value.length;
     var ultimoChar = input_cpf.value.charAt(cpflength - 1);    // Verifica se o último caractere adicionado foi ponto ou traço
     if (Event.key == "Backspace") {
 
-    }else{
+    } else {
         if ((ultimoChar !== '.' && ultimoChar !== '-') && cpflength !== 14) {
             if (cpflength === 3 || cpflength === 7) {
                 input_cpf.value += '.';
@@ -42,12 +44,13 @@ function mascararCpf(Event){
         }
     }
 }
-function mascararTel(Event){
-    var telefonelength= input_telefone.value.length;
+
+function mascararTel(Event) {
+    var telefonelength = input_telefone.value.length;
     var ultimoChar = input_telefone.value.charAt(telefonelength - 1);    // Verifica se o último caractere adicionado foi ponto ou traço
     if (Event.key == "Backspace") {
 
-   
+
     } else {
         if ((ultimoChar !== '(' && ultimoChar !== ')' && ultimoChar !== '-' && ultimoChar !== ' ') && telefonelength !== 15) {
             if (telefonelength === 0) {
@@ -60,23 +63,35 @@ function mascararTel(Event){
         }
     }
 }
-          
+
+function removerMascara(valorComMascara) {
+    var valorSemMascara = valorComMascara.replaceAll("-", "");
+
+    valorSemMascara = valorSemMascara.replaceAll(".", "");
+
+    valorSemMascara = valorSemMascara.replaceAll(" ", "");
+
+    valorSemMascara = valorSemMascara.replaceAll("(", "")
+    valorSemMascara = valorSemMascara.replaceAll(")", "")
+
+    return valorSemMascara
+}
 
 function cadastrar() {
     // Captura os valores dos campos do formulário
+    telefoneVar = removerMascara(input_telefone.value);
+    cpfVar = removerMascara(input_cpf.value);
     usuarioVar = input_usuario.value;
-    telefoneVar = input_telefone.value;
     senhaVar = input_senha.value;
     empresaVar = select_empresa.value;
     emailVar = input_email.value;
-    cpfVar = input_cpf.value;
     cargoVar = select_cargo.value;
     var confirmar = input_confirmarSenha.value;
     idEmpresaVar = empresaVar;
     temErro = false;
 
-    if (usuarioVar == "" || cpfVar == 0 || telefoneVar == "" || senhaVar == "" || empresaVar == 0 || emailVar == "" || cargoVar == 0 || 
-    confirmar == "") {
+    if (usuarioVar == "" || cpfVar == 0 || telefoneVar == "" || senhaVar == "" || empresaVar == 0 || emailVar == "" || cargoVar == 0 ||
+        confirmar == "") {
         buildCardMensagem("block", 'erro', 'Preencha os campos corretamente', true)
     } else if (emailVar.indexOf('@') < 0 && emailVar.indexOf('.') < 0) {
         buildCardMensagem("block", 'erro', "Insira um e-mail válido", true)
