@@ -22,6 +22,8 @@ function listar() {
                 empresas.forEach((empresa) => {
                     select_empresa.innerHTML += `<option value='${empresa.idEmpresa}'>${empresa.nome}</option>`;
                 });
+
+                
             });
         })
         .catch(function (resposta) {

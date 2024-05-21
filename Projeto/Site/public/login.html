@@ -90,6 +90,12 @@
                                 setTimeout(function () {
                                     window.location = "dashHome.html"
                                 }, 2000)
+
+                                sessionStorage.NOME_USUARIO = dadosUsuario[0].nome;
+                                sessionStorage.CARGO_USUARIO = dadosUsuario[0].cargo;
+                                sessionStorage.ID_EMPRESA = dadosUsuario[0].idEmpresa;
+                                sessionStorage.EMAIL_USUARIO = dadosUsuario[0].email;
+                                
                             } else if (dadosUsuario.length > 1) {
                                 buildCardMensagem("block", "erro", "Mais de um login e senha", false)
                             } 

@@ -25,7 +25,36 @@ function analisar3() {
     window.location = "dashTalhao3.html";
 }
 
-// function exibirTalhao() {
-//     idTalhao = sessionStorage.TALHAO_ATUAL
-//     tituloTalhao.innerHTML = `Talhão ${idTalhao}`
-// }
+function exibirUsuario() {
+    var nome = sessionStorage.NOME_USUARIO;
+
+    nomeUsuario.innerHTML = `${nome}`
+}
+
+function exibirKPIPlantacao() {
+    fetch(`/dashHome/exibirInfoPlantacoes`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idEmpresaServer: sessionStorage.ID_EMPRESA
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                resposta.json().then((infoPlantacoes) => {
+                    areaPlantacao.innerHTML = `${infoPlantacoes[0].somaArea}`
+                    quantidadePlantacao.innerHTML = `${infoPlantacoes[0].quantidade}`
+                });
+
+            } else {
+                throw console.log("Erro ao realizar o select")
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}

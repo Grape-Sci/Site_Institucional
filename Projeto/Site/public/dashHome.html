@@ -8,8 +8,7 @@
     <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
     <link rel="stylesheet" href="css/dashHome.css">
 </head>
-
-<body>
+<body onload="exibirUsuario(), exibirKPIPlantacao()">
     <div class="pagina">
         <div class="navBar">
             <div class="logo">
@@ -31,7 +30,7 @@
                     <div class="imagem">
                         <img src="img/fazendeiro.png" alt="">
                     </div>
-                    <span>Usuário</span>
+                    <span id="nomeUsuario">Usuário</span>
                     <button onclick="sair()">Sair</button>
                 </div>
             </div>
@@ -129,7 +128,7 @@
                                     <h1>Quantidade de Plantações</h1>
                                 </div>
                                 <div class="informacaoQtd">
-                                    <span>3</span>
+                                    <span id="quantidadePlantacao"></span>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +138,7 @@
                                     <h1>Área Total Plantada</h1>
                                 </div>
                                 <div class="informacaoQtd">
-                                    <span>145 hectáres</span>
+                                    <span id="areaPlantacao"></span>
                                 </div>
                             </div>
                         </div>
