@@ -200,6 +200,7 @@
     align-items: center;
     flex-direction: column;
     overflow-y: auto;
+    /* gap: 2%; */
 }
 
 .card {

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/dashPlantacao.css" />
 </head>
 
-<body>
+<body onload="exibirUsuario()">
   <div class="pagina">
     <div class="navBar">
       <div class="logo">
@@ -31,7 +31,7 @@
           <div class="imagem">
             <img src="img/fazendeiro.png" alt="">
           </div>
-          <span>Usuário</span>
+          <span id="nomeUsuario">Usuário</span>
           <button onclick="sair()">Sair</button>
         </div>
       </div>

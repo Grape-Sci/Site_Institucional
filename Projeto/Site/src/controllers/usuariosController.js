@@ -9,7 +9,6 @@ function listarEmpresas(req, res) {
 function buscarCodigoEmpresa(req, res) {
     var idEmpresa = req.params.idEmpresa;
 
-    console.log(idEmpresa);
 
     usuariosModel.buscarCodigoEmpresa(idEmpresa).then((resultado) => {
         if (resultado.length > 0) {
