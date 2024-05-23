@@ -111,7 +111,6 @@ function mostrarSituacaoTalhao(idPlantacao) {
     })
         .then(function (resposta) {
             resposta.json().then((informacaoTalhao) => {
-
                 var contTalhaoAlerta = 0;
                 var contTalhaoPerigo = 0;
                 var contTalhaoIdeal = 0;
@@ -127,7 +126,6 @@ function mostrarSituacaoTalhao(idPlantacao) {
                     if (temperaturaAtual < tempMin || umidadeAtual < umiMin
                         || temperaturaAtual > tempMax || umidadeAtual > umiMax) {
                         contTalhaoPerigo++;
-                        perigo.innerHTML = `${contTalhaoPerigo}`
                     }
                     else if (temperaturaAtual < tempMax - 1 || umidadeAtual < umiMax - 1
                         || temperaturaAtual > tempMin + 1 || umidadeAtual > umiMin + 1) {
