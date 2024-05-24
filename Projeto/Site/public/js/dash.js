@@ -62,59 +62,36 @@ function listarPlantacoes() {
     fetch(`/dashHome/listarPlantacoes/${idEmpresa}`, {
         method: "GET",
     })
-        .then(function (resposta) {
-            resposta.json().then((plantacoes) => {
+        .then(async function (resposta) {
+            await resposta.json().then(async (plantacoes) => {
                 for (var i = 0; i < plantacoes.length; i++) {
                     var plantacaoAtual = plantacoes[i];
-                    mostrarSituacaoTalhaoIdeal(plantacaoAtual.idPlantacao)
+                    await mostrarSituacaoTalhaoIdeal(plantacaoAtual.idPlantacao)
+                    console.table(contSeguro)
 
-                    cardPrincipal.innerHTML +=
-                        `<div class="card">
-                            <div class="nomePlantacao">
-                                <h1>Plantação ${i + 1}</h1>
-                            </div>
-                            <div class="infoPlantacoes">
-                                <h2>Quantidade de Talhões</h2>
-                                <div class="info">
-                                    <div class="cardMetrica">
-                                        <h3>Seguro</h3>
-                                        <span id="seguro${i}">${contSeguro}</span>
-                                    </div>
-                                    <div class="cardMetrica">
-                                        <h3>Alerta</h3>
-                                        <span id="alerta"></span>
-                                    </div>
-                                    <div class="cardMetrica">
-                                        <h3>Perigo</h3>
-                                        <span id="perigo"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="botaoPlantacoes">
-                                <button onclick="monitorar(${plantacaoAtual.idPlantacao})">Monitorar</button>
-                            </div>
-                        </div>
-                        `
+
+                    mostrarPlants(i, contSeguro[i], plantacaoAtual.idPlantacao)
+
+
                 }
             });
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-}
-var contSeguro = 0;
 
-function mostrarSituacaoTalhaoIdeal(idPlantacao) {
-    contSeguro = 0;
-    fetch(`/dashHome/mostrarSituacaoTalhaoIdeal/${idPlantacao}`, {
+}
+
+var contSeguro = [];
+
+async function mostrarSituacaoTalhaoIdeal(idPlantacao) {
+    await fetch(`/dashHome/mostrarSituacaoTalhaoIdeal/${idPlantacao}`, {
         method: "GET",
     })
-        .then(function (resposta) {
-            resposta.json().then((informacaoTalhaoIdeal) => {
+        .then(async function (resposta) {
+            await resposta.json().then(async (informacaoTalhaoIdeal) => {
                 if (resposta.ok) {
-                    for(var i = 0; i < informacaoTalhaoIdeal.length; i++){
-                        contSeguro = informacaoTalhaoIdeal[i].seguro
-                    }
+                    contSeguro.push(informacaoTalhaoIdeal[0].seguro)
                 }
                 else {
                     new Error("Não foi possível achar talhões")
@@ -126,5 +103,34 @@ function mostrarSituacaoTalhaoIdeal(idPlantacao) {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+}
 
+function mostrarPlants(contPlant, seguro, idPlantacao) {
+    cardPrincipal.innerHTML +=
+        `<div class="card">
+        <div class="nomePlantacao">
+            <h1>Plantação ${contPlant + 1}</h1>
+        </div>
+        <div class="infoPlantacoes">
+            <h2>Quantidade de Talhões</h2>
+            <div class="info">
+                <div class="cardMetrica">
+                    <h3>Seguro</h3>
+                    <span id="seguro">${seguro}</span>
+                </div>
+                <div class="cardMetrica">
+                    <h3>Alerta</h3>
+                    <span id="alerta"></span>
+                    </div>
+                    <div class="cardMetrica">
+                    <h3>Perigo</h3>
+                    <span id="perigo"></span>
+                    </div>
+                    </div>
+        </div>
+        <div class="botaoPlantacoes">
+            <button onclick="monitorar(${idPlantacao})">Monitorar</button>
+        </div>
+    </div>
+    `
 }
