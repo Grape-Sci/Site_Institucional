@@ -1,60 +1,3 @@
-function sair() {
-    window.location = "index.html";
-}
-
-function monitorar(idPlantacaoSelecionada) {
-    // sessionStorage.PLANTACAO_ATUAL = idPlantacaoSelecionada;
-    window.location = "dashPlantacao.html";
-}
-
-// function exibirPlantacao() {
-//     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
-//     tituloPlantacao.innerHTML = `Plantação ${idPlantacao}`
-// }
-
-function analisar(idTalhaoSelecionado) {
-    // sessionStorage.TALHAO_ATUAL = idTalhaoSelecionado;
-    window.location = "dashTalhao1.html";
-}
-
-function analisar2() {
-    window.location = "dashTalhao2.html";
-}
-
-function analisar3() {
-    window.location = "dashTalhao3.html";
-}
-
-function exibirUsuario() {
-    var nome = sessionStorage.NOME_USUARIO;
-
-    nomeUsuario.innerHTML = `${nome}`;
-}
-
-function exibirKPIPlantacao() {
-    fetch(`/dashHome/exibirInfoPlantacoes`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            idEmpresaServer: sessionStorage.ID_EMPRESA,
-        }),
-    })
-        .then(function (resposta) {
-            if (resposta.ok) {
-                resposta.json().then((infoPlantacoes) => {
-                    areaPlantacao.innerHTML = `${infoPlantacoes[0].somaArea}  hectares`;
-                    quantidadePlantacao.innerHTML = `${infoPlantacoes[0].quantidade}`;
-                });
-            } else {
-                throw console.log("Erro ao realizar o select");
-            }
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-}
 
 function listarPlantacoes() {
     var idEmpresa = sessionStorage.ID_EMPRESA;
@@ -78,7 +21,7 @@ function listarPlantacoes() {
                                 <div class="info">
                                     <div class="cardMetrica">
                                         <h3>Seguro</h3>
-                                        <span id="seguro${i}">${contSeguro}</span>
+                                        <span id="seguro"></span>
                                     </div>
                                     <div class="cardMetrica">
                                         <h3>Alerta</h3>
@@ -102,29 +45,39 @@ function listarPlantacoes() {
             console.log(`#ERRO: ${resposta}`);
         });
 }
-var contSeguro = 0;
 
 function mostrarSituacaoTalhaoIdeal(idPlantacao) {
-    contSeguro = 0;
     fetch(`/dashHome/mostrarSituacaoTalhaoIdeal/${idPlantacao}`, {
         method: "GET",
     })
         .then(function (resposta) {
-            resposta.json().then((informacaoTalhaoIdeal) => {
-                if (resposta.ok) {
-                    for(var i = 0; i < informacaoTalhaoIdeal.length; i++){
-                        contSeguro = informacaoTalhaoIdeal[i].seguro
+            resposta.json().then((informacaoTalhao) => {
+                var contTalhaoAlerta = 0;
+                var contTalhaoPerigo = 0;
+                var contTalhaoIdeal = 0;
+
+                for (var i = 0; i < informacaoTalhao.length; i++) {
+                    var temperaturaAtual = informacaoTalhao[i].consultaTemp;
+                    var umidadeAtual = informacaoTalhao[i].consultaUmi;
+                    var tempMax = informacaoTalhao[i].tempMax;
+                    var tempMin = informacaoTalhao[i].tempMin;
+                    var umiMax = informacaoTalhao[i].umiMax;
+                    var umiMin = informacaoTalhao[i].umiMin;
+
+                    if (temperaturaAtual < tempMin || umidadeAtual < umiMin
+                        || temperaturaAtual > tempMax || umidadeAtual > umiMax) {
+                        contTalhaoPerigo++;
                     }
-                }
-                else {
-                    new Error("Não foi possível achar talhões")
+                    else if (temperaturaAtual < tempMax - 1 || umidadeAtual < umiMax - 1
+                        || temperaturaAtual > tempMin + 1 || umidadeAtual > umiMin + 1) {
+                        contTalhaoIdeal++;
+                    } else {
+                        contTalhaoAlerta++;
+                    }
                 }
             });
         })
-
-
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-
 }

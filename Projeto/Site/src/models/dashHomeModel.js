@@ -11,16 +11,19 @@ function exibirInfoPlantacoes(idEmpresa) {
 function listarPlantacoes(idEmpresa) {
   var instrucaoSql = `SELECT idPlantacao FROM Plantacao JOIN Empresa ON fkEmpresa = idEmpresa WHERE idEmpresa = ${idEmpresa};`;
 
-    return database.executar(instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
-function mostrarSituacaoTalhao(idPlantacao){
+function mostrarSituacaoTalhaoIdeal(idPlantacao) {
   var instrucaoSql = `
-  SELECT idTalhao, consultaUmi, consultaTemp, tempMax, tempMin, umiMax, umiMinFROM Talhao JOIN Uva ON fkUva = idUva
-  JOIN Dispositivo ON fkTalhao = idTalhao
+  SELECT COUNT(idTalhao) AS seguro FROM Talhao 
+  JOIN Dispositivo ON fkTalhao = idTalhao 
   JOIN Registro ON fkDispositivo = idDispositivo
-  JOIN Plantacao ON fkPlantacao = idPlantacao
-  WHERE idPlantacao = ${idPlantacao};`
+  JOIN Uva ON fkUva = idUva
+  JOIN Plantacao ON idPlantacao = fkPlantacao
+  WHERE (tempMax - 1 > consultaTemp AND tempMin + 1  < consultaTemp) AND 
+  (umiMax - 1 > consultaUmi AND  umiMin + 1 > consultaUmi) AND idPlantacao = ${idPlantacao};
+  `
 
   return database.executar(instrucaoSql);
 }
@@ -28,5 +31,5 @@ function mostrarSituacaoTalhao(idPlantacao){
 module.exports = {
   exibirInfoPlantacoes,
   listarPlantacoes,
-  mostrarSituacaoTalhao
+  mostrarSituacaoTalhaoIdeal
 };

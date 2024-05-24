@@ -11,8 +11,8 @@ router.get("/listarPlantacoes/:idEmpresa", function (req, res) {
     dashHomeController.listarPlantacoes(req, res);
 });
 
-router.get("/mostrarSituacaoTalhao/:idPlantacao", function (req, res) {
-    dashHomeController.mostrarSituacaoTalhao(req, res)
+router.get("/mostrarSituacaoTalhaoIdeal/:idPlantacao", function (req, res) {
+    dashHomeController.mostrarSituacaoTalhaoIdeal(req, res)
 });
 
 module.exports = router;

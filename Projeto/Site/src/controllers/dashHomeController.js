@@ -40,10 +40,10 @@ function listarPlantacoes(req, res) {
 }
 
 
-function mostrarSituacaoTalhao(req, res) {
+function mostrarSituacaoTalhaoIdeal(req, res) {
     var idPlantacao = req.params.idPlantacao;
 
-    dashHomeModel.mostrarSituacaoTalhao(idPlantacao).then((resultado) => {
+    dashHomeModel.mostrarSituacaoTalhaoIdeal(idPlantacao).then((resultado) => {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         }
@@ -60,5 +60,5 @@ function mostrarSituacaoTalhao(req, res) {
 module.exports = {
     exibirInfoPlantacoes,
     listarPlantacoes,
-    mostrarSituacaoTalhao
+    mostrarSituacaoTalhaoIdeal
 };
