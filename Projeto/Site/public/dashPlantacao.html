@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/dashPlantacao.css" />
 </head>
 
-<body onload="exibirUsuario()">
+<body onload="exibirUsuario(), listarTalhoes(),listarArea()">
   <div class="pagina">
     <div class="navBar">
       <div class="logo">
@@ -46,8 +46,8 @@
         <div class="container">
           <div class="cardsPrincipais">
             <div class="listaTalhoes">
-              <div class="container">
-                <div class="card">
+              <div class="container" id="listaTalhao">
+                <!-- <div class="card">
                   <div class="nomeTalhao">
                     <h1>Talhão 1</span></h1>
                     <h2>Uva Itália</h2>
@@ -136,7 +136,7 @@
                   <div class="botaoTalhao">
                     <button onclick="analisar3()">Analisar</button>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="metricaPlantacoes">
@@ -165,8 +165,8 @@
                     <div class="titulo">
                         <h1>Quantidade de Talhões</h1>
                     </div>
-                    <div class="informacaoQtd">
-                        <span>3</span>
+                    <div id="qtdTalhoes" class="informacaoQtd">
+                        <span></span>
                     </div>
                 </div>
             </div>
@@ -175,8 +175,8 @@
                     <div class="titulo">
                         <h1>Área Plantada</h1>
                     </div>
-                    <div class="informacaoQtd">
-                        <span>35 hectáres</span>
+                    <div id="AreaPlantada" class="informacaoQtd">
+                        <span></span>
                     </div>
                 </div>
             </div>
