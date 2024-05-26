@@ -28,8 +28,38 @@ function mostrarSituacaoTalhaoIdeal(idPlantacao) {
   return database.executar(instrucaoSql);
 }
 
+function mostrarSituacaoTalhaoPerigo(idPlantacao) {
+  var instrucaoSql = `
+  SELECT COUNT(idTalhao) AS perigo FROM Talhao 
+  JOIN Dispositivo ON fkTalhao = idTalhao 
+  JOIN Registro ON fkDispositivo = idDispositivo
+  JOIN Uva ON fkUva = idUva
+  JOIN Plantacao ON idPlantacao = fkPlantacao
+  WHERE (tempMax < consultaTemp AND tempMin > consultaTemp) AND 
+  (umiMax < consultaUmi AND  umiMin > consultaUmi) AND idPlantacao = ${idPlantacao};
+  `
+
+  return database.executar(instrucaoSql);
+}
+
+function mostrarSituacaoTalhaoAlerta(idPlantacao) {
+  var instrucaoSql = `
+  SELECT COUNT(idTalhao) AS alerta FROM Talhao 
+  JOIN Dispositivo ON fkTalhao = idTalhao 
+  JOIN Registro ON fkDispositivo = idDispositivo
+  JOIN Uva ON fkUva = idUva
+  JOIN Plantacao ON idPlantacao = fkPlantacao
+  WHERE (tempMax > consultaTemp AND tempMin < consultaTemp and tempMax - 2 < consultaTemp AND tempMin + 2 > consultaTemp) AND 
+  (umiMax > consultaTemp AND umiMin < consultaTemp and umiMax - 2 < consultaTemp AND umiMin + 2 > consultaTemp) AND idPlantacao = ${idPlantacao};
+  `
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
   exibirInfoPlantacoes,
   listarPlantacoes,
-  mostrarSituacaoTalhaoIdeal
+  mostrarSituacaoTalhaoIdeal,
+  mostrarSituacaoTalhaoPerigo,
+  mostrarSituacaoTalhaoAlerta
 };

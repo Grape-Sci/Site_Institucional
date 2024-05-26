@@ -15,4 +15,12 @@ router.get("/mostrarSituacaoTalhaoIdeal/:idPlantacao", function (req, res) {
     dashHomeController.mostrarSituacaoTalhaoIdeal(req, res)
 });
 
+router.get("/mostrarSituacaoTalhaoPerigo/:idPlantacao", function (req, res) {
+    dashHomeController.mostrarSituacaoTalhaoPerigo(req, res)
+});
+
+router.get("/mostrarSituacaoTalhaoAlerta/:idPlantacao", function (req, res) {
+    dashHomeController.mostrarSituacaoTalhaoAlerta(req, res)
+});
+
 module.exports = router;

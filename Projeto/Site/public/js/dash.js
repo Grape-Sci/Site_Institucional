@@ -67,10 +67,9 @@ function listarPlantacoes() {
                 for (var i = 0; i < plantacoes.length; i++) {
                     var plantacaoAtual = plantacoes[i];
                     await mostrarSituacaoTalhaoIdeal(plantacaoAtual.idPlantacao)
-                    console.table(contSeguro)
+                    await mostrarSituacaoTalhaoPerigo(plantacaoAtual.idPlantacao)
 
-
-                    mostrarPlants(i, contSeguro[i], plantacaoAtual.idPlantacao)
+                    mostrarPlants(i, contSeguro[i], contPerigo[i], plantacaoAtual.idPlantacao)
 
 
                 }
@@ -83,6 +82,7 @@ function listarPlantacoes() {
 }
 
 var contSeguro = [];
+var contPerigo = [];
 
 async function mostrarSituacaoTalhaoIdeal(idPlantacao) {
     await fetch(`/dashHome/mostrarSituacaoTalhaoIdeal/${idPlantacao}`, {
@@ -105,7 +105,51 @@ async function mostrarSituacaoTalhaoIdeal(idPlantacao) {
         });
 }
 
-function mostrarPlants(contPlant, seguro, idPlantacao) {
+
+
+async function mostrarSituacaoTalhaoPerigo(idPlantacao) {
+    await fetch(`/dashHome/mostrarSituacaoTalhaoPerigo/${idPlantacao}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            await resposta.json().then(async (informacaoTalhaoPerigo) => {
+                if (resposta.ok) {
+                    contPerigo.push(informacaoTalhaoPerigo[0].perigo)
+                }
+                else {
+                    new Error("Não foi possível achar talhões")
+                }
+            });
+        })
+
+
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+async function mostrarSituacaoTalhaoAlerta(idPlantacao) {
+    await fetch(`/dashHome/mostrarSituacaoTalhaoAlerta/${idPlantacao}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            await resposta.json().then(async (informacaoTalhaoAlerta) => {
+                if (resposta.ok) {
+                    contAlerta.push(informacaoTalhaoAlerta[0].alerta)
+                }
+                else {
+                    new Error("Não foi possível achar talhões")
+                }
+            });
+        })
+
+
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+function mostrarPlants(contPlant, seguro, perigo, alerta, idPlantacao) {
     cardPrincipal.innerHTML +=
         `<div class="card">
         <div class="nomePlantacao">
@@ -120,11 +164,11 @@ function mostrarPlants(contPlant, seguro, idPlantacao) {
                 </div>
                 <div class="cardMetrica">
                     <h3>Alerta</h3>
-                    <span id="alerta"></span>
+                    <span id="alerta">${alerta}</span>
                     </div>
                     <div class="cardMetrica">
                     <h3>Perigo</h3>
-                    <span id="perigo"></span>
+                    <span id="perigo">${perigo}</span>
                     </div>
                     </div>
         </div>
@@ -134,6 +178,7 @@ function mostrarPlants(contPlant, seguro, idPlantacao) {
     </div>
     `
 }
+
 
 function listarTalhoes() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL

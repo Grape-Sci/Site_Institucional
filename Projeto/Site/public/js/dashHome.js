@@ -46,38 +46,3 @@ function listarPlantacoes() {
         });
 }
 
-function mostrarSituacaoTalhaoIdeal(idPlantacao) {
-    fetch(`/dashHome/mostrarSituacaoTalhaoIdeal/${idPlantacao}`, {
-        method: "GET",
-    })
-        .then(function (resposta) {
-            resposta.json().then((informacaoTalhao) => {
-                var contTalhaoAlerta = 0;
-                var contTalhaoPerigo = 0;
-                var contTalhaoIdeal = 0;
-
-                for (var i = 0; i < informacaoTalhao.length; i++) {
-                    var temperaturaAtual = informacaoTalhao[i].consultaTemp;
-                    var umidadeAtual = informacaoTalhao[i].consultaUmi;
-                    var tempMax = informacaoTalhao[i].tempMax;
-                    var tempMin = informacaoTalhao[i].tempMin;
-                    var umiMax = informacaoTalhao[i].umiMax;
-                    var umiMin = informacaoTalhao[i].umiMin;
-
-                    if (temperaturaAtual < tempMin || umidadeAtual < umiMin
-                        || temperaturaAtual > tempMax || umidadeAtual > umiMax) {
-                        contTalhaoPerigo++;
-                    }
-                    else if (temperaturaAtual < tempMax - 1 || umidadeAtual < umiMax - 1
-                        || temperaturaAtual > tempMin + 1 || umidadeAtual > umiMin + 1) {
-                        contTalhaoIdeal++;
-                    } else {
-                        contTalhaoAlerta++;
-                    }
-                }
-            });
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-}

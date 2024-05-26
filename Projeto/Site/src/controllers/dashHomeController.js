@@ -57,8 +57,44 @@ function mostrarSituacaoTalhaoIdeal(req, res) {
     });
 }
 
+function mostrarSituacaoTalhaoPerigo(req, res) {
+    var idPlantacao = req.params.idPlantacao;
+
+    dashHomeModel.mostrarSituacaoTalhaoPerigo(idPlantacao).then((resultado) => {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        }
+        else {
+            res.status(204).json([]);
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os talhões: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function mostrarSituacaoTalhaoAlerta(req, res) {
+    var idPlantacao = req.params.idPlantacao;
+
+    dashHomeModel.mostrarSituacaoTalhaoAlerta(idPlantacao).then((resultado) => {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        }
+        else {
+            res.status(204).json([]);
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os talhões: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     exibirInfoPlantacoes,
     listarPlantacoes,
-    mostrarSituacaoTalhaoIdeal
+    mostrarSituacaoTalhaoIdeal,
+    mostrarSituacaoTalhaoPerigo,
+    mostrarSituacaoTalhaoAlerta
 };
