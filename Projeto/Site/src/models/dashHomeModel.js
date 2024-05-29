@@ -16,13 +16,18 @@ function listarPlantacoes(idEmpresa) {
 
 function mostrarSituacaoTalhaoIdeal(idPlantacao) {
   var instrucaoSql = `
-  SELECT COUNT(idTalhao) AS seguro FROM Talhao 
+  SELECT COUNT(DISTINCT(idTalhao)) AS seguro FROM Talhao 
   JOIN Dispositivo ON fkTalhao = idTalhao 
   JOIN Registro ON fkDispositivo = idDispositivo
   JOIN Uva ON fkUva = idUva
   JOIN Plantacao ON idPlantacao = fkPlantacao
-  WHERE (tempMax - 1 > consultaTemp AND tempMin + 1  < consultaTemp) AND 
-  (umiMax - 1 > consultaUmi AND  umiMin + 1 > consultaUmi) AND idPlantacao = ${idPlantacao};
+  WHERE 
+  (
+  (tempMax - 2 >= consultaTemp AND tempMin + 2  <= consultaTemp) 
+  AND 
+  (umiMax + 2 >= consultaUmi AND  umiMin + 2 <= consultaUmi)
+  ) 
+  AND idPlantacao = ${idPlantacao};
   `
 
   return database.executar(instrucaoSql);
@@ -30,27 +35,36 @@ function mostrarSituacaoTalhaoIdeal(idPlantacao) {
 
 function mostrarSituacaoTalhaoPerigo(idPlantacao) {
   var instrucaoSql = `
-  SELECT COUNT(idTalhao) AS perigo FROM Talhao 
+  SELECT COUNT(DISTINCT(idTalhao)) AS perigo FROM Talhao 
   JOIN Dispositivo ON fkTalhao = idTalhao 
   JOIN Registro ON fkDispositivo = idDispositivo
   JOIN Uva ON fkUva = idUva
   JOIN Plantacao ON idPlantacao = fkPlantacao
-  WHERE (tempMax < consultaTemp AND tempMin > consultaTemp) AND 
-  (umiMax < consultaUmi AND  umiMin > consultaUmi) AND idPlantacao = ${idPlantacao};
-  `
+  WHERE 
+  (
+  (tempMax < consultaTemp OR tempMin > consultaTemp) 
+  OR 
+  (umiMax < consultaUmi OR umiMin > consultaUmi)
+  ) 
+  AND idPlantacao = ${idPlantacao};`
 
   return database.executar(instrucaoSql);
 }
 
 function mostrarSituacaoTalhaoAlerta(idPlantacao) {
   var instrucaoSql = `
-  SELECT COUNT(idTalhao) AS alerta FROM Talhao 
+  SELECT COUNT(DISTINCT(idTalhao)) AS alerta FROM Talhao 
   JOIN Dispositivo ON fkTalhao = idTalhao 
   JOIN Registro ON fkDispositivo = idDispositivo
   JOIN Uva ON fkUva = idUva
   JOIN Plantacao ON idPlantacao = fkPlantacao
-  WHERE (tempMax > consultaTemp AND tempMin < consultaTemp and tempMax - 2 < consultaTemp AND tempMin + 2 > consultaTemp) AND 
-  (umiMax > consultaTemp AND umiMin < consultaTemp and umiMax - 2 < consultaTemp AND umiMin + 2 > consultaTemp) AND idPlantacao = ${idPlantacao};
+  WHERE 
+  (
+  ((consultaTemp >= tempMin  AND consultaTemp <= tempMin + 1) OR (consultaTemp <= tempMax AND consultaTemp >= tempMax -1)) 
+  AND
+  ((consultaUmi >= umiMin AND consultaUmi <= umiMin + 1) OR (consultaUmi <= umiMax AND consultaUmi >= umiMax -1))
+  ) 
+  AND idPlantacao = ${idPlantacao};
   `
 
   return database.executar(instrucaoSql);

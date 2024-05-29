@@ -27,7 +27,7 @@ function listarTalhoesFOR(talhaoAtual){
 }
 
 function listarQtdArea(idPlantacao){
-  var instrucaoSql = `SELECT areaTotal FROM plantacao WHERE idPlantacao = ${idPlantacao}`;
+  var instrucaoSql = `SELECT areaTotal FROM Plantacao WHERE idPlantacao = ${idPlantacao}`;
   
   return database.executar(instrucaoSql);
 }

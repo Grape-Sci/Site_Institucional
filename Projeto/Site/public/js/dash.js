@@ -68,9 +68,35 @@ function listarPlantacoes() {
                     var plantacaoAtual = plantacoes[i];
                     await mostrarSituacaoTalhaoIdeal(plantacaoAtual.idPlantacao)
                     await mostrarSituacaoTalhaoPerigo(plantacaoAtual.idPlantacao)
+                    await mostrarSituacaoTalhaoAlerta(plantacaoAtual.idPlantacao)
 
-                    mostrarPlants(i, contSeguro[i], contPerigo[i], plantacaoAtual.idPlantacao)
-
+                    cardPrincipal.innerHTML +=
+                        `<div class="card">
+                            <div class="nomePlantacao">
+                                <h1>Plantação ${i + 1}</h1>
+                            </div>
+                            <div class="infoPlantacoes">
+                                <h2>Quantidade de Talhões</h2>
+                            <div class="info">
+                            <div class="cardMetrica">
+                            <h3>Seguro</h3>
+                            <span id="seguro">${contSeguro[i]}</span>
+                            </div>
+                            <div class="cardMetrica">
+                            <h3>Alerta</h3>
+                            <span id="alerta">${contAlerta[i]}</span>
+                            </div>
+                            <div class="cardMetrica">
+                            <h3>Perigo</h3>
+                            <span id="perigo">${contPerigo[i]}</span>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="botaoPlantacoes">
+                            <button onclick="monitorar(${plantacaoAtual.idPlantacao})">Monitorar</button>
+                            </div>
+                            </div>
+    `
 
                 }
             });
@@ -83,6 +109,7 @@ function listarPlantacoes() {
 
 var contSeguro = [];
 var contPerigo = [];
+var contAlerta = [];
 
 async function mostrarSituacaoTalhaoIdeal(idPlantacao) {
     await fetch(`/dashHome/mostrarSituacaoTalhaoIdeal/${idPlantacao}`, {
@@ -147,36 +174,6 @@ async function mostrarSituacaoTalhaoAlerta(idPlantacao) {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-}
-
-function mostrarPlants(contPlant, seguro, perigo, alerta, idPlantacao) {
-    cardPrincipal.innerHTML +=
-        `<div class="card">
-        <div class="nomePlantacao">
-            <h1>Plantação ${contPlant + 1}</h1>
-        </div>
-        <div class="infoPlantacoes">
-            <h2>Quantidade de Talhões</h2>
-            <div class="info">
-                <div class="cardMetrica">
-                    <h3>Seguro</h3>
-                    <span id="seguro">${seguro}</span>
-                </div>
-                <div class="cardMetrica">
-                    <h3>Alerta</h3>
-                    <span id="alerta">${alerta}</span>
-                    </div>
-                    <div class="cardMetrica">
-                    <h3>Perigo</h3>
-                    <span id="perigo">${perigo}</span>
-                    </div>
-                    </div>
-        </div>
-        <div class="botaoPlantacoes">
-            <button onclick="monitorar(${idPlantacao})">Monitorar</button>
-        </div>
-    </div>
-    `
 }
 
 
@@ -248,8 +245,8 @@ function listarArea() {
         .then(function (resposta) {
             resposta.json().then((qtdArea) => {
                 console.log(qtdArea[0])
-                AreaPlantada.innerHTML =`<span>${qtdArea[0]["areaTotal"]}</span`
-                
+                AreaPlantada.innerHTML = `<span>${qtdArea[0]["areaTotal"]}</span`
+
             });
         })
         .catch(function (resposta) {
