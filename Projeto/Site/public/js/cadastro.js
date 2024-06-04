@@ -79,8 +79,42 @@ function removerMascara(valorComMascara) {
     return valorSemMascara
 }
 
+function destacarCamposIncorretos() {
+    // Remove a borda vermelha de todos os campos
+    var campos = document.querySelectorAll('input, select');
+    campos.forEach(function (campo) {
+        campo.style.border = '';
+    });
+
+    // Adiciona a borda vermelha aos campos preenchidos incorretamente
+    if (usuarioVar == "") {
+        input_usuario.style.border = '1px solid red';
+    }
+    if (cpfVar == "") {
+        input_cpf.style.border = '1px solid red';
+    }
+    if (telefoneVar == "") {
+        input_telefone.style.border = '1px solid red';
+    }
+    if (senhaVar == "") {
+        input_senha.style.border = '1px solid red';
+    }
+    if (confirmar == "") {
+        input_confirmarSenha.style.border = '1px solid red';
+    }
+    if (empresaVar == "0") {
+        select_empresa.style.border = '1px solid red';
+    }
+    if (emailVar == "" || emailVar.indexOf('@') < 0 || emailVar.indexOf('.') < 0) {
+        input_email.style.border = '1px solid red';
+    }
+    if (cargoVar == "0") {
+        select_cargo.style.border = '1px solid red';
+    }
+}
+
+
 function cadastrar() {
-    // Captura os valores dos campos do formulário
     telefoneVar = removerMascara(input_telefone.value);
     cpfVar = removerMascara(input_cpf.value);
     usuarioVar = input_usuario.value;
@@ -92,26 +126,27 @@ function cadastrar() {
     idEmpresaVar = empresaVar;
     temErro = false;
 
-    if (usuarioVar == "" || cpfVar == 0 || telefoneVar == "" || senhaVar == "" || empresaVar == 0 || emailVar == "" || cargoVar == 0 ||
-        confirmar == "") {
-        buildCardMensagem("block", 'erro', 'Preencha os campos corretamente', true)
+    if (usuarioVar == "" || cpfVar == 0 || telefoneVar == "" || senhaVar == "" || empresaVar == 0 || emailVar == "" || cargoVar == 0 || confirmar == "") {
+        buildCardMensagem("block", 'erro', 'Preencha os campos corretamente', true);
+        destacarCamposIncorretos(); // Chama a função para destacar os campos incorretos
     } else if (emailVar.indexOf('@') < 0 && emailVar.indexOf('.') < 0) {
-        buildCardMensagem("block", 'erro', "Insira um e-mail válido", true)
+        buildCardMensagem("block", 'erro', "Insira um e-mail válido", true);
+        destacarCamposIncorretos(); // Chama a função para destacar os campos incorretos
     } else if (senhaVar.length < 6) {
-        buildCardMensagem("block", 'erro', "A senha deve conter ao mínimo 5 caracteres", true)
+        buildCardMensagem("block", 'erro', "A senha deve conter ao mínimo 5 caracteres", true);
+        destacarCamposIncorretos(); // Chama a função para destacar os campos incorretos
     } else if (senhaVar != confirmar) {
-        buildCardMensagem("block", 'erro', "Suas senhas estão diferentes", true)
+        buildCardMensagem("block", 'erro', "Suas senhas estão diferentes", true);
+        destacarCamposIncorretos(); // Chama a função para destacar os campos incorretos
     }
-
-    // Se não houver erros, oculta o formulário de cadastro e exibe uma mensagem de confirmação
 
     if (temErro == false) {
         div_cadastro.style = 'display:none';
         div_confirmacao.style = 'display:block';
         buscarCodigoEmpresa(idEmpresaVar);
     }
-
 }
+
 
 
 function enviar() {
