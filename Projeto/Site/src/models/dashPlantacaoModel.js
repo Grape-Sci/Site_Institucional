@@ -33,11 +33,19 @@ function listarTalhoesFOR(talhaoAtual){
   return database.executar(instrucaoSql);
 }
 
+
 function listarPlantacoesKPI(idPlantacao){
   var instrucaoSql = `SELECT areaTotal as Area, COUNT(idTalhao) quantidade FROM Plantacao JOIN Talhao ON fkPlantacao = idPlantacao WHERE idPlantacao = ${idPlantacao} `;
   
   return database.executar(instrucaoSql);
 }
+
+function listarTalhoesKPI(idTalhao){
+  var instrucaoSql = `SELECT nomeTipo, consultaUmi, consultaTemp, tempMax, tempMin, umiMin, umiMax FROM Talhao JOIN Uva ON fkUva = idUva JOIN Dispositivo ON fkTalhao = idTalhao JOIN registro ON fkDispositivo = idDispositivo WHERE idTalhao = ${idTalhao} ORDER BY registroDt DESC;`;
+  
+  return database.executar(instrucaoSql);
+}
+
 
 function mostrarSituacaoTalhaoIdeal(idPlantacao) {
   var instrucaoSql = `
@@ -60,5 +68,6 @@ module.exports = {
   listarTalhoesFOR,
   listarTalhoes,
   listarPlantacoesKPI,
+  listarTalhoesKPI,
   capturar_primeira_plantacoes
 };

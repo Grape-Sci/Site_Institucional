@@ -97,6 +97,23 @@ function listarPlantacoesKPI(req, res){
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+function listarTalhoesKPI(req, res){
+    var idTalhao = req.params.idTalhao;
+
+    dashPlantacaoModel.listarTalhoesKPI(idTalhao).then((resultado) => {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).json([]);
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os códigos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 // function mostrarSituacaoTalhaoIdeal(req, res) {
 //     var idPlantacao = req.params.idPlantacao;
 
@@ -119,5 +136,6 @@ module.exports = {
     listarTalhoes,
     listarTalhoesFOR,
     listarPlantacoesKPI,
-    capturar_primeira_plantacoes
+    capturar_primeira_plantacoes,
+    listarTalhoesKPI
 };

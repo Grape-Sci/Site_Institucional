@@ -205,6 +205,8 @@ function listarTalhoes() {
                     for (var index = 0; index < talhoes.length; index++) {
                         var talhaoatual = talhoes[index];
     
+                        capturar_metricas_talhao(talhaoatual.idTalhao)
+
                         listaTalhao.innerHTML += ` 
                         <div class="card">
                         <div class="nomeTalhao">
@@ -255,6 +257,21 @@ function listarTalhoes() {
             console.log(`#ERRO: ${resposta}`);
         });
 
+}
+
+function capturar_metricas_talhao(idTalhao){
+    fetch(`/dashPlantacao/listarTalhoesKPI/${idTalhao}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((talhoes) => {
+              
+              
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        }); 
 }
 
 function listarPlantacaoKPI() {

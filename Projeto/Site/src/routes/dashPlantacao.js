@@ -21,5 +21,8 @@ router.get("/capturar_primeira_plantacoes/:idEmpresa", function (req, res) {
     dashPlantacaoController.capturar_primeira_plantacoes(req, res);
 });
 
+router.get("/listarTalhoesKPI/:idTalhao", function (req, res) {
+    dashPlantacaoController.listarPlantacoesKPI(req, res);
+});
 
 module.exports = router;
