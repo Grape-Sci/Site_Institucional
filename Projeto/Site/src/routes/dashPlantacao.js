@@ -13,8 +13,12 @@ router.get("/listarTalhoesFOR/:idTalhao", function (req, res) {
     dashPlantacaoController.listarTalhoesFOR(req, res);
 });
 
-router.get("/listarQtdArea/:idPlantacao", function (req, res) {
-    dashPlantacaoController.listarQtdArea(req, res);
+router.get("/listarPlantacoesKPI/:idPlantacao", function (req, res) {
+    dashPlantacaoController.listarPlantacoesKPI(req, res);
+});
+
+router.get("/capturar_primeira_plantacoes/:idEmpresa", function (req, res) {
+    dashPlantacaoController.capturar_primeira_plantacoes(req, res);
 });
 
 

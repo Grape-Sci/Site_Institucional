@@ -14,6 +14,13 @@ function listarPlantacoes(idEmpresa) {
   return database.executar(instrucaoSql);
 }
 
+function capturar_primeira_plantacoes(idEmpresa) {
+  var instrucaoSql = `SELECT idPlantacao FROM Plantacao JOIN Empresa ON fkEmpresa = idEmpresa WHERE idEmpresa = ${idEmpresa} ORDER BY idPlantacao LIMIT 1;`;
+
+  return database.executar(instrucaoSql);
+}
+
+
 function listarTalhoes(idPlantacao) {
   var instrucaoSql = `SELECT count(idTalhao) as QuantidadeTalhoes, idTalhao, count(areaTotal) as Area FROM Talhao JOIN Plantacao ON fkPlantacao = idPlantacao WHERE idPlantacao = ${idPlantacao} GROUP BY idTalhao;`;
 
@@ -26,8 +33,8 @@ function listarTalhoesFOR(talhaoAtual){
   return database.executar(instrucaoSql);
 }
 
-function listarQtdArea(idPlantacao){
-  var instrucaoSql = `SELECT areaTotal FROM Plantacao WHERE idPlantacao = ${idPlantacao}`;
+function listarPlantacoesKPI(idPlantacao){
+  var instrucaoSql = `SELECT areaTotal as Area, COUNT(idTalhao) quantidade FROM Plantacao JOIN Talhao ON fkPlantacao = idPlantacao WHERE idPlantacao = ${idPlantacao} `;
   
   return database.executar(instrucaoSql);
 }
@@ -52,5 +59,6 @@ module.exports = {
   mostrarSituacaoTalhaoIdeal,
   listarTalhoesFOR,
   listarTalhoes,
-  listarQtdArea
+  listarPlantacoesKPI,
+  capturar_primeira_plantacoes
 };

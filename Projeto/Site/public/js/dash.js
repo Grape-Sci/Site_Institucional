@@ -2,8 +2,9 @@ function sair() {
     window.location = "index.html";
 }
 
-function monitorar(idPlantacaoSelecionada) {
+function monitorar(idPlantacaoSelecionada, idMocado) {
     sessionStorage.PLANTACAO_ATUAL = idPlantacaoSelecionada;
+    sessionStorage.ID_MOCADO = idMocado
     window.location = "dashPlantacao.html";
 }
 
@@ -13,7 +14,7 @@ function monitorar(idPlantacaoSelecionada) {
 // }
 
 function analisar(idTalhaoSelecionado) {
-    // sessionStorage.TALHAO_ATUAL = idTalhaoSelecionado;
+    sessionStorage.TALHAO_ATUAL = idTalhaoSelecionado;
     window.location = "dashTalhao1.html";
 }
 
@@ -93,7 +94,7 @@ function listarPlantacoes() {
                             </div>
                             </div>
                             <div class="botaoPlantacoes">
-                            <button onclick="monitorar(${plantacaoAtual.idPlantacao})">Monitorar</button>
+                            <button onclick="monitorar(${plantacaoAtual.idPlantacao}, ${i + 1})">Monitorar</button>
                             </div>
                             </div>
     `
@@ -178,56 +179,69 @@ async function mostrarSituacaoTalhaoAlerta(idPlantacao) {
 
 
 function listarTalhoes() {
-    var idPlantacao = sessionStorage.PLANTACAO_ATUAL
+    var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
+    var idMocked = sessionStorage.ID_MOCADO; 
+
+
+    if(idPlantacao == null) {
+        session_carregar()
+    }
+
+    tituloPlant.innerHTML = `Plantação ${idMocked}`
 
     fetch(`/dashPlantacao/listarTalhoes/${idPlantacao}`, {
         method: "GET",
     })
         .then(function (resposta) {
             resposta.json().then((talhoes) => {
-                for (var index = 0; index < talhoes.length; index++) {
-                    var talhaoatual = talhoes[index];
-
-                    qtdTalhoes.innerHTML = `<span>${Number(talhoes.length)}</span>`
-                    listaTalhao.innerHTML += ` <div class="card">
-                    <div class="nomeTalhao">
-                      <h1>Talhão ${index + 1}</span></h1>
-                      <h2>Uva Itália</h2>
-                    </div>
-                    <div class="infoTalhoes">
-                      <div class="info">
-                        <h1>Situação</h1>
-                        <div class="situacao">
-                          <span id="seguro">Seguro</span>
-                          <img src="img/seguro.png">
+                if(talhoes.length >0){
+                    for (var index = 0; index < talhoes.length; index++) {
+                        var talhaoatual = talhoes[index];
+    
+                        listaTalhao.innerHTML += ` 
+                        <div class="card">
+                        <div class="nomeTalhao">
+                          <h1>Talhão ${index + 1}</span></h1>
+                          <h2>Uva Itália</h2>
                         </div>
-                      </div>
-                      <div class="info">
-                        <h1>Temperatura</h1>
-                        <div class="situacao">
-                          <span id="seguro">22°C</span>
+                        <div class="infoTalhoes">
+                          <div class="info">
+                            <h1>Situação</h1>
+                            <div class="situacao">
+                              <span id="seguro">Seguro</span>
+                              <img src="img/seguro.png">
+                            </div>
+                          </div>
+                          <div class="info">
+                            <h1>Temperatura</h1>
+                            <div class="situacao">
+                              <span id="seguro">22°C</span>
+                            </div>
+                          </div>
+                          <div class="info">
+                            <h1>Umidade</h1>
+                            <div class="situacao">
+                              <span id="seguro">58%</span>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="info">
-                        <h1>Umidade</h1>
-                        <div class="situacao">
-                          <span id="seguro">58%</span>
+                        <div class="botaoTalhao">
+                          <button onclick="analisar()">Analisar</button>
                         </div>
-                      </div>
-                    </div>
-                    <div class="botaoTalhao">
-                      <button onclick="analisar()">Analisar</button>
-                    </div>
-                  </div>`
-
-                    //     fetch(`/dashPlantacao/listarTalhoesFOR/${talhaoatual.idTalhao}`, {
-                    //         method: "GET",
-                    //     }) .then(function (resposta) {
-                    //         resposta.json().then( (infotalhoes))
-                    //     }
-
-                    // )
+                      </div>`
+    
+                        //     fetch(`/dashPlantacao/listarTalhoesFOR/${talhaoatual.idTalhao}`, {
+                        //         method: "GET",
+                        //     }) .then(function (resposta) {
+                        //         resposta.json().then( (infotalhoes))
+                        //     }
+    
+                        // )
+                    }    
+                } else{
+                    AreaPlantada.innerHTML = `<span>Plantação sem talhões</span>`
                 }
+                
             });
         })
         .catch(function (resposta) {
@@ -236,17 +250,42 @@ function listarTalhoes() {
 
 }
 
-function listarArea() {
+function listarPlantacaoKPI() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
 
-    fetch(`/dashPlantacao/listarQtdArea/${idPlantacao}`, {
+    fetch(`/dashPlantacao/listarPlantacoesKPI/${idPlantacao}`, {
         method: "GET",
     })
         .then(function (resposta) {
-            resposta.json().then((qtdArea) => {
-                console.log(qtdArea[0])
-                AreaPlantada.innerHTML = `<span>${qtdArea[0]["areaTotal"]}</span`
+            resposta.json().then((kpiPlant) => {
+                if(kpiPlant[0].Area != null){
+                    AreaPlantada.innerHTML = `<span>${kpiPlant[0].Area}</span`
+                    qtdTalhoes.innerHTML = `<span>${kpiPlant[0].quantidade}</span>`
+    
+                }else{
+                    listaTalhao.innerHTML = `<h1>Sem Talhões Cadastrados`
+                    AreaPlantada.innerHTML = `<span>0 hectáres</span>`
+                    qtdTalhoes.innerHTML = `<span>0</span>`
+                }
+              
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
 
+listarPlantacaoKPI()
+
+function session_carregar(){
+    var idEmpresa = sessionStorage.ID_EMPRESA;
+    fetch(`dashPlantacao/capturar_primeira_plantacoes/${idEmpresa}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((idPlantacao) => {
+                sessionStorage.PLANTACAO_ATUAL = idPlantacao[0].idPlantacao;
+                sessionStorage.ID_MOCADO = 1
             });
         })
         .catch(function (resposta) {
