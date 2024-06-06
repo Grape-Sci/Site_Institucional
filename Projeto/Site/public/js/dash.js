@@ -1,5 +1,12 @@
 function sair() {
     window.location = "index.html";
+    sessionStorage.ID_EMPRESA = ''
+    sessionStorage.ID_MOCADO = ''
+    sessionStorage.TALHAO_ATUAL = ''
+    sessionStorage.NOME_USUARIO = ''
+    sessionStorage.CARGO_USUARIO = ''
+    sessionStorage.EMAIL_USUARIO = ''
+    sessionStorage.PLANTACAO_ATUAL = ''
 }
 
 function monitorar(idPlantacaoSelecionada, idMocado) {
@@ -259,7 +266,7 @@ function listarPlantacaoKPI() {
         .then(function (resposta) {
             resposta.json().then((kpiPlant) => {
                 if(kpiPlant[0].Area != null){
-                    AreaPlantada.innerHTML = `<span>${kpiPlant[0].Area}</span`
+                    AreaPlantada.innerHTML = `<span>${kpiPlant[0].Area} hectáres</span`
                     qtdTalhoes.innerHTML = `<span>${kpiPlant[0].quantidade}</span>`
     
                 }else{
@@ -276,6 +283,7 @@ function listarPlantacaoKPI() {
 }
 
 listarPlantacaoKPI()
+session_carregar()
 
 function session_carregar(){
     var idEmpresa = sessionStorage.ID_EMPRESA;
