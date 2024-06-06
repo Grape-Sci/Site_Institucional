@@ -187,12 +187,15 @@ async function mostrarSituacaoTalhaoAlerta(idPlantacao) {
 
 function listarTalhoes() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
-    var idMocked = sessionStorage.ID_MOCADO; 
+    var idMocked = sessionStorage.ID_MOCADO;
 
 
-    if(idPlantacao == null) {
+    if (idPlantacao == null) {
         session_carregar()
     }
+
+    listarPlantacaoKPI(idPlantacao)
+
 
     tituloPlant.innerHTML = `Plantação ${idMocked}`
 
@@ -201,10 +204,12 @@ function listarTalhoes() {
     })
         .then(function (resposta) {
             resposta.json().then((talhoes) => {
-                if(talhoes.length >0){
+                if (talhoes.length > 0) {
+                    listaTalhao.innerHTML = ""
+
                     for (var index = 0; index < talhoes.length; index++) {
                         var talhaoatual = talhoes[index];
-    
+
                         capturar_metricas_talhao(talhaoatual.idTalhao)
 
                         listaTalhao.innerHTML += ` 
@@ -238,19 +243,16 @@ function listarTalhoes() {
                           <button onclick="analisar()">Analisar</button>
                         </div>
                       </div>`
-    
+
                         //     fetch(`/dashPlantacao/listarTalhoesFOR/${talhaoatual.idTalhao}`, {
                         //         method: "GET",
                         //     }) .then(function (resposta) {
                         //         resposta.json().then( (infotalhoes))
                         //     }
-    
+
                         // )
-                    }    
-                } else{
-                    AreaPlantada.innerHTML = `<span>Plantação sem talhões</span>`
-                }
-                
+                    }
+                } 
             });
         })
         .catch(function (resposta) {
@@ -259,39 +261,14 @@ function listarTalhoes() {
 
 }
 
-function capturar_metricas_talhao(idTalhao){
+function capturar_metricas_talhao(idTalhao) {
     fetch(`/dashPlantacao/listarTalhoesKPI/${idTalhao}`, {
         method: "GET",
     })
         .then(function (resposta) {
             resposta.json().then((talhoes) => {
-              
-              
-            });
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        }); 
-}
 
-function listarPlantacaoKPI() {
-    var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
 
-    fetch(`/dashPlantacao/listarPlantacoesKPI/${idPlantacao}`, {
-        method: "GET",
-    })
-        .then(function (resposta) {
-            resposta.json().then((kpiPlant) => {
-                if(kpiPlant[0].Area != null){
-                    AreaPlantada.innerHTML = `<span>${kpiPlant[0].Area} hectáres</span`
-                    qtdTalhoes.innerHTML = `<span>${kpiPlant[0].quantidade}</span>`
-    
-                }else{
-                    listaTalhao.innerHTML = `<h1>Sem Talhões Cadastrados`
-                    AreaPlantada.innerHTML = `<span>0 hectáres</span>`
-                    qtdTalhoes.innerHTML = `<span>0</span>`
-                }
-              
             });
         })
         .catch(function (resposta) {
@@ -299,10 +276,30 @@ function listarPlantacaoKPI() {
         });
 }
 
-listarPlantacaoKPI()
-session_carregar()
+function listarPlantacaoKPI(idPlantacao) {
+    fetch(`/dashPlantacao/listarPlantacoesKPI/${idPlantacao}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((kpiPlant) => {
+                if (kpiPlant[0].Area != null) {
+                    AreaPlantada.innerHTML = `<span>${kpiPlant[0].Area} hectáres</span`
+                    qtdTalhoes.innerHTML = `<span>${kpiPlant[0].quantidade}</span>`
 
-function session_carregar(){
+                } else {
+                    listaTalhao.innerHTML = `<h1>Sem Talhões Cadastrados`
+                    AreaPlantada.innerHTML = `<span>0 hectáres</span>`
+                    qtdTalhoes.innerHTML = `<span>0</span>`
+                }
+
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+function session_carregar() {
     var idEmpresa = sessionStorage.ID_EMPRESA;
     fetch(`dashPlantacao/capturar_primeira_plantacoes/${idEmpresa}`, {
         method: "GET",
