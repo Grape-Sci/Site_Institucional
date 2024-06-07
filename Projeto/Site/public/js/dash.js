@@ -185,6 +185,9 @@ async function mostrarSituacaoTalhaoAlerta(idPlantacao) {
 }
 
 
+var qtdTalhoesSeguro = 0
+var qtdTalhoesPerigo = 0
+var qtdTalhoesAlerta = 0
 function listarTalhoes() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
     var idMocked = sessionStorage.ID_MOCADO;
@@ -209,20 +212,38 @@ function listarTalhoes() {
                         var talhaoatual = talhoes[index];
                         console.log(talhaoatual)
                         var situacao = ''
-                        var situacaoIMG = ''
+                        var situacaoUmi = '';
+                        var situacaoTemp = ''
                 
 
                             if(talhaoatual.consultaTemp <= talhaoatual.tempMax - 2 && talhaoatual.consultaTemp >= talhaoatual.tempMin + 2){
                                 situacao = 'Seguro'
+                                situacaoTemp = 'Seguro'
+                                
+                            }else if(talhaoatual.consultaTemp >= talhaoatual.tempMax - 2 && talhaoatual.consultaTemp <= talhaoatual.tempMin + 2){
+                                situacao = 'Perigo'
+                                situacaoTemp = 'Perigo'
+                            } else {
+                                situacao = 'Alerta'
+                                situacaoTemp = 'Alerta'
                             }
-
+                               
                             
                             if(talhaoatual.consultaUmi >= talhaoatual.umiMin + 1 && talhaoatual.consultaUmi <= talhaoatual.umiMax - 1){
                                 situacao = 'Seguro'
+                                situacaoUmi = 'Seguro'
+                                qtdTalhoesSeguro++
+                            } else if(talhaoatual.consultaUmi <= talhaoatual.umiMin + 1 && talhaoatual.consultaUmi >= talhaoatual.umiMax - 1){
+                                situacao = 'Perigo'
+                                situacaoUmi = 'Perigo'
+                                qtdTalhoesPerigo++
+                            } else {
+                                situacao = 'Alerta'
+                                situacaoUmi = 'Alerta'
+                                qtdTalhoesAlerta++
                             }
                         
 
-                        alert(situacao)
                         listaTalhao.innerHTML += ` 
                         <div class="card">
                         <div class="nomeTalhao">
@@ -240,13 +261,13 @@ function listarTalhoes() {
                           <div class="info">
                             <h1>Temperatura</h1>
                             <div class="situacao">
-                              <span id="seguro">${talhaoatual.consultaTemp} Cº</span>
+                              <span id="${situacaoTemp}">${talhaoatual.consultaTemp} Cº</span>
                             </div>
                           </div>
                           <div class="info">
                             <h1>Umidade</h1>
                             <div class="situacao">
-                              <span id="seguro">${talhaoatual.consultaUmi} %</span>
+                              <span id="${situacaoUmi}">${talhaoatual.consultaUmi} %</span>
                             </div>
                           </div>
                         </div>
@@ -263,6 +284,26 @@ function listarTalhoes() {
 
                         // )
                     }
+                    metricas.innerHTML = `      
+                     <div class="metricaPlantacoes">
+              <div class="container">
+                <h1>Quantidade de Talhões</h1>
+                <div class="informacoes">
+                  <div class="situacao">
+                    <h1>Seguro</h1>
+                    <span id="seguro">${qtdTalhoesSeguro}</span>
+                  </div>
+                  <div class="situacao">
+                    <h1>Alerta</h1>
+                    <span id="alerta">${qtdTalhoesAlerta}</span>
+                  </div>
+                  <div class="situacao">
+                    <h1>Perigo</h1>
+                    <span id="perigo">${qtdTalhoesPerigo}</span>
+                  </div>
+                </div>
+              </div>
+            </div>`
                 } 
             });
         })
