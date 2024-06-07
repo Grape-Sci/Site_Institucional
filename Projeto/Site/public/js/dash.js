@@ -188,18 +188,16 @@ async function mostrarSituacaoTalhaoAlerta(idPlantacao) {
 function listarTalhoes() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
     var idMocked = sessionStorage.ID_MOCADO;
-
+    var idEmpresa = sessionStorage.ID_EMPRESA;
 
     if (idPlantacao == null) {
         session_carregar()
     }
 
-    listarPlantacaoKPI(idPlantacao)
-
 
     tituloPlant.innerHTML = `Plantação ${idMocked}`
 
-    fetch(`/dashPlantacao/listarTalhoes/${idPlantacao}`, {
+    fetch(`/dashPlantacao/listarTalhoes/${idPlantacao}/${idEmpresa}`, {
         method: "GET",
     })
         .then(function (resposta) {
@@ -209,33 +207,46 @@ function listarTalhoes() {
 
                     for (var index = 0; index < talhoes.length; index++) {
                         var talhaoatual = talhoes[index];
+                        console.log(talhaoatual)
+                        var situacao = ''
+                        var situacaoIMG = ''
+                
 
-                        capturar_metricas_talhao(talhaoatual.idTalhao)
+                            if(talhaoatual.consultaTemp <= talhaoatual.tempMax - 2 && talhaoatual.consultaTemp >= talhaoatual.tempMin + 2){
+                                situacao = 'Seguro'
+                            }
 
+                            
+                            if(talhaoatual.consultaUmi >= talhaoatual.umiMin + 1 && talhaoatual.consultaUmi <= talhaoatual.umiMax - 1){
+                                situacao = 'Seguro'
+                            }
+                        
+
+                        alert(situacao)
                         listaTalhao.innerHTML += ` 
                         <div class="card">
                         <div class="nomeTalhao">
                           <h1>Talhão ${index + 1}</span></h1>
-                          <h2>Uva Itália</h2>
+                          <h2>${talhaoatual.nomeTipo}</h2>
                         </div>
                         <div class="infoTalhoes">
                           <div class="info">
                             <h1>Situação</h1>
                             <div class="situacao">
-                              <span id="seguro">Seguro</span>
-                              <img src="img/seguro.png">
+                              <span id="${situacao}"  >${situacao}</span>
+                              <img src="img/${situacao}.png">
                             </div>
                           </div>
                           <div class="info">
                             <h1>Temperatura</h1>
                             <div class="situacao">
-                              <span id="seguro">22°C</span>
+                              <span id="seguro">${talhaoatual.consultaTemp} Cº</span>
                             </div>
                           </div>
                           <div class="info">
                             <h1>Umidade</h1>
                             <div class="situacao">
-                              <span id="seguro">58%</span>
+                              <span id="seguro">${talhaoatual.consultaUmi} %</span>
                             </div>
                           </div>
                         </div>
@@ -259,22 +270,7 @@ function listarTalhoes() {
             console.log(`#ERRO: ${resposta}`);
         });
 
-}
 
-function capturar_metricas_talhao(idTalhao) {
-    fetch(`/dashPlantacao/listarTalhoesKPI/${idTalhao}`, {
-        method: "GET",
-    })
-        .then(function (resposta) {
-            resposta.json().then((talhoes) => {
-
-
-            });
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-}
 
 function listarPlantacaoKPI(idPlantacao) {
     fetch(`/dashPlantacao/listarPlantacoesKPI/${idPlantacao}`, {
@@ -313,4 +309,5 @@ function session_carregar() {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+}
 }

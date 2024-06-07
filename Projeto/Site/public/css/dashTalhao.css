@@ -152,9 +152,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: rgb(150, 231, 130);
-  border-radius: 20px;
-  border: 4px solid rgb(105, 228, 74);
+  border: 2px solid red;
 }
 
 .titulo .container h1 {
@@ -272,25 +270,29 @@
   margin: 0 40px;
 }
 
-.fundo{
+.fundo {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
 
 .graficos .graficotemp {
   background-color: #8445F2;
   margin-bottom: 10px;
-  padding:5px;
+  padding: 5px;
   border: 13px solid #D8C4FA;
+  max-width: 90%;
+  max-height: 90%;
 }
 
 .graficos .graficoumi {
   background-color: #8445F2;
   margin-bottom: 10px;
-  padding:5px;
+  padding: 5px;
   border: 13px solid #D8C4FA;
+  max-width: 90%;
+  max-height: 90%;
 }
 
 .caixa2 {
@@ -300,14 +302,14 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-end;
 }
 
-  .sub1 {
+.sub1 {
   width: 100%;
   height: 25%;
-  background-color:#D8C4FA;
+  background-color: #D8C4FA;
   border-radius: 20px;
   border: 3px solid #8445F2;
   display: flex;
@@ -316,8 +318,8 @@
   align-items: center;
 }
 
-.titulo1 p{
-  font-size: 20px;
+.titulo1 p {
+  font-size: 1px;
   color: #8445F2;
 }
 
@@ -329,20 +331,22 @@
   justify-content: center;
   align-items: center;
 }
-.metrica label{
+
+.metrica label {
   margin-bottom: 1%;
   font-weight: bold;
   font-size: 21px;
   color: #000000;
 }
-.metrica p{
+
+.metrica p {
   margin-bottom: 2%;
   font-weight: bold;
   font-size: 22px;
-  color:#8445F2;
+  color: #8445F2;
 }
 
-.containersitu{
+.containersitu {
   width: 100%;
   height: 30%;
   display: flex;
@@ -357,7 +361,7 @@
   background-color: #D8C4FA;
   border-radius: 20px;
   border: 3px solid #8445F2;
-  display: flex;  
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -384,7 +388,8 @@
 .titulo2 p {
   font-size: 20px;
 }
-.titulo2 label{
+
+.titulo2 label {
   margin-left: 10%;
   display: flex;
   justify-content: center;
@@ -394,7 +399,7 @@
 }
 
 .situacoes {
-  display: flex;  
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -433,13 +438,13 @@
   color: red;
   font-size: 19px;
   font-weight: bold;
-  
+
 }
 
 .subexplicacao {
   width: 100%;
   height: 32%;
-  background-color:#D8C4FA;
+  background-color: #D8C4FA;
   border-radius: 20px;
   border: 3px solid #8445F2;
   display: flex;
