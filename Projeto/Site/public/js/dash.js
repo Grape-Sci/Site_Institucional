@@ -287,19 +287,19 @@ function listarTalhoes() {
                     metricas.innerHTML = `      
                      <div class="metricaPlantacoes">
               <div class="container">
-                <h1>Quantidade de Talhões</h1>
+                <h1 style=" margin-bottom: 10px;">Quantidade de Talhões</h1>
                 <div class="informacoes">
                   <div class="situacao">
                     <h1>Seguro</h1>
-                    <span id="seguro">${qtdTalhoesSeguro}</span>
+                    <span style="color: green; font-weight: bold; padding: 7px; margin-top:6%" id="seguro">${qtdTalhoesSeguro}</span>
                   </div>
                   <div class="situacao">
                     <h1>Alerta</h1>
-                    <span id="alerta">${qtdTalhoesAlerta}</span>
+                    <span style="color: yellow; font-weight: bold; padding: 7px; margin-top:6%" id="alerta">${qtdTalhoesAlerta}</span>
                   </div>
                   <div class="situacao">
                     <h1>Perigo</h1>
-                    <span id="perigo">${qtdTalhoesPerigo}</span>
+                    <span style="color: red; font-weight: bold; padding: 7px; margin-top:6%"  id="perigo">${qtdTalhoesPerigo}</span>
                   </div>
                 </div>
               </div>
