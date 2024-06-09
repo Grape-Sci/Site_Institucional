@@ -22,15 +22,7 @@ function monitorar(idPlantacaoSelecionada, idMocado) {
 
 function analisar(idTalhaoSelecionado) {
     sessionStorage.TALHAO_ATUAL = idTalhaoSelecionado;
-    window.location = "dashTalhao1.html";
-}
-
-function analisar2() {
-    window.location = "dashTalhao2.html";
-}
-
-function analisar3() {
-    window.location = "dashTalhao3.html";
+    window.location = "dashTalhao.html";
 }
 
 function exibirUsuario() {
@@ -188,95 +180,106 @@ async function mostrarSituacaoTalhaoAlerta(idPlantacao) {
 var qtdTalhoesSeguro = 0
 var qtdTalhoesPerigo = 0
 var qtdTalhoesAlerta = 0
+
+var listaTempTalhao = [];
+var listaUmiTalhao = []
+
 function listarTalhoes() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
     var idMocked = sessionStorage.ID_MOCADO;
     var idEmpresa = sessionStorage.ID_EMPRESA;
-
-    if (idPlantacao == null) {
-        session_carregar()
+    listarPlantacaoKPI((idPlantacao))
+    if (idPlantacao == null || idPlantacao == "" || idPlantacao == undefined) {
+        session_carregar(idEmpresa);
     }
 
 
     tituloPlant.innerHTML = `Plantação ${idMocked}`
 
-    fetch(`/dashPlantacao/listarTalhoes/${idPlantacao}/${idEmpresa}`, {
+    fetch(`/dashPlantacao/listarTalhoes/${idPlantacao}`, {
         method: "GET",
     })
-        .then(function (resposta) {
-            resposta.json().then((talhoes) => {
+        .then(async function (resposta) {
+            await resposta.json().then(async (talhoes) => {
                 if (talhoes.length > 0) {
-                    listaTalhao.innerHTML = ""
+                    listaTalhao.innerHTML = "";
 
                     for (var index = 0; index < talhoes.length; index++) {
-                        var talhaoatual = talhoes[index];
-                        console.log(talhaoatual)
+                        var talhaoAtual = talhoes[index];
+                        console.log(talhaoAtual)
+                        await capturarDadosTalhoes(talhaoAtual.idTalhao)
+
                         var situacao = ''
                         var situacaoUmi = '';
                         var situacaoTemp = ''
-                
+                        var umidade = listaUmiTalhao[index];
+                        var temperatura = listaTempTalhao[index];
 
-                            if(talhaoatual.consultaTemp <= talhaoatual.tempMax - 2 && talhaoatual.consultaTemp >= talhaoatual.tempMin + 2){
-                                situacao = 'Seguro'
-                                situacaoTemp = 'Seguro'
-                                
-                            }else if(talhaoatual.consultaTemp >= talhaoatual.tempMax - 2 && talhaoatual.consultaTemp <= talhaoatual.tempMin + 2){
-                                situacao = 'Perigo'
-                                situacaoTemp = 'Perigo'
-                            } else {
-                                situacao = 'Alerta'
-                                situacaoTemp = 'Alerta'
-                            }
-                               
-                            
-                            if(talhaoatual.consultaUmi >= talhaoatual.umiMin + 1 && talhaoatual.consultaUmi <= talhaoatual.umiMax - 1){
-                                situacao = 'Seguro'
-                                situacaoUmi = 'Seguro'
-                                qtdTalhoesSeguro++
-                            } else if(talhaoatual.consultaUmi <= talhaoatual.umiMin + 1 && talhaoatual.consultaUmi >= talhaoatual.umiMax - 1){
-                                situacao = 'Perigo'
-                                situacaoUmi = 'Perigo'
-                                qtdTalhoesPerigo++
-                            } else {
-                                situacao = 'Alerta'
-                                situacaoUmi = 'Alerta'
-                                qtdTalhoesAlerta++
-                            }
-                        
+                        if (temperatura < talhaoAtual.tempMax - 1 && temperatura > talhaoAtual.tempMin + 1) {
+                            situacao = 'Seguro'
+                            situacaoTemp = 'Seguro'
+                        } else if (temperatura > talhaoAtual.tempMax || temperatura < talhaoAtual.tempMin) {
+                            situacao = 'Perigo'
+                            situacaoTemp = 'Perigo'
+                        } else if ((temperatura >= talhaoAtual.tempMin && temperatura <= talhaoAtual.tempMin + 1)
+                            || (temperatura <= talhaoAtual.tempMax && temperatura >= talhaoAtual.tempMax - 1)) {
+                            situacao = 'Alerta'
+                            situacaoTemp = 'Alerta'
+                        } else {
+                            situacao = "Sem Dados"
+                        }
+
+                        if (umidade > talhaoAtual.umiMin + 1 && umidade < talhaoAtual.umiMax - 1) {
+                            situacao = 'Seguro'
+                            situacaoUmi = 'Seguro'
+                            qtdTalhoesSeguro++
+                        } else if (umidade < talhaoAtual.umiMin || umidade > talhaoAtual.umiMax) {
+                            situacao = 'Perigo'
+                            situacaoUmi = 'Perigo'
+                            qtdTalhoesPerigo++
+                        } else if ((umidade >= talhaoAtual.umiMin && umidade <= talhaoAtual.umiMin + 1)
+                            || (umidade <= talhaoAtual.umiMax && umidade >= talhaoAtual.umiMax - 1)) {
+                            situacao = 'Alerta'
+                            situacaoUmi = 'Alerta'
+                            qtdTalhoesAlerta++
+                        } else {
+                            situacao = "Sem Dados"
+                        }
+
 
                         listaTalhao.innerHTML += ` 
                         <div class="card">
                         <div class="nomeTalhao">
                           <h1>Talhão ${index + 1}</span></h1>
-                          <h2>${talhaoatual.nomeTipo}</h2>
+                          <h2>${talhaoAtual.nomeTipo}</h2>
                         </div>
                         <div class="infoTalhoes">
                           <div class="info">
                             <h1>Situação</h1>
                             <div class="situacao">
-                              <span id="${situacao}"  >${situacao}</span>
+                              <span id="${situacao}">${situacao}</span>
                               <img src="img/${situacao}.png">
                             </div>
                           </div>
                           <div class="info">
                             <h1>Temperatura</h1>
                             <div class="situacao">
-                              <span id="${situacaoTemp}">${talhaoatual.consultaTemp} Cº</span>
+                              <span id="${situacaoTemp}">${temperatura == "Sem Dados" ? temperatura : temperatura + "C°"} </span>
                             </div>
                           </div>
                           <div class="info">
                             <h1>Umidade</h1>
                             <div class="situacao">
-                              <span id="${situacaoUmi}">${talhaoatual.consultaUmi} %</span>
+                              <span id="${situacaoUmi}">${umidade == "Sem Dados" ? umidade : umidade + "%"}</span>
                             </div>
                           </div>
                         </div>
                         <div class="botaoTalhao">
-                          <button onclick="analisar()">Analisar</button>
+                          <button onclick="analisar(${talhaoAtual.idTalhao  })">Analisar</button>
                         </div>
                       </div>`
 
-                        //     fetch(`/dashPlantacao/listarTalhoesFOR/${talhaoatual.idTalhao}`, {
+                        //     fetch(`/dashPlantacao/listarTalhoesFOR/${talhaoAtual.idTalhao}`, {
                         //         method: "GET",
                         //     }) .then(function (resposta) {
                         //         resposta.json().then( (infotalhoes))
@@ -286,32 +289,32 @@ function listarTalhoes() {
                     }
                     metricas.innerHTML = `      
                      <div class="metricaPlantacoes">
-              <div class="container">
-                <h1 style=" margin-bottom: 10px;">Quantidade de Talhões</h1>
-                <div class="informacoes">
-                  <div class="situacao">
-                    <h1>Seguro</h1>
-                    <span style="color: green; font-weight: bold; padding: 7px; margin-top:6%" id="seguro">${qtdTalhoesSeguro}</span>
-                  </div>
-                  <div class="situacao">
-                    <h1>Alerta</h1>
-                    <span style="color: yellow; font-weight: bold; padding: 7px; margin-top:6%" id="alerta">${qtdTalhoesAlerta}</span>
-                  </div>
-                  <div class="situacao">
-                    <h1>Perigo</h1>
+                        <div class="container">
+                        <h1 style=" margin-bottom: 10px;">Quantidade de Talhões</h1>
+                            <div class="informacoes">
+                                <div class="situacao">
+                                <h1>Seguro</h1>
+                                <span style="color: green; font-weight: bold; padding: 7px; margin-top:6%" id="seguro">${qtdTalhoesSeguro}</span>
+                     </div>
+                     <div class="situacao">
+                        <h1>Alerta</h1>
+                        <span style="color: yellow; font-weight: bold; padding: 7px; margin-top:6%" id="alerta">${qtdTalhoesAlerta}</span>
+                        </div>
+                        <div class="situacao">
+                        <h1>Perigo</h1>
                     <span style="color: red; font-weight: bold; padding: 7px; margin-top:6%"  id="perigo">${qtdTalhoesPerigo}</span>
-                  </div>
+                    </div>
                 </div>
-              </div>
-            </div>`
-                } 
+                    </div>
+                    </div>
+                    `
+                }
             });
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-
-
+}
 
 function listarPlantacaoKPI(idPlantacao) {
     fetch(`/dashPlantacao/listarPlantacoesKPI/${idPlantacao}`, {
@@ -319,15 +322,9 @@ function listarPlantacaoKPI(idPlantacao) {
     })
         .then(function (resposta) {
             resposta.json().then((kpiPlant) => {
-                if (kpiPlant[0].Area != null) {
-                    AreaPlantada.innerHTML = `<span>${kpiPlant[0].Area} hectáres</span`
-                    qtdTalhoes.innerHTML = `<span>${kpiPlant[0].quantidade}</span>`
 
-                } else {
-                    listaTalhao.innerHTML = `<h1>Sem Talhões Cadastrados`
-                    AreaPlantada.innerHTML = `<span>0 hectáres</span>`
-                    qtdTalhoes.innerHTML = `<span>0</span>`
-                }
+                AreaPlantada.innerHTML = `<span>${kpiPlant[0].area} hectáres</span`
+                qtdTalhoes.innerHTML = `<span>${kpiPlant[0].quantidade}</span>`
 
             });
         })
@@ -351,4 +348,26 @@ function session_carregar() {
             console.log(`#ERRO: ${resposta}`);
         });
 }
+
+async function capturarDadosTalhoes(idTalhao) {
+    await fetch(`dashPlantacao/capturarDadosTalhoes/${idTalhao}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            await resposta.json().then((dadosTalhao) => {
+                console.log(dadosTalhao)
+
+
+                var dados = dadosTalhao[0]
+
+                listaUmiTalhao.push(dados.consultaUmi);
+                listaTempTalhao.push(dados.consultaTemp);
+
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            listaTempTalhao.push("Sem Dados")
+            listaUmiTalhao.push("Sem Dados")
+        });
 }

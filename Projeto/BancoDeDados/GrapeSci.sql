@@ -125,3 +125,11 @@ UPDATE Dispositivo SET Fator = 1.5 WHERE idDispositivo = 2;
 UPDATE Dispositivo SET Fator = 1.2 WHERE idDispositivo = 3;
 
 UPDATE Empresa SET codAutenticF = 111213 WHERE idEmpresa = 1;
+
+
+DROP VIEW IF EXISTS UltimosRegistrosTalhao;
+CREATE VIEW UltimosRegistrosTalhao AS
+SELECT r.idRegistro, r.consultaUmi, r.consultaTemp, r.registroDt, r.fkDispositivo, d.fkTalhao FROM Registro AS r
+	JOIN (SELECT fkDispositivo, MAX(registroDt) AS UltimaData FROM Registro GROUP BY fkDispositivo) AS UltimosRegistros
+		ON r.fkDispositivo = UltimosRegistros.fkDispositivo AND r.registroDt = UltimosRegistros.UltimaData
+		 LEFT JOIN Dispositivo d ON r.fkDispositivo = d.idDispositivo;
