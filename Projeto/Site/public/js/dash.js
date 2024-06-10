@@ -13,16 +13,77 @@ function monitorar(idPlantacaoSelecionada, idMocado) {
     sessionStorage.PLANTACAO_ATUAL = idPlantacaoSelecionada;
     sessionStorage.ID_MOCADO = idMocado
     window.location = "dashPlantacao.html";
+
+
 }
 
-// function exibirPlantacao() {
-//     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
-//     tituloPlantacao.innerHTML = `Plantação ${idPlantacao}`
-// }
-
 function analisar(idTalhaoSelecionado) {
-    sessionStorage.TALHAO_ATUAL = idTalhaoSelecionado;
+   var idTalhaoSelecionado = sessionStorage.TALHAO_ATUAL;
     window.location = "dashTalhao.html";
+    fetch(`/dashTalhao/capturar_kpiTalhao/${idTalhaoSelecionado}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+             resposta.json().then( (plantacoes) => {
+                
+
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+function capturarTalhoes(){
+    var idTalhao = sessionStorage.TALHAO_ATUAL;
+
+    fetch(`/dashHome/listarPlantacoes/${idEmpresa}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            await resposta.json().then(async (plantacoes) => {
+                for (var i = 0; i < plantacoes.length; i++) {
+                    var plantacaoAtual = plantacoes[i];
+                    await mostrarSituacaoTalhaoIdeal(plantacaoAtual.idPlantacao)
+                    await mostrarSituacaoTalhaoPerigo(plantacaoAtual.idPlantacao)
+                    await mostrarSituacaoTalhaoAlerta(plantacaoAtual.idPlantacao)
+
+                    cardPrincipal.innerHTML +=
+                        `<div class="card">
+                            <div class="nomePlantacao">
+                                <h1>Plantação ${i + 1}</h1>
+                            </div>
+                            <div class="infoPlantacoes">
+                                <h2>Quantidade de Talhões</h2>
+                            <div class="info">
+                            <div class="cardMetrica">
+                            <h3>Seguro</h3>
+                            <span id="seguro">${contSeguro[i]}</span>
+                            </div>
+                            <div class="cardMetrica">
+                            <h3>Alerta</h3>
+                            <span id="alerta">${contAlerta[i]}</span>
+                            </div>
+                            <div class="cardMetrica">
+                            <h3>Perigo</h3>
+                            <span id="perigo">${contPerigo[i]}</span>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="botaoPlantacoes">
+                            <button onclick="monitorar(${plantacaoAtual.idPlantacao}, ${i + 1})">Monitorar</button>
+                            </div>
+                            </div>
+    `
+
+                }
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+
 }
 
 function exibirUsuario() {
@@ -132,8 +193,9 @@ async function mostrarSituacaoTalhaoIdeal(idPlantacao) {
         });
 }
 
+function KPISTalhoes(){
 
-
+}
 async function mostrarSituacaoTalhaoPerigo(idPlantacao) {
     await fetch(`/dashHome/mostrarSituacaoTalhaoPerigo/${idPlantacao}`, {
         method: "GET",
@@ -184,13 +246,13 @@ var qtdTalhoesAlerta = 0
 var listaTempTalhao = [];
 var listaUmiTalhao = []
 
-function listarTalhoes() {
+async function listarTalhoes() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
     var idMocked = sessionStorage.ID_MOCADO;
     var idEmpresa = sessionStorage.ID_EMPRESA;
     listarPlantacaoKPI((idPlantacao))
     if (idPlantacao == null || idPlantacao == "" || idPlantacao == undefined) {
-        session_carregar(idEmpresa);
+        await  session_carregar(idEmpresa);
     }
 
 
@@ -333,15 +395,20 @@ function listarPlantacaoKPI(idPlantacao) {
         });
 }
 
-function session_carregar() {
+async function session_carregar() {
     var idEmpresa = sessionStorage.ID_EMPRESA;
-    fetch(`dashPlantacao/capturar_primeira_plantacoes/${idEmpresa}`, {
+    await fetch(`dashPlantacao/capturar_primeira_plantacoes/${idEmpresa}`, {
         method: "GET",
     })
-        .then(function (resposta) {
-            resposta.json().then((idPlantacao) => {
+        .then(async function (resposta) {
+            await resposta.json().then((idPlantacao) => {
                 sessionStorage.PLANTACAO_ATUAL = idPlantacao[0].idPlantacao;
                 sessionStorage.ID_MOCADO = 1
+
+                setTimeout(function (){
+                    window.location = "dashPlantacao.html"
+                }, 100)
+                console.log(idPlantacao)
             });
         })
         .catch(function (resposta) {

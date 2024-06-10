@@ -19,7 +19,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var dashHome = require("./src/routes/dashHome");
 var dashPlantacao = require("./src/routes/dashPlantacao");
-
+var dashTalhao = require("./src/routes/dashTalhao")
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -30,7 +30,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/dashHome", dashHome)
 app.use("/dashPlantacao", dashPlantacao)
-
+app.use("/dashTalhao", dashTalhao)
 app.listen(PORTA_APP, function () {
     console.log(`
     \n\n\n                                                                                                 
