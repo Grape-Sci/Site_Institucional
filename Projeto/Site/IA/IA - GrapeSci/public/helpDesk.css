@@ -150,7 +150,7 @@
 
 .caixa h1 {
     color: black;
-    margin-left: 30%;
+    margin-left: 33%;
     margin-top: 1%;
 }
 .caixa a{
@@ -179,14 +179,12 @@
     color: black;
     margin-left: 33%;
 }
-
 #container2 {
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction:column ;
-    padding: 2px 2px 2px 2px;
 }
 #container2 button{
     width: 10%;
@@ -197,11 +195,4 @@
     font-size: 18px;
     border: 0.2vw solid #FFF;
     cursor: pointer;
-}
-#container2 #pergunta{
-    resize: none;
-    width: 200px;
-    height: 50px;
-    border-radius: 5px;
-    padding: 2px 2px 2px 2px;
 }
