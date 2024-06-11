@@ -63,14 +63,9 @@ function exibirUsuario() {
         listaNavBar.innerHTML += 
         `
         <span><a href="cadastroDash.html">Cadastro</a></span>
-        <span><a href="helpDesk.html">Ajuda</a></span>
+        
         `
-    } else {
-        listaNavBar.innerHTML += 
-        `
-        <span><a href="helpDesk.html">Ajuda</a></span>
-        `
-    }
+    } 
 }
 
 function exibirKPIPlantacao() {
