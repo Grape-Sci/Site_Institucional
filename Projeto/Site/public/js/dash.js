@@ -39,7 +39,7 @@ function analisar(idTalhaoSelecionado) {
 async function gerarResposta() {
     const pergunta = document.getElementById('pergunta').value;
 
-    const response = await fetch('/perguntar', {
+    const response = await fetch('http://localhost:3334/perguntar', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
