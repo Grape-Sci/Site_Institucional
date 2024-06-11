@@ -1,4 +1,5 @@
 DROP DATABASE IF EXISTS GrapeSci;
+
 CREATE DATABASE GrapeSci;
 
 USE GrapeSci;
@@ -48,7 +49,7 @@ idTalhao INT AUTO_INCREMENT,
 qtdVieiras INT NOT NULL,
 tamAreaPlant DOUBLE NOT NULL,
 dtPlantio DATE NOT NULL,
-prevColheita DATE NOT NULL,
+prevColheita DATE,
 fkUva INT,
 fkPlantacao INT,
 PRIMARY KEY (idTalhao, fkPlantacao),
@@ -135,5 +136,3 @@ SELECT r.idRegistro, r.consultaUmi, r.consultaTemp, r.registroDt, r.fkDispositiv
 	JOIN (SELECT fkDispositivo, MAX(registroDt) AS UltimaData FROM Registro GROUP BY fkDispositivo) AS UltimosRegistros
 		ON r.fkDispositivo = UltimosRegistros.fkDispositivo AND r.registroDt = UltimosRegistros.UltimaData
 		 LEFT JOIN Dispositivo d ON r.fkDispositivo = d.idDispositivo;
-         
-
