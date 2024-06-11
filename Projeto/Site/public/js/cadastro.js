@@ -1,6 +1,8 @@
 var temErro = false;
 var codigoFunc;
 var codigoGer;
+var email;
+var emailEmpresa;
 
 var usuarioVar;
 var telefoneVar;
@@ -114,7 +116,7 @@ function destacarCamposIncorretos() {
 }
 
 
-function cadastrar() {
+async function cadastrar() {
     telefoneVar = removerMascara(input_telefone.value);
     cpfVar = removerMascara(input_cpf.value);
     usuarioVar = input_usuario.value;
@@ -125,6 +127,7 @@ function cadastrar() {
     var confirmar = input_confirmarSenha.value;
     idEmpresaVar = empresaVar;
     temErro = false;
+
 
     if (usuarioVar == "" || cpfVar == 0 || telefoneVar == "" || senhaVar == "" || empresaVar == 0 || emailVar == "" || cargoVar == 0 || confirmar == "") {
         buildCardMensagem("block", 'erro', 'Preencha os campos corretamente', true);
@@ -141,16 +144,18 @@ function cadastrar() {
     }
 
     if (temErro == false) {
+        await buscarCodigoEmpresa(idEmpresaVar);
         div_cadastro.style = 'display:none';
         div_confirmacao.style = 'display:block';
-        buscarCodigoEmpresa(idEmpresaVar);
+        emailEnviado.innerHTML = email;
     }
 }
 
 
 
 function enviar() {
-    var codigo = input_codigo.value
+    var codigo = input_codigo.value;
+
 
     if (cargoVar == 1) {
         if (codigoGer == codigo) {
@@ -177,14 +182,16 @@ function enviar() {
     }
 }
 
-function buscarCodigoEmpresa(idEmpresa) {
-    fetch(`/usuarios/buscarCodigoEmpresa/${idEmpresa}`, {
+async function buscarCodigoEmpresa(idEmpresa) {
+    await fetch(`/usuarios/buscarCodigoEmpresa/${idEmpresa}`, {
         method: "GET",
     })
-        .then(function (resposta) {
-            resposta.json().then((codigos) => {
+        .then(async function (resposta) {
+            await resposta.json().then(async (codigos) => {
                 codigoFunc = codigos[0].codAutenticF
                 codigoGer = codigos[0].codAutenticG
+                email = codigos[0].email
+
             });
         })
         .catch(function (resposta) {

@@ -2,9 +2,6 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const express = require("express");
 const path = require("path");
-const fetch = require('node-fetch'); 
-global.fetch = require('node-fetch');
-global.Headers = fetch.Headers;
 
 // carregando as variáveis de ambiente do projeto do arquivo .env
 require("dotenv").config();
@@ -48,11 +45,9 @@ app.listen(PORTA_SERVIDOR, () => {
 // rota para receber perguntas e gerar respostas
 app.post("/perguntar", async (req, res) => {
     const pergunta = req.body.pergunta;
-    console.log(`Recebida pergunta: ${pergunta}`);
 
     try {
         const resultado = await gerarResposta(pergunta);
-        console.log(`Resposta gerada: ${resultado}`);
         res.json( { resultado } );
     } catch (error) {
         res.status(500).json({ error: 'Erro interno do servidor' });
@@ -67,10 +62,10 @@ async function gerarResposta(mensagem) {
 
     try {
         // gerando conteúdo com base na pergunta
-        const resultado = await modeloIA.generateContent(`Em um parágrafo responda: ${mensagem}`);
+        const resultado = await modeloIA.generateContent(`Em um paragráfo responda: ${mensagem}`);
         const resposta = await resultado.response.text();
         
-        console.log(`Resposta do modelo IA: ${resposta}`); 
+        console.log(resposta);
 
         return resposta;
     } catch (error) {
