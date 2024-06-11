@@ -23,4 +23,9 @@ router.get("/mostrarSituacaoTalhaoAlerta/:idPlantacao", function (req, res) {
     dashHomeController.mostrarSituacaoTalhaoAlerta(req, res)
 });
 
+router.post("/cadastrarPlantacao", function (req, res) {
+    dashHomeController.cadastrarPlantacao(req, res);
+});
+
+
 module.exports = router;

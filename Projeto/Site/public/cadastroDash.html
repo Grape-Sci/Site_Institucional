@@ -9,10 +9,11 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
   <link rel="stylesheet" href="css/cadastroDash.css" />
+  <script src="./js/dashHome.js"></script>
 
 </head>
 
-<body>
+<body onload="listarPlantacoes()">
   <div class="pagina">
     <div class="navBar">
       <div class="logo">
@@ -83,7 +84,6 @@
               <div class="selectid">
                 <select id="select_id" type="number">
                   <option value="#">ID</option>
-                  <option>1</option>
                 </select>
               </div>
             </div>
@@ -146,6 +146,7 @@
       buildCardMensagem("block", 'ok', "Plantação cadastrada com sucesso", false)
 
     }
+    cadastrarPlantacao(id, areaT)
   }
 
   function adicionarT() {
@@ -191,6 +192,36 @@
       msg_alertas.style.display = "none"
     }, 3000)
   }
+
+  function listarPlantacoes() {
+
+    fetch(`/dashHome/listarPlantacoes/${sessionStorage.ID_EMPRESA}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          console.log("Plantações listadas")
+          resposta.json().then((dados)=>{
+            for(let i = 0 ; i < dados.length; i++){
+              select_id.innerHTML+= `<option>${dados[i].idPlantacao}</option>`
+             
+            }
+          })
+        } else {
+          throw "Houve um erro ao listar as plantações";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
 
 
 

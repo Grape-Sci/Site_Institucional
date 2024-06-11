@@ -70,10 +70,22 @@ function mostrarSituacaoTalhaoAlerta(idPlantacao) {
   return database.executar(instrucaoSql);
 }
 
+function cadastrarPlantacao(id,area,idEmpresa) {
+
+  var instrucaoSql = `
+      INSERT INTO Plantacao (idPlantacao, areaTotal, fkEmpresa) VALUES 
+      ('${id}', '${area}','${idEmpresa}');
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
   exibirInfoPlantacoes,
   listarPlantacoes,
   mostrarSituacaoTalhaoIdeal,
   mostrarSituacaoTalhaoPerigo,
-  mostrarSituacaoTalhaoAlerta
+  mostrarSituacaoTalhaoAlerta,
+  cadastrarPlantacao
 };
