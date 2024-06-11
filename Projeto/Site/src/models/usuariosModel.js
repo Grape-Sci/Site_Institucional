@@ -30,7 +30,7 @@ function cadastrarDados(usuario, telefone, senha, email, cpf, idEmpresa, cargo) 
 
 function autenticar(senha, email) {
     var instrucaoSql = `SELECT e.idEmpresa, f.nome, f.cargo, f.email FROM Funcionario AS f JOIN Empresa AS e ON fkEmpresa = idEmpresa
-    WHERE email = '${email}' AND senha = '${senha}' ;`;
+    WHERE f.email = '${email}' AND f.senha = '${senha}' ;`;
     
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
    
