@@ -167,7 +167,7 @@ body {
 .caixa h1 {
     font-size: 34px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .caixa button{
@@ -176,7 +176,8 @@ body {
     background-color: #8445F2;
     border-radius: 20px;
     color: #FFF;
-    font-size: 18px;
+    font-weight: bold;
+    font-size: 15px;
     border: 0.2vw solid #FFF;
     cursor: pointer;
 }
@@ -224,4 +225,31 @@ body {
     width: 50vh;
     resize: none;
     height: 6vh;
+}
+
+#meuLink{
+  color: #6c349c;
+}
+
+#pergunta::placeholder {
+  color: #888;
+  text-align: center;
+
+}
+
+.caixinha{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.img{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  margin-bottom: 30px;
 }
