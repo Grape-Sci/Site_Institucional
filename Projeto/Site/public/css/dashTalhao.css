@@ -254,7 +254,6 @@
 }
 
 .caixas {
-  border: 2px solid red;
   width: 100%;
   height: 100%;
   display: flex;
@@ -267,12 +266,12 @@
 }
 
 .graficos {
-  height: 100%;
+  height: 95%;
   display: flex;
   align-items: center;
-  border: 2px solid red;
   width: 90%;
   flex-direction: column;
+  margin-left: 5%;
 }
 
 .fundo {
@@ -283,7 +282,7 @@
 }
 
 .graficos .graficotemp {
-  height: 40%;
+  height: 45%;
   width: 92%;
   background-color: #8445F2;
   margin-bottom: 10px;
@@ -294,7 +293,7 @@
 }
 
 .graficos .graficoumi {
-  height: 30%;
+  height: 45%;
   width: 92%;
   background-color: #8445F2;
   margin-bottom: 10px;
@@ -403,6 +402,8 @@
 
 .labelsub2 {
   padding: 10px 0;
+  padding-left: 9%;
+  padding-bottom: 7%;
 }
 
 .labelsub2 label {
