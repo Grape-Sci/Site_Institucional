@@ -7,8 +7,8 @@ function listarEmpresas() {
 }
 
 function buscarCodigoEmpresa(idEmpresa) {
-    var instrucaoSql = `SELECT codAutenticF, codAutenticG FROM Empresa WHERE idEmpresa = ${idEmpresa}`
-
+    var instrucaoSql = `SELECT codAutenticF, codAutenticG, email FROM Empresa WHERE idEmpresa = ${idEmpresa};`
+    
     return database.executar(instrucaoSql);
 }
 
