@@ -73,9 +73,10 @@ FOREIGN KEY (fkDispositivo) REFERENCES Dispositivo(idDispositivo)
 INSERT INTO Empresa (nome, cep, cnpj, codAutenticF, codAutenticG) VALUES 
 ('UvasLTDA', '03910091', '44834157000108', 121314, 998566),
 ('Uvitas', '05910080', '55088157000102', 262728, 232311),
-('RoxINhas', '05910080', '60078151000222' , 343536, 777390);
+('Roxinhas', '05910080', '60078151000222' , 343536, 777390);
 
 INSERT INTO Funcionario (nome, cpf, senha, email, telefone, cargo, fkEmpresa) VALUES 
+('Fernando Brandao', '11111111111', '12345678', 'fernando@gmail.com', '11111111111', 'Gerente', 1),
 ('João Silva', '45088953210', 'Lagarto023', 'Joao.Silva@gmail.com', '11957867699', 'Funcionario', 1),
 ('Tom Donajam', '33908953210', '11DonDon89', 'TomDonajam.gerente@bol.com.br', '11957444909', 'Gerente', 1),
 ('Rafaela Moreira', '38287926908', 'SeGreDo9575', 'Moreira_gerente1@gmail.com', '16988423151', 'Gerente', 2),
