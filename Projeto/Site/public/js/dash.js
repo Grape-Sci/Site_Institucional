@@ -1,3 +1,6 @@
+
+
+
 function sair() {
     window.location = "index.html";
     sessionStorage.ID_EMPRESA = ''
@@ -39,6 +42,20 @@ function exibirUsuario() {
     var nome = sessionStorage.NOME_USUARIO;
 
     nomeUsuario.innerHTML = `${nome}`;
+    var cargo = sessionStorage.CARGO_USUARIO;
+
+    if(cargo == "Gerente") {
+        listaNavBar.innerHTML += 
+        `
+        <span><a href="cadastroDash.html">Cadastro</a></span>
+        <span><a href="helpDesk.html">Ajuda</a></span>
+        `
+    } else {
+        listaNavBar.innerHTML += 
+        `
+        <span><a href="helpDesk.html">Ajuda</a></span>
+        `
+    }
 }
 
 function exibirKPIPlantacao() {
