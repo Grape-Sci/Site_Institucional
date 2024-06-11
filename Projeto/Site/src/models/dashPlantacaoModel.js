@@ -19,7 +19,7 @@ function listarTalhoes(idPlantacao) {
 function listarPlantacoesKPI(idPlantacao) {
   var instrucaoSql =
     `
-  SELECT COUNT(idTalhao) AS quantidade, areaTotal AS area FROM Talhao JOIN Plantacao ON fkPlantacao = idPlantacao WHERE idPlantacao = ${idPlantacao};
+  SELECT COUNT(idTalhao) AS quantidade, areaTotal AS area FROM Talhao RIGHT JOIN Plantacao ON fkPlantacao = idPlantacao WHERE idPlantacao = ${idPlantacao};
   `;
 
   return database.executar(instrucaoSql);
