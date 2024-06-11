@@ -27,5 +27,13 @@ router.post("/cadastrarPlantacao", function (req, res) {
     dashHomeController.cadastrarPlantacao(req, res);
 });
 
+router.get("/listarUva", function (req, res) {
+    dashHomeController.listarUva(req, res);
+});
+
+router.post("/cadastrarTalhao", function (req, res) {
+    dashHomeController.cadastrarTalhao(req, res);
+});
+
 
 module.exports = router;

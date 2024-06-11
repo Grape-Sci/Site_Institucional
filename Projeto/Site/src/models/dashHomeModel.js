@@ -88,11 +88,27 @@ WHERE
   return database.executar(instrucaoSql);
 }
 
-function cadastrarPlantacao(id,area,idEmpresa) {
+function cadastrarPlantacao(area,idEmpresa) {
 
   var instrucaoSql = `
-      INSERT INTO Plantacao (idPlantacao, areaTotal, fkEmpresa) VALUES 
-      ('${id}', '${area}','${idEmpresa}');
+      INSERT INTO Plantacao (areaTotal, fkEmpresa) VALUES 
+      ('${area}','${idEmpresa}');
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function listarUva() {
+  var instrucaoSql = `SELECT idUva, nomeTipo FROM Uva;`;
+
+  return database.executar(instrucaoSql);
+}
+
+function cadastrarTalhao(IDselect, selectTipo, qtd, area, data) {
+
+  var instrucaoSql = `
+     INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPlantio, fKUva, fkPlantacao, prevColheita) VALUES
+      ('${qtd}', '${area}','${data}','${selectTipo}','${IDselect}', null);
   `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -105,5 +121,7 @@ module.exports = {
   mostrarSituacaoTalhaoIdeal,
   mostrarSituacaoTalhaoPerigo,
   mostrarSituacaoTalhaoAlerta,
-  cadastrarPlantacao
+  cadastrarPlantacao,
+  listarUva,
+  cadastrarTalhao
 };

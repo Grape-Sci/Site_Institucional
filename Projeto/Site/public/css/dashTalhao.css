@@ -152,7 +152,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid red;
 }
 
 .titulo .container h1 {
@@ -161,7 +160,7 @@
 
 .kpi {
   width: 91%;
-  height: 12%;
+  height: 10%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -170,21 +169,21 @@
 }
 
 .tipoUva {
-  height: 100%;
-  width: 29%;
+  height: 90%;
+  width: 20%;
   background-color: #D8C4FA;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 3px solid #8445F2;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .colheita {
-  height: 100%;
-  width: 29%;
+  height: 90%;
+  width: 25%;
   background-color: #D8C4FA;
   border-radius: 20px;
   display: flex;
@@ -196,11 +195,12 @@
 
 .colheita .colheitatitulo {
   height: 100%;
+  margin-top: 1%;
   width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: bold;
   white-space: nowrap;
 }
@@ -210,10 +210,9 @@
   width: 50%;
   display: flex;
   color: green;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: bold;
   justify-content: center;
-
 }
 
 .prevcolheita label {
@@ -222,8 +221,8 @@
 
 
 .alerta {
-  height: 100%;
-  width: 30%;
+  height: 90%;
+  width: 25%;
   background-color: #D8C4FA;
   border-radius: 20px;
   display: flex;
@@ -240,14 +239,14 @@
   font-weight: bold;
   justify-content: center;
   align-items: center;
-  font-size: 23px;
+  font-size: 20px;
 }
 
 .alerta .alertasitu {
   width: 100%;
   height: 50%;
   display: flex;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: bold;
   justify-content: center;
   align-items: center;
@@ -267,7 +266,12 @@
 }
 
 .graficos {
-  margin: 0 40px;
+  height: 95%;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  flex-direction: column;
+  margin-left: 5%;
 }
 
 .fundo {
@@ -278,25 +282,29 @@
 }
 
 .graficos .graficotemp {
+  height: 45%;
+  width: 92%;
   background-color: #8445F2;
   margin-bottom: 10px;
   padding: 5px;
   border: 13px solid #D8C4FA;
-  max-width: 90%;
+  max-width: 100%;
   max-height: 90%;
 }
 
 .graficos .graficoumi {
+  height: 45%;
+  width: 92%;
   background-color: #8445F2;
   margin-bottom: 10px;
   padding: 5px;
   border: 13px solid #D8C4FA;
-  max-width: 90%;
+  max-width: 100%;
   max-height: 90%;
 }
 
 .caixa2 {
-  width: 50%;
+  width: 30%;
   height: 95%;
   margin-right: 5%;
   border-radius: 20px;
@@ -308,7 +316,7 @@
 
 .sub1 {
   width: 100%;
-  height: 25%;
+  height: 20%;
   background-color: #D8C4FA;
   border-radius: 20px;
   border: 3px solid #8445F2;
@@ -316,6 +324,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 1px;
 }
 
 .titulo1 p {
@@ -332,17 +341,42 @@
   align-items: center;
 }
 
-.metrica label {
-  margin-bottom: 1%;
+.tituloMetrica {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
-  font-size: 21px;
+  margin-top: 1%;
+  font-size: 25px;
   color: #000000;
 }
 
-.metrica p {
+.caixaMetrica {
+  width: 110%;
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 2%;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 15px;
+}
+
+.caixaMetricaDado {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  margin-left: 5%;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 18px;
+  margin-top: 1%;
+}
+
+.caixaMetricaDado p {
   color: #8445F2;
 }
 
@@ -357,7 +391,7 @@
 
 .sub2 {
   width: 100%;
-  height: 34%;
+  height: 38%;
   background-color: #D8C4FA;
   border-radius: 20px;
   border: 3px solid #8445F2;
@@ -368,6 +402,8 @@
 
 .labelsub2 {
   padding: 10px 0;
+  padding-left: 9%;
+  padding-bottom: 7%;
 }
 
 .labelsub2 label {
@@ -394,7 +430,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
+  font-size: 14px;
 
 }
 
@@ -417,6 +453,7 @@
 }
 
 .situacao2 .azul {
+  height: 20%;
   padding: 13px;
   margin: 5px 5px;
   background-color: white;
@@ -424,11 +461,12 @@
   border: 2px solid #000000;
   display: flex;
   color: rgb(72, 161, 245);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
 }
 
 .situacao1 .vermelho {
+  height: 20%;
   padding: 13px;
   margin: 5px 5px;
   background-color: white;
@@ -436,7 +474,7 @@
   border: 2px solid #000000;
   display: flex;
   color: red;
-  font-size: 19px;
+  font-size: 14px;
   font-weight: bold;
 
 }
@@ -453,12 +491,13 @@
 
 .subexplicacao span {
   font-weight: bold;
+  font-size: 13px;
   font-family: LeagueSpartan;
   src: url(font/LeagueSpartan-VariableFont_wght.ttf);
 }
 
 .explicacao {
-  height: 10%;
+  height: 18%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -466,7 +505,7 @@
 }
 
 .explicacaomeio {
-  height: 80%;
+  height: 64%;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -496,7 +535,6 @@
   border-right: 2px solid black;
   border-left: 2px solid black;
 }
-
 
 .perigoesqcima {
   height: 40%;

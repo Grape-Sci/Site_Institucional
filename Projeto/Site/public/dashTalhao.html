@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/dashTalhao.css" />
 </head>
 
-<body>
+<body onload="exibirUsuario()">
   <div class="pagina">
     <div class="navBar">
       <div class="logo">
@@ -21,12 +21,10 @@
       </div>
       <hr>
       <div class="pags">
-        <div class="container">
+        <div class="container" id="listaNavBar">
           <span><a href="dashHome.html">Home</a></span>
           <span><a href="dashPlantacao.html">Plantação</a></span>
           <span><a id="agora" href="dashTalhao.html">Talhões</a></span>
-          <span><a href="helpDesk.html">Ajuda</a></span>
-          </ul>
         </div>
       </div>
       <div class="profile">
@@ -34,7 +32,7 @@
           <div class="imagem">
             <img src="img/fazendeiro.png" alt="">
           </div>
-          <span>Usuário</span>
+          <span id="nomeUsuario"></span>
           <button onclick="sair()">Sair</button>
         </div>
       </div>
@@ -55,7 +53,7 @@
           </div>
           <div class="prevcolheita">
             <label>150 Dias</label>
-            <p><img src="img/prevUva.png" width="45px"></p>
+            <p><img src="img/prevUva.png" width="35px"></p>
           </div>
         </div>
         <div class="alerta">
@@ -87,14 +85,21 @@
         <div class="caixa2">
           <div class="sub1">
             <div class="metrica">
-              <label>Metrica</label>
-              <label>Temperatura Ideal:</label>
-              <p>Entre 20°C e 30°C </p>
-              <label>Umidade ideal:</label>
-              <p>Entre 50% e 60%</p>
+              <div class="tituloMetrica">
+                <span>Métrica</span>
+              </div>
+              <div class="caixaMetrica">
+                <div class="caixaMetricaDado">
+                  <span>Temperatura Ideal:</span>
+                  <p>Entre 20°C e 30°C </p>
+                </div>
+                <div class="caixaMetricaDado">
+                  <span>Umidade ideal:</span>
+                  <p>Entre 50% e 60%</p>
+                </div>
+              </div>
             </div>
           </div>
-
           <div class="subexplicacao">
             <div class="explicacao">
               <span>TEMPERATURA</span>
@@ -102,24 +107,24 @@
             <div class="explicacaomeio">
               <div class="div">
                 <div class="perigoesqcima">
-                  <span>20°C < </span>
+                  <span>20°C </span>
                 </div>
                 <div class="meio corperigo">
                   <span>PERIGO</span>
                 </div>
                 <div class="perigoesqbaixo">
-                  <span>50% < </span>
+                  <span>50% </span>
                 </div>
               </div>
               <div class="div">
                 <div class="divalerta">
-                  <span>22°C <</span>
+                  <span>22°C</span>
                 </div>
                 <div class="meioalerta coralerta">
                   <span>ALERTA</span>
                 </div>
                 <div class="divalerta">
-                  <span>52% <</span>
+                  <span>52% </span>
                 </div>
               </div>
               <div class="div">

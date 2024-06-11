@@ -58,14 +58,10 @@
           <div class="tituloesquerdo">
             <p>Área total (ha) :</p>
           </div>
-          <div class="titulodireito">
-            <p>Cadastre um ID:</p>
-          </div>
         </div>
         <div class="campoinput"></div>
         <div class="titulocampo">
           <div class="tituloesquerdo"><input id="input_areaTotal" type="number" placeholder="Digite o tamanho"></div>
-          <div class="titulodireito"><input id="input_id" type="number" placeholder="Digite o número"></div>
           <div id="div_mensagem"></div>
         </div>
         <button onclick="adicionarP()">Adicionar</button>
@@ -110,11 +106,8 @@
 
               <div class="quadrante4">
                 <p>Selecione o tipo de uva:</p>
-                <select id="select_nomeTipo" type="number">
+                <select id="select_nomeTipo" type="text">
                   <option value="#">Tipo de uva</option>
-                  <option value="i">Itália</option>
-                  <option value="t">Thompson</option>
-                  <option value="r">Rubi</option>
                 </select>
               </div>
             </div>
@@ -134,28 +127,27 @@
   function adicionarP() {
 
     var areaT = Number(input_areaTotal.value);
-    var id = Number(input_id.value);
     var temErro = false; // Variável para rastrear erros de validação
 
 
 
-    if (isNaN(areaT) || isNaN(id) || areaT <= 0 || id <= 0) {
-      buildCardMensagem("block", 'erro', "Preencha todos os campos da plantação<br> com números válidos", true)
+    if (isNaN(areaT) || areaT <= 0 || !areaT) {
+      buildCardMensagem("block", 'erro', "Preencha o campo<br> com um número válidos", true)
 
     } else {
       buildCardMensagem("block", 'ok', "Plantação cadastrada com sucesso", false)
 
+      cadastrarPlantacao(areaT)
     }
-    cadastrarPlantacao(id, areaT)
   }
 
   function adicionarT() {
 
     var selectID = Number(select_id.value);
-    var selectTipo = (select_nomeTipo.value);
+    var selectTipo = Number(select_nomeTipo.value);
     var qtd = Number(input_qtdVideiras.value);
     var areaPlant = Number(input_areaPlantio.value);
-    var data = Date(input_dtPlantio.value);
+    var data = (input_dtPlantio.value);
 
 
     console.log(selectID)
@@ -178,6 +170,9 @@
     } else {
       buildCardMensagem("block", 'ok', "Talhão cadastrado com sucesso", false)
     }
+
+
+    cadastrarTalhao(selectID, selectTipo, qtd, areaPlant, data)
   }
 
 
@@ -200,17 +195,17 @@
       headers: {
         "Content-Type": "application/json",
       },
-      
+
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
           console.log("Plantações listadas")
-          resposta.json().then((dados)=>{
-            for(let i = 0 ; i < dados.length; i++){
-              select_id.innerHTML+= `<option>${dados[i].idPlantacao}</option>`
-             
+          resposta.json().then((dados) => {
+            for (let i = 0; i < dados.length; i++) {
+              select_id.innerHTML += `<option value="${dados[i].idPlantacao}">${i + 1}</option>`
+
             }
           })
         } else {
@@ -220,10 +215,33 @@
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
       });
+    fetch(`/dashHome/listarUva`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          console.log("Uvas listadas")
+          resposta.json().then((dados) => {
+      
+            for (let i = 0; i < dados.length; i++) {
+              select_nomeTipo.innerHTML += `<option value="${dados[i].idUva}">${dados[i].nomeTipo}</option>`
+
+            }
+          })
+        } else {
+          throw "Houve um erro ao listar as uvas";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
   }
-
-
-
 
 
 </script>
