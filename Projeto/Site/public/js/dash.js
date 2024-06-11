@@ -1,3 +1,6 @@
+
+
+
 function sair() {
     window.location = "index.html";
     sessionStorage.ID_EMPRESA = ''
@@ -33,12 +36,41 @@ function analisar(idTalhaoSelecionado) {
         });
 }
 
+async function gerarResposta() {
+    const pergunta = document.getElementById('pergunta').value;
 
+    const response = await fetch('/perguntar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ pergunta })
+    });
+
+    const data = await response.json();
+
+    resposta.style.display = 'block';
+    document.getElementById('resposta').innerText = data.resultado;
+}
 
 function exibirUsuario() {
     var nome = sessionStorage.NOME_USUARIO;
 
     nomeUsuario.innerHTML = `${nome}`;
+    var cargo = sessionStorage.CARGO_USUARIO;
+
+    if(cargo == "Gerente") {
+        listaNavBar.innerHTML += 
+        `
+        <span><a href="cadastroDash.html">Cadastro</a></span>
+        <span><a href="helpDesk.html">Ajuda</a></span>
+        `
+    } else {
+        listaNavBar.innerHTML += 
+        `
+        <span><a href="helpDesk.html">Ajuda</a></span>
+        `
+    }
 }
 
 function exibirKPIPlantacao() {

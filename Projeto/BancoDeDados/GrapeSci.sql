@@ -7,6 +7,7 @@ USE GrapeSci;
 CREATE TABLE Empresa (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(80) NOT NULL,
+email VARCHAR(60) UNIQUE NOT NULL,
 cep CHAR(8) NOT NULL,
 cnpj CHAR(14) NOT NULL UNIQUE,
 codAutenticF INT NOT NULL UNIQUE,
@@ -70,12 +71,13 @@ PRIMARY KEY (idRegistro, fkDispositivo),
 FOREIGN KEY (fkDispositivo) REFERENCES Dispositivo(idDispositivo)
 );
 
-INSERT INTO Empresa (nome, cep, cnpj, codAutenticF, codAutenticG) VALUES 
-('UvasLTDA', '03910091', '44834157000108', 121314, 998566),
-('Uvitas', '05910080', '55088157000102', 262728, 232311),
-('RoxINhas', '05910080', '60078151000222' , 343536, 777390);
+INSERT INTO Empresa (nome, email, cep, cnpj, codAutenticF, codAutenticG) VALUES 
+('UvasLTDA', 'uvasltda@uvinhas.com','03910091', '44834157000108', 121314, 998566),
+('Uvitas', 'uvitas@grape.com', '05910080', '55088157000102', 262728, 232311),
+('Roxinhas', 'roxinhas@hotmail.com','05910080', '60078151000222' , 343536, 777390);
 
 INSERT INTO Funcionario (nome, cpf, senha, email, telefone, cargo, fkEmpresa) VALUES 
+('Fernando Brandao', '11111111111', '12345678', 'fernando@gmail.com', '11111111111', 'Gerente', 1),
 ('João Silva', '45088953210', 'Lagarto023', 'Joao.Silva@gmail.com', '11957867699', 'Funcionario', 1),
 ('Tom Donajam', '33908953210', '11DonDon89', 'TomDonajam.gerente@bol.com.br', '11957444909', 'Gerente', 1),
 ('Rafaela Moreira', '38287926908', 'SeGreDo9575', 'Moreira_gerente1@gmail.com', '16988423151', 'Gerente', 2),
@@ -133,3 +135,5 @@ SELECT r.idRegistro, r.consultaUmi, r.consultaTemp, r.registroDt, r.fkDispositiv
 	JOIN (SELECT fkDispositivo, MAX(registroDt) AS UltimaData FROM Registro GROUP BY fkDispositivo) AS UltimosRegistros
 		ON r.fkDispositivo = UltimosRegistros.fkDispositivo AND r.registroDt = UltimosRegistros.UltimaData
 		 LEFT JOIN Dispositivo d ON r.fkDispositivo = d.idDispositivo;
+         
+
