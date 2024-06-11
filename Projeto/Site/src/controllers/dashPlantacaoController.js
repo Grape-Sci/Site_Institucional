@@ -1,28 +1,5 @@
 var dashPlantacaoModel = require("../models/dashPlantacaoModel");
 
-function exibirInfoPlantacoes(req, res) {
-    var idPlantacao = req.body.idPlantacaoServer;
-
-    if (idPlantacao == undefined) {
-        res.status(400).send("ID da usa Plantação está undefined!");
-    } else {
-        dashPlantacaoModel.exibirInfoTalhoes(idTalhoes)
-            .then(
-                function (infoTalhoes) {
-                    console.log(infoTalhoes);
-
-                    res.status(200).json(infoTalhoes)
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("\nHouve um erro ao realizar o select da KPI Talhão! Erro: ", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
-}
-
 function capturar_primeira_plantacoes(req, res) {
     var idEmpresa = req.params.idEmpresa;
 
@@ -49,10 +26,9 @@ function capturar_primeira_plantacoes(req, res) {
 
 
 function listarTalhoes(req, res) {
-    var idPlantacao= req.params.idPlantacao;
-    var idEmpresa = req.params.idEmpresa
+    var idPlantacao = req.params.idPlantacao;
 
-    dashPlantacaoModel.listarTalhoes(idPlantacao, idEmpresa).then((resultado) => {
+    dashPlantacaoModel.listarTalhoes(idPlantacao).then((resultado) => {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -66,24 +42,7 @@ function listarTalhoes(req, res) {
 }
 
 
-function listarTalhoesFOR(req, res) {
-    var idTalhao= req.params.idTalhao;
-
-    dashPlantacaoModel.listarTalhoesFOR(idTalhao).then((resultado) => {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).json([]);
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar os códigos: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-
-function listarPlantacoesKPI(req, res){
+function listarPlantacoesKPI(req, res) {
     var idPlantacao = req.params.idPlantacao;
 
     dashPlantacaoModel.listarPlantacoesKPI(idPlantacao).then((resultado) => {
@@ -100,10 +59,27 @@ function listarPlantacoesKPI(req, res){
 }
 
 
+
+function capturarDadosTalhoes(req, res) {
+    var idTalhao = req.params.idTalhao;
+
+    dashPlantacaoModel.capturarDadosTalhoes(idTalhao).then((resultado) => {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).json([]);
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os códigos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
-    exibirInfoPlantacoes,
     listarTalhoes,
-    listarTalhoesFOR,
     listarPlantacoesKPI,
-    capturar_primeira_plantacoes
+    capturar_primeira_plantacoes,
+    capturarDadosTalhoes
 };

@@ -275,15 +275,15 @@
     font-weight: 500;
 }
 
-#seguro {
+.seguro {
     color: rgb(0, 173, 0);
 }
 
-#alerta {
+.alerta {
     color: rgb(196, 196, 1);
 }
 
-#perigo {
+.perigo {
     color: red;
 }
 

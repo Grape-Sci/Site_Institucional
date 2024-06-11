@@ -87,7 +87,7 @@ function mostrarSituacaoTalhaoAlerta(req, res) {
     }).catch(function (erro) {
         console.log(erro);
         console.log("Houve um erro ao buscar os talhões: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);  
     });
 }
 

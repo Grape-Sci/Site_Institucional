@@ -13,25 +13,27 @@ function monitorar(idPlantacaoSelecionada, idMocado) {
     sessionStorage.PLANTACAO_ATUAL = idPlantacaoSelecionada;
     sessionStorage.ID_MOCADO = idMocado
     window.location = "dashPlantacao.html";
-}
 
-// function exibirPlantacao() {
-//     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
-//     tituloPlantacao.innerHTML = `Plantação ${idPlantacao}`
-// }
+}
 
 function analisar(idTalhaoSelecionado) {
-    sessionStorage.TALHAO_ATUAL = idTalhaoSelecionado;
-    window.location = "dashTalhao1.html";
+    var idTalhaoSelecionado = sessionStorage.TALHAO_ATUAL;
+    window.location = "dashTalhao.html";
+    fetch(`/dashTalhao/capturar_kpiTalhao/${idTalhaoSelecionado}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            resposta.json().then((plantacoes) => {
+
+
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 }
 
-function analisar2() {
-    window.location = "dashTalhao2.html";
-}
 
-function analisar3() {
-    window.location = "dashTalhao3.html";
-}
 
 function exibirUsuario() {
     var nome = sessionStorage.NOME_USUARIO;
@@ -88,15 +90,15 @@ function listarPlantacoes() {
                             <div class="info">
                             <div class="cardMetrica">
                             <h3>Seguro</h3>
-                            <span id="seguro">${contSeguro[i]}</span>
+                            <span class="seguro">${contSeguro[i]}</span>
                             </div>
                             <div class="cardMetrica">
                             <h3>Alerta</h3>
-                            <span id="alerta">${contAlerta[i]}</span>
+                            <span class="alerta">${contAlerta[i]}</span>
                             </div>
                             <div class="cardMetrica">
                             <h3>Perigo</h3>
-                            <span id="perigo">${contPerigo[i]}</span>
+                            <span class="perigo">${contPerigo[i]}</span>
                             </div>
                             </div>
                             </div>
@@ -127,6 +129,8 @@ async function mostrarSituacaoTalhaoIdeal(idPlantacao) {
             await resposta.json().then(async (informacaoTalhaoIdeal) => {
                 if (resposta.ok) {
                     contSeguro.push(informacaoTalhaoIdeal[0].seguro)
+            
+                    
                 }
                 else {
                     new Error("Não foi possível achar talhões")
@@ -139,7 +143,6 @@ async function mostrarSituacaoTalhaoIdeal(idPlantacao) {
             console.log(`#ERRO: ${resposta}`);
         });
 }
-
 
 
 async function mostrarSituacaoTalhaoPerigo(idPlantacao) {
@@ -185,170 +188,183 @@ async function mostrarSituacaoTalhaoAlerta(idPlantacao) {
 }
 
 
-var qtdTalhoesSeguro = 0
-var qtdTalhoesPerigo = 0
-var qtdTalhoesAlerta = 0
-function listarTalhoes() {
+var qtdTalhoesSeguro = 0;
+var qtdTalhoesPerigo = 0;
+var qtdTalhoesAlerta = 0;
+
+var listaTempTalhao = [];
+var listaUmiTalhao = []
+async function listarTalhoes() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
     var idMocked = sessionStorage.ID_MOCADO;
     var idEmpresa = sessionStorage.ID_EMPRESA;
 
-    if (idPlantacao == null) {
-        session_carregar()
+    if (idPlantacao == null || idPlantacao == "" || idPlantacao == undefined) {
+        await session_carregar(idEmpresa);
+        idPlantacao = sessionStorage.PLANTACAO_ATUAL;
+        idMocked = sessionStorage.ID_MOCADO;
     }
 
+    await listarPlantacaoKPI(idPlantacao);
 
-    tituloPlant.innerHTML = `Plantação ${idMocked}`
+    tituloPlant.innerHTML = `Plantação ${idMocked}`;
 
-    fetch(`/dashPlantacao/listarTalhoes/${idPlantacao}/${idEmpresa}`, {
+    await fetch(`/dashPlantacao/listarTalhoes/${idPlantacao}`, {
         method: "GET",
     })
-        .then(function (resposta) {
-            resposta.json().then((talhoes) => {
+        .then(async function (resposta) {
+            await resposta.json().then(async (talhoes) => {
                 if (talhoes.length > 0) {
-                    listaTalhao.innerHTML = ""
+                    listaTalhao.innerHTML = "";
 
                     for (var index = 0; index < talhoes.length; index++) {
-                        var talhaoatual = talhoes[index];
-                        console.log(talhaoatual)
-                        var situacao = ''
-                        var situacaoUmi = '';
-                        var situacaoTemp = ''
-                
+                        var talhaoAtual = talhoes[index];
+                        console.log(talhaoAtual);
+                        await capturarDadosTalhoes(talhaoAtual.idTalhao);
 
-                            if(talhaoatual.consultaTemp <= talhaoatual.tempMax - 2 && talhaoatual.consultaTemp >= talhaoatual.tempMin + 2){
-                                situacao = 'Seguro'
-                                situacaoTemp = 'Seguro'
-                                
-                            }else if(talhaoatual.consultaTemp >= talhaoatual.tempMax - 2 && talhaoatual.consultaTemp <= talhaoatual.tempMin + 2){
-                                situacao = 'Perigo'
-                                situacaoTemp = 'Perigo'
-                            } else {
-                                situacao = 'Alerta'
-                                situacaoTemp = 'Alerta'
-                            }
-                               
-                            
-                            if(talhaoatual.consultaUmi >= talhaoatual.umiMin + 1 && talhaoatual.consultaUmi <= talhaoatual.umiMax - 1){
-                                situacao = 'Seguro'
-                                situacaoUmi = 'Seguro'
-                                qtdTalhoesSeguro++
-                            } else if(talhaoatual.consultaUmi <= talhaoatual.umiMin + 1 && talhaoatual.consultaUmi >= talhaoatual.umiMax - 1){
-                                situacao = 'Perigo'
-                                situacaoUmi = 'Perigo'
-                                qtdTalhoesPerigo++
-                            } else {
-                                situacao = 'Alerta'
-                                situacaoUmi = 'Alerta'
-                                qtdTalhoesAlerta++
-                            }
-                        
+                        var situacao = '';
+                        var situacaoUmi = '';
+                        var situacaoTemp = '';
+                        var umidade = listaUmiTalhao[index];
+                        var temperatura = listaTempTalhao[index];
+
+                        if (temperatura < talhaoAtual.tempMax - 1 && temperatura > talhaoAtual.tempMin + 1) {
+                            situacaoTemp = 'Seguro';
+                        } else if (temperatura > talhaoAtual.tempMax || temperatura < talhaoAtual.tempMin) {
+                            situacaoTemp = 'Perigo';
+                        } else if ((temperatura >= talhaoAtual.tempMin && temperatura <= talhaoAtual.tempMin + 1) ||
+                            (temperatura <= talhaoAtual.tempMax && temperatura >= talhaoAtual.tempMax - 1)) {
+                            situacaoTemp = 'Alerta';
+                        } else {
+                            situacao = "Sem Dados";
+                        }
+
+                        if (umidade > talhaoAtual.umiMin + 1 && umidade < talhaoAtual.umiMax - 1) {
+                            situacaoUmi = 'Seguro';
+                        } else if (umidade < talhaoAtual.umiMin || umidade > talhaoAtual.umiMax) {
+                            situacaoUmi = 'Perigo';
+                        } else if ((umidade >= talhaoAtual.umiMin && umidade <= talhaoAtual.umiMin + 1) ||
+                            (umidade <= talhaoAtual.umiMax && umidade >= talhaoAtual.umiMax - 1)) {
+                            situacaoUmi = 'Alerta';
+                        } else {
+                            situacao = "Sem Dados";
+                        }
+
+                        if (situacaoUmi == "Perigo" || situacaoTemp == "Perigo") {
+                            situacao = 'Perigo'
+                            qtdTalhoesPerigo++;
+                        } else if (situacaoTemp == "Alerta" || situacaoUmi == "Alerta") {
+                            situacao = 'Alerta'
+                            qtdTalhoesAlerta++;
+                        } else if (situacaoTemp == "Seguro" && situacaoUmi == "Seguro") {
+                            situacao = "Seguro"
+                            qtdTalhoesSeguro++;
+                        }
 
                         listaTalhao.innerHTML += ` 
-                        <div class="card">
+                    <div class="card">
                         <div class="nomeTalhao">
-                          <h1>Talhão ${index + 1}</span></h1>
-                          <h2>${talhaoatual.nomeTipo}</h2>
+                            <h1>Talhão ${index + 1}</span></h1>
+                            <h2>${talhaoAtual.nomeTipo}</h2>
                         </div>
                         <div class="infoTalhoes">
-                          <div class="info">
-                            <h1>Situação</h1>
-                            <div class="situacao">
-                              <span id="${situacao}"  >${situacao}</span>
-                              <img src="img/${situacao}.png">
+                            <div class="info">
+                                <h1>Situação</h1>
+                                <div class="situacao">
+                                    <span class="${situacao}">${situacao}</span>
+                                    ${situacao == "Sem Dados" ? "" : `<img src="img/${situacao}.png">`}
+                                </div>
                             </div>
-                          </div>
-                          <div class="info">
-                            <h1>Temperatura</h1>
-                            <div class="situacao">
-                              <span id="${situacaoTemp}">${talhaoatual.consultaTemp} Cº</span>
+                            <div class="info">
+                                <h1>Temperatura</h1>
+                                <div class="situacao">
+                                    <span class="${situacaoTemp}">${temperatura == "Sem Dados" ? temperatura : temperatura + "C°"}</span>
+                                </div>
                             </div>
-                          </div>
-                          <div class="info">
-                            <h1>Umidade</h1>
-                            <div class="situacao">
-                              <span id="${situacaoUmi}">${talhaoatual.consultaUmi} %</span>
+                            <div class="info">
+                                <h1>Umidade</h1>
+                                <div class="situacao">
+                                    <span class="${situacaoUmi}">${umidade == "Sem Dados" ? umidade : umidade + "%"}</span>
+                                </div>
                             </div>
-                          </div>
                         </div>
                         <div class="botaoTalhao">
-                          <button onclick="analisar()">Analisar</button>
+                            <button onclick="analisar(${talhaoAtual.idTalhao})">Analisar</button>
                         </div>
-                      </div>`
-
-                        //     fetch(`/dashPlantacao/listarTalhoesFOR/${talhaoatual.idTalhao}`, {
-                        //         method: "GET",
-                        //     }) .then(function (resposta) {
-                        //         resposta.json().then( (infotalhoes))
-                        //     }
-
-                        // )
+                    </div>`;
                     }
-                    metricas.innerHTML = `      
-                     <div class="metricaPlantacoes">
-              <div class="container">
-                <h1 style=" margin-bottom: 10px;">Quantidade de Talhões</h1>
-                <div class="informacoes">
-                  <div class="situacao">
-                    <h1>Seguro</h1>
-                    <span style="color: green; font-weight: bold; padding: 7px; margin-top:6%" id="seguro">${qtdTalhoesSeguro}</span>
-                  </div>
-                  <div class="situacao">
-                    <h1>Alerta</h1>
-                    <span style="color: yellow; font-weight: bold; padding: 7px; margin-top:6%" id="alerta">${qtdTalhoesAlerta}</span>
-                  </div>
-                  <div class="situacao">
-                    <h1>Perigo</h1>
-                    <span style="color: red; font-weight: bold; padding: 7px; margin-top:6%"  id="perigo">${qtdTalhoesPerigo}</span>
-                  </div>
-                </div>
-              </div>
-            </div>`
-                } 
-            });
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-
-
-
-function listarPlantacaoKPI(idPlantacao) {
-    fetch(`/dashPlantacao/listarPlantacoesKPI/${idPlantacao}`, {
-        method: "GET",
-    })
-        .then(function (resposta) {
-            resposta.json().then((kpiPlant) => {
-                if (kpiPlant[0].Area != null) {
-                    AreaPlantada.innerHTML = `<span>${kpiPlant[0].Area} hectáres</span`
-                    qtdTalhoes.innerHTML = `<span>${kpiPlant[0].quantidade}</span>`
+                    qtdSeguro.innerHTML = `${qtdTalhoesSeguro}`
+                    qtdAlerta.innerHTML = `${qtdTalhoesAlerta}`
+                    qtdPerigo.innerHTML = `${qtdTalhoesPerigo}`
 
                 } else {
-                    listaTalhao.innerHTML = `<h1>Sem Talhões Cadastrados`
-                    AreaPlantada.innerHTML = `<span>0 hectáres</span>`
-                    qtdTalhoes.innerHTML = `<span>0</span>`
+                    listaTalhao.innerHTML = "Sem Talhões cadastrados"
                 }
-
             });
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
+            listaTalhao.innerHTML = "<h1>Sem Talhões cadastrados</h1>"
+            qtdSeguro.innerHTML = `${qtdTalhoesSeguro}`
+            qtdAlerta.innerHTML = `${qtdTalhoesAlerta}`
+            qtdPerigo.innerHTML = `${qtdTalhoesPerigo}`
         });
 }
 
-function session_carregar() {
-    var idEmpresa = sessionStorage.ID_EMPRESA;
-    fetch(`dashPlantacao/capturar_primeira_plantacoes/${idEmpresa}`, {
+async function listarPlantacaoKPI(idPlantacao) {
+    await fetch(`/dashPlantacao/listarPlantacoesKPI/${idPlantacao}`, {
         method: "GET",
     })
-        .then(function (resposta) {
-            resposta.json().then((idPlantacao) => {
-                sessionStorage.PLANTACAO_ATUAL = idPlantacao[0].idPlantacao;
-                sessionStorage.ID_MOCADO = 1
+        .then(async function (resposta) {
+            await resposta.json().then((kpiPlant) => {
+                console.log(idPlantacao);
+                console.log(kpiPlant)
+
+                AreaPlantada.innerHTML = `<span>${kpiPlant[0].area} hectáres</span>`;
+                qtdTalhoes.innerHTML = `<span>${kpiPlant[0].quantidade}</span>`;
             });
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
 }
+
+async function session_carregar(idEmpresa) {
+    await fetch(`dashPlantacao/capturar_primeira_plantacoes/${idEmpresa}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            await resposta.json().then((idPlantacao) => {
+                sessionStorage.PLANTACAO_ATUAL = idPlantacao[0].idPlantacao;
+                sessionStorage.ID_MOCADO = 1;
+
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+
+async function capturarDadosTalhoes(idTalhao) {
+    await fetch(`dashPlantacao/capturarDadosTalhoes/${idTalhao}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            await resposta.json().then((dadosTalhao) => {
+                console.log(dadosTalhao)
+
+
+                var dados = dadosTalhao[0]
+
+                listaUmiTalhao.push(dados.consultaUmi);
+                listaTempTalhao.push(dados.consultaTemp);
+
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            listaTempTalhao.push("Sem Dados")
+            listaUmiTalhao.push("Sem Dados")
+        });
 }

@@ -16,55 +16,73 @@ function listarPlantacoes(idEmpresa) {
 
 function mostrarSituacaoTalhaoIdeal(idPlantacao) {
   var instrucaoSql = `
-  SELECT COUNT(DISTINCT(idTalhao)) AS seguro FROM Talhao 
-  JOIN Dispositivo ON fkTalhao = idTalhao 
-  JOIN Registro ON fkDispositivo = idDispositivo
-  JOIN Uva ON fkUva = idUva
-  JOIN Plantacao ON idPlantacao = fkPlantacao
-  WHERE 
-  (
-  (tempMax - 2 >= consultaTemp AND tempMin + 2  <= consultaTemp) 
-  AND 
-  (umiMax + 2 >= consultaUmi AND  umiMin + 2 <= consultaUmi)
-  ) 
-  AND idPlantacao = ${idPlantacao};
-  `
+  SELECT COUNT(DISTINCT T.idTalhao) AS seguro
+FROM Talhao T
+JOIN Dispositivo D ON T.idTalhao = D.fkTalhao
+JOIN Registro R ON D.idDispositivo = R.fkDispositivo
+JOIN Uva U ON T.fkUva = U.idUva
+WHERE
+    T.fkPlantacao = ${idPlantacao}
+    AND R.registroDt = (
+        SELECT MAX(registroDt)
+        FROM Registro
+        WHERE fkDispositivo = D.idDispositivo
+    )
+    AND R.consultaTemp BETWEEN U.tempMin + 2 AND U.tempMax - 2
+    AND R.consultaUmi BETWEEN U.umiMin + 2 AND U.umiMax - 2;
+`
 
   return database.executar(instrucaoSql);
 }
 
 function mostrarSituacaoTalhaoPerigo(idPlantacao) {
   var instrucaoSql = `
-  SELECT COUNT(DISTINCT(idTalhao)) AS perigo FROM Talhao 
-  JOIN Dispositivo ON fkTalhao = idTalhao 
-  JOIN Registro ON fkDispositivo = idDispositivo
-  JOIN Uva ON fkUva = idUva
-  JOIN Plantacao ON idPlantacao = fkPlantacao
-  WHERE 
-  (
-  (tempMax < consultaTemp OR tempMin > consultaTemp) 
-  OR 
-  (umiMax < consultaUmi OR umiMin > consultaUmi)
-  ) 
-  AND idPlantacao = ${idPlantacao};`
+  SELECT COUNT(DISTINCT T.idTalhao) AS perigo
+FROM Talhao T
+JOIN Dispositivo D ON T.idTalhao = D.fkTalhao
+JOIN Registro R ON D.idDispositivo = R.fkDispositivo
+JOIN Uva U ON T.fkUva = U.idUva
+WHERE
+    T.fkPlantacao = ${idPlantacao}
+    AND R.registroDt = (
+        SELECT MAX(registroDt)
+        FROM Registro
+        WHERE fkDispositivo = D.idDispositivo
+    )
+    AND (
+        R.consultaTemp < U.tempMin + 1 
+        OR R.consultaTemp > U.tempMax - 1 
+        OR R.consultaUmi < U.umiMin + 1 
+        OR R.consultaUmi > U.umiMax - 1
+    );
+`
 
   return database.executar(instrucaoSql);
 }
 
 function mostrarSituacaoTalhaoAlerta(idPlantacao) {
-  var instrucaoSql = `
-  SELECT COUNT(DISTINCT(idTalhao)) AS alerta FROM Talhao 
-  JOIN Dispositivo ON fkTalhao = idTalhao 
-  JOIN Registro ON fkDispositivo = idDispositivo
-  JOIN Uva ON fkUva = idUva
-  JOIN Plantacao ON idPlantacao = fkPlantacao
-  WHERE 
-  (
-  ((consultaTemp >= tempMin  AND consultaTemp <= tempMin + 1) OR (consultaTemp <= tempMax AND consultaTemp >= tempMax -1)) 
-  AND
-  ((consultaUmi >= umiMin AND consultaUmi <= umiMin + 1) OR (consultaUmi <= umiMax AND consultaUmi >= umiMax -1))
-  ) 
-  AND idPlantacao = ${idPlantacao};
+  var instrucaoSql =
+    `
+  SELECT COUNT(DISTINCT T.idTalhao) AS alerta
+FROM Talhao T
+JOIN Dispositivo D ON T.idTalhao = D.fkTalhao
+JOIN Registro R ON D.idDispositivo = R.fkDispositivo
+JOIN Uva U ON T.fkUva = U.idUva
+WHERE
+    T.fkPlantacao = ${idPlantacao}
+    AND R.registroDt = (
+        SELECT MAX(registroDt)
+        FROM Registro
+        WHERE fkDispositivo = D.idDispositivo
+    )
+    AND (
+        (R.consultaTemp >= U.tempMin AND R.consultaTemp <= U.tempMin + 1)
+        OR (R.consultaTemp <= U.tempMax AND R.consultaTemp >= U.tempMax - 1)
+    )
+    AND (
+        (R.consultaUmi >= U.umiMin AND R.consultaUmi <= U.umiMin + 1)
+        OR (R.consultaUmi <= U.umiMax AND R.consultaUmi >= U.umiMax - 1)
+    );;
   `
 
   return database.executar(instrucaoSql);

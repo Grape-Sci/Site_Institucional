@@ -275,15 +275,15 @@
     font-weight: 500;
 }
 
-#Seguro {
+.Seguro {
     color: rgb(0, 173, 0);
 }
 
-#Alerta {
+.Alerta {
     color: rgb(196, 196, 1);
 }
 
-#Perigo {
+.Perigo {
     color: red;
 }
 
