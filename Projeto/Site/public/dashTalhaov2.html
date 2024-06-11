@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Talhão 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="shortcut icon" type="imagex/png" href="img/icon.png">
+    <link rel="stylesheet" href="css/dashTalhaopt2.css" />
+</head>
+
+<body onload="exibirUsuario()">
+    <div class="pagina">
+        <div class="navBar">
+            <div class="logo">
+                <div class="container">
+                    <img src="img/logo.png" alt="" />
+                </div>
+            </div>
+            <hr>
+            <div class="pags">
+                <div class="container" id="listaNavBar">
+                    <span><a href="dashHome.html">Home</a></span>
+                    <span><a href="dashPlantacao.html">Plantação</a></span>
+                    <span><a id="agora" href="dashTalhao.html">Talhões</a></span>
+                </div>
+            </div>
+            <div class="profile">
+                <div class="container">
+                    <div class="imagem">
+                        <img src="img/fazendeiro.png" alt="">
+                    </div>
+                    <span id="nomeUsuario"></span>
+                    <button onclick="sair()">Sair</button>
+                </div>
+            </div>
+        </div>
+        <div id="talhao" class="talhao">
+            <div class="titulo">
+                <div class="container">
+                    <h1>Talhão 1</h1>
+                </div>
+            </div>
+            <div class="containerPagina">
+                <div class="containerCima">
+                    <div class="caixa">
+                        <div class="tipoUva">
+                            <span>Uva Itália</span>
+                        </div>
+                    </div>
+                    <div class="caixa">
+                        <div class="tituloKPI">
+                            <span>Previsão de Colheita</span>
+                        </div>
+                        <div class="previsaoColheita">
+                            <span class="Seguro" id="dias">150 dias </span>
+                            <img src="img/prevUva.png">
+                        </div>
+                    </div>
+                    <div class="caixa">
+                        <div class="tituloKPI">
+                            <span>Situação</span>
+                        </div>
+                        <div class="situacao">
+                            <span class="Seguro" id="situacaoTalhao">Seguro</span>
+                            <img src="img/Seguro.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="containerBaixo">
+                    <div class="caixaGraficos">
+                        <div class="container"></div>
+                        <div class="container"></div>
+                    </div>
+                    <div class="caixaKPI"></div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
