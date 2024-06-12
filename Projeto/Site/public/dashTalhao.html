@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/dashTalhao.css" />
 </head>
 
-<body onload="exibirUsuario()">
+<body onload="exibirUsuario(), capturarKPITalhao()">
     <div class="pagina">
         <div class="navBar">
             <div class="logo">
@@ -50,7 +50,7 @@
                 <div class="containerCima">
                     <div class="caixa">
                         <div class="tipoUva">
-                            <span>Uva Itália</span>
+                            <span id="tipoUvaTalhao"></span>
                         </div>
                     </div>
                     <div class="caixa">
@@ -58,7 +58,7 @@
                             <span>Previsão de Colheita</span>
                         </div>
                         <div class="previsaoColheita">
-                            <span class="Seguro" id="dias">150 dias </span>
+                            <span class="Seguro" id="dias"></span>
                             <img src="img/prevUva.png">
                         </div>
                     </div>
@@ -67,8 +67,8 @@
                             <span>Situação</span>
                         </div>
                         <div class="situacao">
-                            <span class="Seguro" id="situacaoTalhao">Seguro</span>
-                            <img src="img/Seguro.png" alt="">
+                            <span class="Seguro" id="situacaoTalhao"></span>
+                            <img id="imagemSituacao" alt="">
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                                         <span>Temperatura Ideal:</span>
                                     </div>
                                     <div class="metricasTemperatura">
-                                        <span>Entre 20°C e 30°C</span>
+                                        <span id="metricasTalhaoTemp"></span>
                                     </div>
                                 </div>
                                 <div class="umidadeMetrica">
@@ -100,7 +100,7 @@
                                         <span>Umidade Ideal:</span>
                                     </div>
                                     <div class="metricasUmidade">
-                                        <span>Entre 50% e 60%</span>
+                                        <span id="metricasTalhaoUmi">Entre 50% e 60%</span>
                                     </div>
                                 </div>
                             </div>
@@ -113,57 +113,57 @@
                             <div class="explicacaomeio">
                                 <div class="div">
                                     <div class="perigoesqcima">
-                                        <span>20°C </span>
+                                        <span id="tempMinPerigoTalhao"></span>
                                     </div>
                                     <div class="meio corperigo">
                                         <span>PERIGO</span>
                                     </div>
                                     <div class="perigoesqbaixo">
-                                        <span>50% </span>
+                                        <span id="umiMinPerigoTalhao"></span>
                                     </div>
                                 </div>
                                 <div class="div">
                                     <div class="divalerta">
-                                        <span> 22°C << /span>
+                                        <span id="tempMinAlertaTalhao"></span>
                                     </div>
                                     <div class="meioalerta coralerta">
                                         <span>ALERTA</span>
                                     </div>
                                     <div class="divalerta">
-                                        <span>52% << /span>
+                                        <span id="umiMinAlertaTalhao"></span>
                                     </div>
                                 </div>
                                 <div class="div">
                                     <div class="divseguro">
-                                        <span>25°C</span>
+                                        <span id="tempSeguroTalhao"></span>
                                     </div>
                                     <div class="meio corseguro">
                                         <span>SEGURO</span>
                                     </div>
                                     <div class="divseguro">
-                                        <span>55%</span>
+                                        <span id="umiSeguroTalhao"></span>
                                     </div>
                                 </div>
                                 <div class="div">
                                     <div class="divalerta">
-                                        <span>> 28°C</span>
+                                        <span id="tempMaxAlertaTalhao"></span>
                                     </div>
                                     <div class="meioalerta coralerta">
                                         <span>ALERTA</span>
                                     </div>
                                     <div class="divalerta">
-                                        <span>> 58%</span>
+                                        <span id="umiMaxAlertaTalhao"></span>
                                     </div>
                                 </div>
                                 <div class="div">
                                     <div class="perigodircima">
-                                        <span>> 30°C</span>
+                                        <span id="tempMaxPerigoTalhao"></span>
                                     </div>
                                     <div class="meio corperigo">
                                         <span>PERIGO</span>
                                     </div>
                                     <div class="perigodirbaixo">
-                                        <span>> 60%</span>
+                                        <span id="umiMaxPerigoTalhao"></span>
                                     </div>
                                 </div>
                             </div>
@@ -179,19 +179,19 @@
                                 <div class="temperaturaDias">
                                     <p>Temperatura:</p>
                                     <div class="caixaBranca">
-                                        <span>Mínima: 21°C</span>
+                                        <span id="minimaTemp24hrs"></span>
                                     </div>
                                     <div class="caixaBranca">
-                                        <span>Máxima: 24°C</span>
+                                        <span id="maximaTemp24hrs"></span>
                                     </div>
                                 </div>
                                 <div class="umidadeDias">
                                     <p>Umidade:</p>
                                     <div class="caixaBranca">
-                                        <span>Mínima: 21°C</span>
+                                        <span id="minimaUmi24hrs"></span>
                                     </div>
                                     <div class="caixaBranca">
-                                        <span>Máxima: 24°C</span>
+                                        <span id="maximaUmi24hrs"></span>
                                     </div>
                                 </div>
                             </div>

@@ -234,6 +234,14 @@
     color: green;
 }
 
+.Alerta {
+    color: yellow;
+}
+
+.Perigo {
+    color: red;
+}
+
 .situacao {
     display: flex;
     align-items: center;

@@ -4,7 +4,7 @@
 function sair() {
     window.location = "index.html";
     sessionStorage.ID_EMPRESA = ''
-    sessionStorage.ID_MOCADO = ''
+    sessionStorage.ID_MOCADO_PLANTACAO = ''
     sessionStorage.TALHAO_ATUAL = ''
     sessionStorage.NOME_USUARIO = ''
     sessionStorage.CARGO_USUARIO = ''
@@ -14,26 +14,14 @@ function sair() {
 
 function monitorar(idPlantacaoSelecionada, idMocado) {
     sessionStorage.PLANTACAO_ATUAL = idPlantacaoSelecionada;
-    sessionStorage.ID_MOCADO = idMocado
+    sessionStorage.ID_MOCADO_PLANTACAO = idMocado;
     window.location = "dashPlantacao.html";
-
 }
 
-function analisar(idTalhaoSelecionado) {
-    var idTalhaoSelecionado = sessionStorage.TALHAO_ATUAL;
+function analisar(idTalhaoSelecionado, idMocado) {
+    sessionStorage.TALHAO_ATUAL = idTalhaoSelecionado;
+    sessionStorage.ID_MOCADO_TALHAO = idMocado;
     window.location = "dashTalhao.html";
-    fetch(`/dashTalhao/capturar_kpiTalhao/${idTalhaoSelecionado}`, {
-        method: "GET",
-    })
-        .then(async function (resposta) {
-            resposta.json().then((plantacoes) => {
-
-
-            });
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
 }
 
 async function gerarResposta() {
@@ -59,13 +47,13 @@ function exibirUsuario() {
     nomeUsuario.innerHTML = `${nome}`;
     var cargo = sessionStorage.CARGO_USUARIO;
 
-    if(cargo == "Gerente") {
-        listaNavBar.innerHTML += 
-        `
+    if (cargo == "Gerente") {
+        listaNavBar.innerHTML +=
+            `
         <span><a href="cadastroDash.html">Cadastro</a></span>
         
         `
-    } 
+    }
 }
 
 function exibirKPIPlantacao() {
@@ -87,6 +75,135 @@ function exibirKPIPlantacao() {
             } else {
                 throw console.log("Erro ao realizar o select");
             }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+async function capturarKPITalhao() {
+    var idTalhaoSelecionado = sessionStorage.TALHAO_ATUAL;
+
+    var situacao = "";
+    var situacaoTemp = "";
+    var situacaoUmi = "";
+
+    await capturarSituacao(idTalhaoSelecionado);
+    await capturarDadosUltimas(idTalhaoSelecionado);
+
+    fetch(`/dashTalhao/capturar_kpiTalhao/${idTalhaoSelecionado}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((infoTalhao) => {
+                tipoUvaTalhao.innerHTML = infoTalhao[0].nomeTipo;
+                metricasTalhaoTemp.innerHTML = `Entre ${infoTalhao[0].tempMin}  C° e ${infoTalhao[0].tempMax} C°`
+                metricasTalhaoUmi.innerHTML = `Entre ${infoTalhao[0].umiMin} % e ${infoTalhao[0].umiMax} %`
+
+                tempMinPerigoTalhao.innerHTML = `${infoTalhao[0].tempMin} C° <`
+                umiMinPerigoTalhao.innerHTML = `${infoTalhao[0].umiMin} % <`
+
+                tempMinAlertaTalhao.innerHTML = `${infoTalhao[0].tempMin + 2} C°  <`
+                umiMinAlertaTalhao.innerHTML = `${infoTalhao[0].umiMin + 2} % <`
+
+                tempSeguroTalhao.innerHTML = `${((infoTalhao[0].tempMin + infoTalhao[0].tempMax) / 2).toFixed()} C°`
+                umiSeguroTalhao.innerHTML = `${((infoTalhao[0].umiMin + infoTalhao[0].umiMax) / 2).toFixed()} %`
+
+                tempMaxAlertaTalhao.innerHTML = `> ${infoTalhao[0].tempMax - 1} C°`
+                umiMaxAlertaTalhao.innerHTML = `> ${infoTalhao[0].umiMax - 1} % `
+
+                tempMaxPerigoTalhao.innerHTML = ` > ${infoTalhao[0].tempMax} C°`
+                umiMaxPerigoTalhao.innerHTML = ` > ${infoTalhao[0].umiMax} %`
+
+                dias.innerHTML = `${infoTalhao[0].prevColheita} dias`
+
+                if (ultimaTemp < infoTalhao[0].tempMax - 1 && ultimaTemp > infoTalhao[0].tempMin + 1) {
+                    situacaoTemp = 'Seguro';
+                } else if (ultimaTemp > infoTalhao[0].tempMax || ultimaTemp < infoTalhao[0].tempMin) {
+                    situacaoTemp = 'Perigo';
+                } else if ((ultimaTemp >= infoTalhao[0].tempMin && ultimaTemp <= infoTalhao[0].tempMin + 1) ||
+                    (ultimaTemp <= infoTalhao[0].tempMax && ultimaTemp >= infoTalhao[0].tempMax - 1)) {
+                    situacaoTemp = 'Alerta';
+                } else {
+                    situacao = "Sem Dados";
+                }
+
+                if (ultimaUmi > infoTalhao[0].umiMin + 1 && ultimaUmi < infoTalhao[0].umiMax - 1) {
+                    situacaoUmi = 'Seguro';
+                } else if (ultimaUmi < infoTalhao[0].umiMin || ultimaUmi > infoTalhao[0].umiMax) {
+                    situacaoUmi = 'Perigo';
+                } else if ((ultimaUmi >= infoTalhao[0].umiMin && ultimaUmi <= infoTalhao[0].umiMin + 1) ||
+                    (ultimaUmi <= infoTalhao[0].umiMax && ultimaUmi >= infoTalhao[0].umiMax - 1)) {
+                    situacaoUmi = 'Alerta';
+                } else {
+                    situacao = "Sem Dados";
+                }
+
+                if (situacaoUmi == "Perigo" || situacaoTemp == "Perigo") {
+                    situacao = 'Perigo'
+                } else if (situacaoTemp == "Alerta" || situacaoUmi == "Alerta") {
+                    situacao = 'Alerta'
+                } else if (situacaoTemp == "Seguro" && situacaoUmi == "Seguro") {
+                    situacao = "Seguro"
+                }
+
+                var situacaoTalhao = document.getElementById("situacaoTalhao");
+
+                situacaoTalhao.innerHTML = `${situacao}`
+                situacaoTalhao.className = "";
+                situacaoTalhao.classList.add(situacao);
+
+                imagemSituacao.src = `img/${situacao}.png`
+
+                minimaTemp24hrs.innerHTML = `Mínima: ${MinTemp} C°`;
+                maximaTemp24hrs.innerHTML = `Máxima: ${MaxTemp} C°`;
+                minimaUmi24hrs.innerHTML = `Mínima: ${MinUmi} %`;
+                maximaUmi24hrs.innerHTML = `Máxima: ${MaxUmi} %`;
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+
+var ultimaTemp;
+var ultimaUmi;
+
+async function capturarSituacao(idTalhaoSelecionado) {
+    await fetch(`/dashTalhao/capturarSituacao/${idTalhaoSelecionado}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            await resposta.json().then((infoTalhao) => {
+                ultimaTemp = infoTalhao[0].consultaTemp;
+                ultimaUmi = infoTalhao[0].consultaUmi;
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+var MaxTemp;
+var MinTemp;
+var MaxUmi;
+var MinUmi;
+
+
+async function capturarDadosUltimas(idTalhaoSelecionado) {
+    await fetch(`/dashTalhao/capturarDadosUltimas/${idTalhaoSelecionado}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            await resposta.json().then((registros24hrs) => {
+                console.log(registros24hrs)
+                MaxTemp = registros24hrs[0].MaxTemp;
+                MaxUmi = registros24hrs[0].MaxUmi;
+                MinUmi = registros24hrs[0].MinUmi;
+                MinTemp = registros24hrs[0].MinTemp;
+     
+            });
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
@@ -156,8 +273,8 @@ async function mostrarSituacaoTalhaoIdeal(idPlantacao) {
             await resposta.json().then(async (informacaoTalhaoIdeal) => {
                 if (resposta.ok) {
                     contSeguro.push(informacaoTalhaoIdeal[0].seguro)
-            
-                    
+
+
                 }
                 else {
                     new Error("Não foi possível achar talhões")
@@ -223,13 +340,13 @@ var listaTempTalhao = [];
 var listaUmiTalhao = []
 async function listarTalhoes() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
-    var idMocked = sessionStorage.ID_MOCADO;
+    var idMocked = sessionStorage.ID_MOCADO_PLANTACAO;
     var idEmpresa = sessionStorage.ID_EMPRESA;
 
     if (idPlantacao == null || idPlantacao == "" || idPlantacao == undefined) {
         await session_carregar(idEmpresa);
         idPlantacao = sessionStorage.PLANTACAO_ATUAL;
-        idMocked = sessionStorage.ID_MOCADO;
+        idMocked = sessionStorage.ID_MOCADO_PLANTACAO;
     }
 
     await listarPlantacaoKPI(idPlantacao);
@@ -363,7 +480,7 @@ async function session_carregar(idEmpresa) {
         .then(async function (resposta) {
             await resposta.json().then((idPlantacao) => {
                 sessionStorage.PLANTACAO_ATUAL = idPlantacao[0].idPlantacao;
-                sessionStorage.ID_MOCADO = 1;
+                sessionStorage.ID_MOCADO_PLANTACAO = 1;
 
             });
         })

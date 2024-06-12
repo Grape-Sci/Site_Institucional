@@ -19,7 +19,8 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var dashHome = require("./src/routes/dashHome");
 var dashPlantacao = require("./src/routes/dashPlantacao");
-var dashTalhao = require("./src/routes/dashTalhao")
+var dashTalhao = require("./src/routes/dashTalhao");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
