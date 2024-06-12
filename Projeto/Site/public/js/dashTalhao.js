@@ -67,7 +67,7 @@ async function capturarKPITalhao() {
 
                 var situacaoTalhao = document.getElementById("situacaoTalhao");
 
-                situacaoTalhao.innerHTML = `${situacao}`
+                situacaoTalhao.innerHTML = `<b>${situacao}</b>`
                 situacaoTalhao.className = "";
                 situacaoTalhao.classList.add(situacao);
 

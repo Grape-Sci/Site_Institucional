@@ -83,7 +83,7 @@ async function listarTalhoes() {
                                 <h1>Situação</h1>
                                 <div class="situacao">
                                     <span class="${situacao}">${situacao}</span>
-                                    ${situacao == "Sem Dados" ? "" : `<img src="img/${situacao}.png">`}
+                                    ${situacao == "Sem Dados" ? "" : `<img width="20px" heigth="14px" src="img/${situacao}.png">`}
                                 </div>
                             </div>
                             <div class="info">
