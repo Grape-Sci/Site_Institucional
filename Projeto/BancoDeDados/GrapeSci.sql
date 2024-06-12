@@ -49,7 +49,7 @@ CREATE TABLE Talhao (
 idTalhao INT AUTO_INCREMENT,
 qtdVieiras INT NOT NULL,
 tamAreaPlant DOUBLE NOT NULL,
-dtPlantio DATE NOT NULL,
+dtPrev DATE NOT NULL,
 prevColheita DATE NOT NULL,
 fkUva INT,
 fkPlantacao INT,
@@ -97,7 +97,7 @@ INSERT INTO Uva (nomeTipo, tempMax, tempMIN, umiMIN, umiMax) VALUES
 ('Uva Rubi', 25.0, 15.0, 60, 70);
 
 
-INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPlantio, prevColheita, fKUva, fkPlantacao) VALUES
+INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPrev, prevColheita, fKUva, fkPlantacao) VALUES
 (50, 100, '2024-01-05', '2024-05-05', 1, 1),
 (40, 90, '2024-05-05', '2024-09-05', 2, 1),
 (30, 70, '2024-06-05', '2024-10-05', 3, 1),

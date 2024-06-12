@@ -107,7 +107,7 @@ function listarUva() {
 function cadastrarTalhao(IDselect, selectTipo, qtd, area, data) {
 
   var instrucaoSql = `
-     INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPlantio, fKUva, fkPlantacao, prevColheita) VALUES
+     INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPrev, fKUva, fkPlantacao, prevColheita) VALUES
       ('${qtd}', '${area}','${data}','${selectTipo}','${IDselect}', null);
   `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
