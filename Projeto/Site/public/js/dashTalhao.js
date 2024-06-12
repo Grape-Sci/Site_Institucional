@@ -108,6 +108,10 @@ var MinTemp;
 var MaxUmi;
 var MinUmi;
 
+var consultaTemp;
+var consultaUmi;
+var registroDt;
+
 
 async function capturarDadosUltimas(idTalhaoSelecionado) {
     await fetch(`/dashTalhao/capturarDadosUltimas/${idTalhaoSelecionado}`, {
@@ -134,9 +138,15 @@ async function capturarDadosGrafico(idTalhaoSelecionado){
     })
         .then(async function (resposta) {
             await resposta.json().then((dadosGrafico) => {
-            
-               console.log(dadosGrafico)
-     
+
+                consultaTemp = dadosGrafico[0].consultaTemp;
+                consultaUmi = dadosGrafico[0].consultaUmi;
+                registroDt = dadosGrafico[0].registroDt;
+                    plotarGraficoTemp(dadosGrafico, idTalhaoSelecionado)
+                    plotarGraficoUmi(dadosGrafico, idTalhaoSelecionado)
+                console.log(consultaTemp)
+                console.log(consultaUmi)
+                console.log(registroDt)
             });
         })
         .catch(function (resposta) {
@@ -144,112 +154,336 @@ async function capturarDadosGrafico(idTalhaoSelecionado){
         }); 
 }
 
-const labels = [
-    '12:00',
-    '12:01',
-    '12:02',
-    '12:03',
-    '12:04',
-    '12:05',
-];
+// const labels = [
+//     '12:00',
+//     '12:01',
+//     '12:02',
+//     '12:03',
+//     '12:04',
+//     '12:05',
+// ];
 
-const labels2 = [
-    '12:00',
-    '12:01',
-    '12:02',
-    '12:03',
-    '12:04',
-    '12:05',
-];
+// const labels2 = [
+//     '12:00',
+//     '12:01',
+//     '12:02',
+//     '12:03',
+//     '12:04',
+//     '12:05',
+// ];
 
-// Definindo os dados para o gráfico de temperatura em tempo real
-const data = {
-    labels: labels,
-    datasets: [{
-        label: 'Temperatura em tempo real',
-        backgroundColor: '#FF2D00',
-        borderColor: '#FF2D00',
-        data: [24, 23, 22, 22, 21, 22], // Dados de temperatura
-    }]
-};
+// // Definindo os dados para o gráfico de temperatura em tempo real
+// const data = {
+//     labels: labels,
+//     datasets: [{
+//         label: 'Temperatura em tempo real',
+//         backgroundColor: '#FF2D00',
+//         borderColor: '#FF2D00',
+//         data: [24, 23, 22, 22, 21, 22], // Dados de temperatura
+//     }]
+// };
 
-// Definindo os dados para o gráfico de umidade em tempo real
-const data2 = {
-    labels: labels2,
-    datasets: [{
-        label: 'Umidade em tempo real',
-        backgroundColor: '#009BFF',
-        borderColor: '#009BFF',
-        data: [55, 53, 58, 57, 54, 56], // Dados de umidade
-    }]
-};
+// // Definindo os dados para o gráfico de umidade em tempo real
+// const data2 = {
+//     labels: labels2,
+//     datasets: [{
+//         label: 'Umidade em tempo real',
+//         backgroundColor: '#009BFF',
+//         borderColor: '#009BFF',
+//         data: [55, 53, 58, 57, 54, 56], // Dados de umidade
+//     }]
+// };
 
-// Configurações para o gráfico de temperatura em tempo real
-const config = {
-    type: 'line',
-    data: data,
-    options: {
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'black' // Cor das labels da legenda
-                }
-            }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    color: 'black' // Cor das labels do eixo X
-                }
-            },
-            y: {
-                ticks: {
-                    color: 'black' // Cor das labels do eixo Y
-                }
-            }
-        }
-    }
-};
+// // Configurações para o gráfico de temperatura em tempo real
+// const config = {
+//     type: 'line',
+//     data: data,
+//     options: {
+//         plugins: {
+//             legend: {
+//                 labels: {
+//                     color: 'black' // Cor das labels da legenda
+//                 }
+//             }
+//         },
+//         scales: {
+//             x: {
+//                 ticks: {
+//                     color: 'black' // Cor das labels do eixo X
+//                 }
+//             },
+//             y: {
+//                 ticks: {
+//                     color: 'black' // Cor das labels do eixo Y
+//                 }
+//             }
+//         }
+//     }
+// };
 
-// Configurações para o gráfico de umidade em tempo real
-const config2 = {
-    type: 'line',
-    data: data2,
-    options: {
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'black' // Cor das labels da legenda
-                }
-            }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    color: 'black' // Cor das labels do eixo X
-                }
-            },
-            y: {
-                ticks: {
-                    color: 'black' // Cor das labels do eixo Y
-                }
-            }
-        }
-    }
-};
+// // Configurações para o gráfico de umidade em tempo real
+// const config2 = {
+//     type: 'line',
+//     data: data2,
+//     options: {
+//         plugins: {
+//             legend: {
+//                 labels: {
+//                     color: 'black' // Cor das labels da legenda
+//                 }
+//             }
+//         },
+//         scales: {
+//             x: {
+//                 ticks: {
+//                     color: 'black' // Cor das labels do eixo X
+//                 }
+//             },
+//             y: {
+//                 ticks: {
+//                     color: 'black' // Cor das labels do eixo Y
+//                 }
+//             }
+//         }
+//     }
+// };
 
-// Criando a instância do gráfico de temperatura em tempo real
-const myChart = new Chart(
-    document.getElementById('myChart').getContext('2d'), // ID do elemento HTML onde o gráfico será renderizado
-    config // Configurações do gráfico
-);
+// // Criando a instância do gráfico de temperatura em tempo real
+// const myChart = new Chart(
+//     document.getElementById('myChart').getContext('2d'), // ID do elemento HTML onde o gráfico será renderizado
+//     config // Configurações do gráfico
+// );
 
-// Criando a instância do gráfico de umidade em tempo real
-const myChart2 = new Chart(
-    document.getElementById('myChart2').getContext('2d'), // ID do elemento HTML onde o gráfico será renderizado
-    config2 // Configurações do gráfico
-);
+// // Criando a instância do gráfico de umidade em tempo real
+// const myChart2 = new Chart(
+//     document.getElementById('myChart2').getContext('2d'), // ID do elemento HTML onde o gráfico será renderizado
+//     config2 // Configurações do gráfico
+// );
 
 // Configurando o fundo branco para o canvas
 document.getElementById('myChart').style.backgroundColor = 'white';
 document.getElementById('myChart2').style.backgroundColor = 'white';
+
+function plotarGraficoTemp(dadosGrafico, idTalhaoSelecionado) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = [];
+
+    // Criando estrutura para plotar gráfico - dados
+    let dados = {
+        labels: labels,
+        datasets: [
+        {
+            label: 'Temperatura',
+            data: [],
+            fill: false,
+            borderColor: 'rgb(199, 52, 52)',
+            tension: 0.1
+        }]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(dadosGrafico)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < dadosGrafico.length; i++) {
+        var registro = dadosGrafico[i];
+        labels.push(registro.registroDt);
+        dados.datasets[0].data.push(registro.consultaTemp);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+        type: 'line',
+        data: dados,
+    };
+
+    // Adicionando gráfico criado em div na tela
+    let myChart = new Chart(
+        document.getElementById(`myChart`),
+        config
+    );
+
+    setTimeout(() => atualizarGraficoTemp(idTalhaoSelecionado, dados, myChart), 2000);
+}
+
+function plotarGraficoUmi(dadosGrafico, idTalhaoSelecionado) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = [];
+
+    // Criando estrutura para plotar gráfico - dados
+    let dados = {
+        labels: labels,
+        datasets: [{
+            label: 'Umidade',
+            data: [],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(dadosGrafico)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < dadosGrafico.length; i++) {
+        var registro = dadosGrafico[i];
+        labels.push(registro.registroDt);
+        dados.datasets[0].data.push(registro.consultaUmi);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+        type: 'line',
+        data: dados,
+    };
+
+    // Adicionando gráfico criado em div na tela
+    let myChart = new Chart(
+        document.getElementById(`myChart2`),
+        config
+    );
+
+    setTimeout(() => atualizarGraficoUmi(idTalhaoSelecionado, dados, myChart), 2000);
+}
+
+
+// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+// buscando a última medida inserida em tabela contendo as capturas, 
+
+//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+//     Para ajustar o "select", ajuste o comando sql em src/models
+
+
+// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+// buscando a última medida inserida em tabela contendo as capturas, 
+
+//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+//     Para ajustar o "select", ajuste o comando sql em src/models
+function atualizarGraficoTemp(idTalhaoSelecionado, dados, myChart) {
+
+
+
+    fetch(`/dashTalhao/capturarDadosGrafico/${idTalhaoSelecionado}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                // alertar(novoRegistro, idAquario);
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dados);
+
+
+
+                if (novoRegistro[0].registroDt == dados.labels[dados.labels.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].registroDt)
+                    console.log("Horário do último dado capturado:")
+                    console.log(dados.labels[dados.labels.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro[0].registroDt); // incluir um novo momento
+
+                    // dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                    // dados.datasets[0].data.push(novoRegistro[0].consultaUmi); // incluir uma nova medida de umidade
+
+                    dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                    dados.datasets[1].data.push(novoRegistro[0].consultaTemp); // incluir uma nova medida de temperatura
+
+                    myChart.update();
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGraficoTemp(idTalhaoSelecionado, dados, myChart), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGraficoTemp(idTalhaoSelecionado, dados, myChart), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+}
+
+function atualizarGraficoUmi(idTalhaoSelecionado, dados, myChart) {
+
+
+
+    fetch(`/dashTalhao/capturarDadosGrafico/${idTalhaoSelecionado}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                // alertar(novoRegistro, idAquario);
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dados);
+
+
+
+                if (novoRegistro[0].registroDt == dados.labels[dados.labels.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].registroDt)
+                    console.log("Horário do último dado capturado:")
+                    console.log(dados.labels[dados.labels.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro[0].registroDt); // incluir um novo momento
+
+                    dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                    dados.datasets[0].data.push(novoRegistro[0].consultaUmi); // incluir uma nova medida de umidade
+
+                    // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                    // dados.datasets[1].data.push(novoRegistro[0].consultaTemp); // incluir uma nova medida de temperatura
+
+                    myChart.update();
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGraficoUmi(idTalhaoSelecionado, dados, myChart), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGraficoUmi(idTalhaoSelecionado, dados, myChart), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+}

@@ -20,7 +20,7 @@ function capturarDadosUltimas(idTalhao) {
 
 function capturarDadosGrafico(idTalhao) {
   var instrucaoSql = `
-  SELECT consultaUmi, consultaTemp FROM Talhao 
+  SELECT consultaUmi, consultaTemp, registroDt FROM Talhao 
 	  JOIN Dispositivo ON fkTalhao = idTalhao 
 		  JOIN Registro ON fkDispositivo = idDispositivo WHERE idTalhao = ${idTalhao}
 		    ORDER BY idRegistro DESC LIMIT 10;`;
