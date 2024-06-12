@@ -18,8 +18,19 @@ function capturarDadosUltimas(idTalhao) {
   return database.executar(instrucaoSql);
 }
 
+function capturarDadosGrafico(idTalhao) {
+  var instrucaoSql = `
+  SELECT consultaUmi, consultaTemp FROM Talhao 
+	  JOIN Dispositivo ON fkTalhao = idTalhao 
+		  JOIN Registro ON fkDispositivo = idDispositivo WHERE idTalhao = ${idTalhao}
+		    ORDER BY idRegistro DESC LIMIT 10;`;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
   capturar_kpiTalhao,
   capturarSituacao,
-  capturarDadosUltimas
+  capturarDadosUltimas,
+  capturarDadosGrafico
 };

@@ -15,4 +15,8 @@ router.get("/capturarDadosUltimas/:idTalhao", function (req, res) {
     dashTalhaoController.capturarDadosUltimas(req, res);
 });
 
+router.get("/capturarDadosGrafico/:idTalhao", function (req, res) {
+    dashTalhaoController.capturarDadosGrafico(req, res);
+});
+
 module.exports = router;
