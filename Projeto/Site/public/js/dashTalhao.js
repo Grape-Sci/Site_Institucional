@@ -15,9 +15,9 @@ async function capturarKPITalhao() {
         .then(function (resposta) {
             resposta.json().then((infoTalhao) => {
                 tipoUvaTalhao.innerHTML = infoTalhao[0].nomeTipo;
-                metricasTalhaoTemp.innerHTML = `Entre ${infoTalhao[0].tempMin}  C° e ${infoTalhao[0].tempMax} C°`
-                metricasTalhaoUmi.innerHTML = `Entre ${infoTalhao[0].umiMin} % e ${infoTalhao[0].umiMax} %`
-
+                metricasTalhaoTemp.innerHTML = `<b>Entre ${infoTalhao[0].tempMin}  C° e ${infoTalhao[0].tempMax} C°</b>`
+                metricasTalhaoUmi.innerHTML = `<b>Entre ${infoTalhao[0].umiMin} % e ${infoTalhao[0].umiMax} %</b>`
+                
                 tempMinPerigoTalhao.innerHTML = `${infoTalhao[0].tempMin} C° <`
                 umiMinPerigoTalhao.innerHTML = `${infoTalhao[0].umiMin} % <`
 
@@ -67,16 +67,18 @@ async function capturarKPITalhao() {
 
                 var situacaoTalhao = document.getElementById("situacaoTalhao");
 
-                situacaoTalhao.innerHTML = `${situacao}`
+                situacaoTalhao.innerHTML = `<b>${situacao}</b>`
                 situacaoTalhao.className = "";
                 situacaoTalhao.classList.add(situacao);
 
                 imagemSituacao.src = `img/${situacao}.png`
+                imagemSituacao.style.width = `${30}px`;
+                imagemSituacao.style.height = `${30}px`;
 
-                minimaTemp24hrs.innerHTML = `Mínima:${MinTemp} C°`;
-                maximaTemp24hrs.innerHTML = `Máxima:${MaxTemp} C°`;
-                minimaUmi24hrs.innerHTML = `Mínima:${MinUmi} %`;
-                maximaUmi24hrs.innerHTML = `Máxima:${MaxUmi} %`;
+                minimaTemp24hrs.innerHTML = `<b>Mínima:${MinTemp} C°</b>`;
+                maximaTemp24hrs.innerHTML = `<b>Máxima:${MaxTemp} C°</b>`;
+                minimaUmi24hrs.innerHTML = `<b>Mínima:${MinUmi} %</b>`;
+                maximaUmi24hrs.innerHTML = `<b>Máxima:${MaxUmi} %</b>`;
             });
         })
         .catch(function (resposta) {

@@ -343,6 +343,11 @@
     align-items: center;
 }
 
+#img{
+   width: 10px; 
+}
+
+
 .metricaPlantacoes .container .situacao span {
     font-size: 20px;
     width: 50%;
