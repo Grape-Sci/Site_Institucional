@@ -7,6 +7,7 @@ async function capturarKPITalhao() {
 
     await capturarSituacao(idTalhaoSelecionado);
     await capturarDadosUltimas(idTalhaoSelecionado);
+    await capturarDadosGrafico(idTalhaoSelecionado)
 
     fetch(`/dashTalhao/capturar_kpiTalhao/${idTalhaoSelecionado}`, {
         method: "GET",
@@ -114,7 +115,7 @@ async function capturarDadosUltimas(idTalhaoSelecionado) {
     })
         .then(async function (resposta) {
             await resposta.json().then((registros24hrs) => {
-                console.log(registros24hrs)
+                
                 MaxTemp = registros24hrs[0].MaxTemp;
                 MaxUmi = registros24hrs[0].MaxUmi;
                 MinUmi = registros24hrs[0].MinUmi;
@@ -126,3 +127,129 @@ async function capturarDadosUltimas(idTalhaoSelecionado) {
             console.log(`#ERRO: ${resposta}`);
         });
 }
+
+async function capturarDadosGrafico(idTalhaoSelecionado){
+    await fetch(`/dashTalhao/capturarDadosGrafico/${idTalhaoSelecionado}`, {
+        method: "GET",
+    })
+        .then(async function (resposta) {
+            await resposta.json().then((dadosGrafico) => {
+            
+               console.log(dadosGrafico)
+     
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        }); 
+}
+
+const labels = [
+    '12:00',
+    '12:01',
+    '12:02',
+    '12:03',
+    '12:04',
+    '12:05',
+];
+
+const labels2 = [
+    '12:00',
+    '12:01',
+    '12:02',
+    '12:03',
+    '12:04',
+    '12:05',
+];
+
+// Definindo os dados para o gráfico de temperatura em tempo real
+const data = {
+    labels: labels,
+    datasets: [{
+        label: 'Temperatura em tempo real',
+        backgroundColor: '#FF2D00',
+        borderColor: '#FF2D00',
+        data: [24, 23, 22, 22, 21, 22], // Dados de temperatura
+    }]
+};
+
+// Definindo os dados para o gráfico de umidade em tempo real
+const data2 = {
+    labels: labels2,
+    datasets: [{
+        label: 'Umidade em tempo real',
+        backgroundColor: '#009BFF',
+        borderColor: '#009BFF',
+        data: [55, 53, 58, 57, 54, 56], // Dados de umidade
+    }]
+};
+
+// Configurações para o gráfico de temperatura em tempo real
+const config = {
+    type: 'line',
+    data: data,
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'black' // Cor das labels da legenda
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: 'black' // Cor das labels do eixo X
+                }
+            },
+            y: {
+                ticks: {
+                    color: 'black' // Cor das labels do eixo Y
+                }
+            }
+        }
+    }
+};
+
+// Configurações para o gráfico de umidade em tempo real
+const config2 = {
+    type: 'line',
+    data: data2,
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'black' // Cor das labels da legenda
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: 'black' // Cor das labels do eixo X
+                }
+            },
+            y: {
+                ticks: {
+                    color: 'black' // Cor das labels do eixo Y
+                }
+            }
+        }
+    }
+};
+
+// Criando a instância do gráfico de temperatura em tempo real
+const myChart = new Chart(
+    document.getElementById('myChart').getContext('2d'), // ID do elemento HTML onde o gráfico será renderizado
+    config // Configurações do gráfico
+);
+
+// Criando a instância do gráfico de umidade em tempo real
+const myChart2 = new Chart(
+    document.getElementById('myChart2').getContext('2d'), // ID do elemento HTML onde o gráfico será renderizado
+    config2 // Configurações do gráfico
+);
+
+// Configurando o fundo branco para o canvas
+document.getElementById('myChart').style.backgroundColor = 'white';
+document.getElementById('myChart2').style.backgroundColor = 'white';
