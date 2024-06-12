@@ -177,7 +177,7 @@
     width: 30%;
     height: 90%;
     background-color: #D8C4FA;
-    border-radius: 3vh;
+    border-radius: 0.6vh;
     border: 0.4vh solid #8445F2;
 }
 
@@ -240,6 +240,7 @@
     font-size: 30px;
     width: 100%;
     height: 65%;
+    margin-left: 3%;
 }
 
 .situacao img {
@@ -264,10 +265,240 @@
 .caixaKPI {
     width: 25%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .caixaGraficos .container {
     width: 100%;
     height: 45%;
     background-color: #D8C4FA;
+    border: 0.4vh solid #8445F2;
+    border-radius: 0.6vh;
+}
+
+.conteudoCaixa {
+    width: 100%;
+    height: 28.4%;
+    background-color: #D8C4FA;
+    border: 0.4vh solid #8445F2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.6vh;
+}
+
+.metricas {
+    width: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: row;
+}
+
+.temperaturaMetrica {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+.umidadeMetrica {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+.tituloMetrica {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.metricasTemperatura {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: justify;
+    color: #8445F2;
+}
+
+.metricasUmidade {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: justify;
+    color: #8445F2;
+}
+
+.ultimasHoras {
+    width: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: row;
+}
+
+.temperaturaDias {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.temperaturaDias span {
+    color: red;
+}
+
+.umidadeDias span {
+    color: rgb(72, 161, 245);
+}
+
+.umidadeDias {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.caixaBranca {
+    width: 70%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF;
+    border: 0.3vh solid black;
+    border-radius: 0.6vh;
+}
+
+.explicacao {
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+.explicacaomeio {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.div {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.meio {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.meioalerta {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.perigoesqcima {
+    height: 40%;
+    width: 100%;
+    border-top-left-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perigoesqbaixo {
+    height: 40%;
+    width: 100%;
+    border-bottom-left-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divalerta {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.divseguro {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perigodircima {
+    height: 40%;
+    width: 100%;
+    border-top-right-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perigodirbaixo {
+    height: 40%;
+    width: 100%;
+    border-bottom-right-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.corseguro {
+    color: green;
+}
+
+.coralerta {
+    color: yellow;
+}
+
+.corperigo {
+    color: red;
 }
