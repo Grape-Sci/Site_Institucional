@@ -28,9 +28,9 @@ const serial = async (
         {
             // altere!
             // Credenciais do banco de dados
-            host: '',
+            host: '10.18.33.212',
             user: 'aluno',
-            password: 'SPTech#2024',
+            password: 'Sptech#2024',
             database: 'GrapeSci',
             port: 3307
         }
@@ -75,17 +75,26 @@ const serial = async (
 
         // Insere os dados no banco de dados (se habilitado o true) 
         if (HABILITAR_OPERACAO_INSERIR) {
+            for (var i = 1; i <= 6; i++) {
+                const fatorTemperatura = Number((Math.random() * (1.8 - 1.25) + 1.25).toFixed(2));
+                // const fatorUmidade = Number((Math.random() * (1.05 - 0.95) + 0.95).toFixed(2));;
 
-            // altere!
-            // Este insert irá inserir os dados na tabela "medida"
-            await poolBancoDados.execute(
-                'INSERT INTO Registro (consultaUmi, consultaTemp, registroDt) VALUES (?, ?, now())',
-                [dht11Umidade, dht11Temperatura]
-            );
+                // const fatorTemperatura = 1;
+                const fatorUmidade = 1;
+
+
+                var temperaturaAlterada = Number((dht11Temperatura * fatorTemperatura).toFixed(2));
+                var umidadeAlterada = Number((dht11Umidade * fatorUmidade).toFixed(2));
+
+                await poolBancoDados.execute(
+                    'INSERT INTO Registro (consultaUmi, consultaTemp, registroDt, fkDispositivo) VALUES (?, ?, now(), ?)',
+                    [umidadeAlterada, temperaturaAlterada, i]
+                );
+            }
             console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura)
-        
+
         }
-        
+
     });
 
     // Evento para lidar com erros na comunicação serial
