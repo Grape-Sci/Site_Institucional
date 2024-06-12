@@ -50,7 +50,6 @@ idTalhao INT AUTO_INCREMENT,
 qtdVieiras INT NOT NULL,
 tamAreaPlant DOUBLE NOT NULL,
 dtPrev DATE NOT NULL,
-prevColheita DATE NOT NULL,
 fkUva INT,
 fkPlantacao INT,
 PRIMARY KEY (idTalhao, fkPlantacao),
@@ -98,13 +97,13 @@ INSERT INTO Uva (nomeTipo, tempMax, tempMIN, umiMIN, umiMax) VALUES
 ('Uva Rubi', 25.0, 15.0, 60, 70);
 
 
-INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPlantio, prevColheita, fKUva, fkPlantacao) VALUES
-(50, 100, '2024-01-05', '2024-10-05', 1, 1),
-(40, 90, '2024-05-05', '2024-11-05', 2, 1),
-(30, 70, '2024-06-05', '2024-12-05', 3, 1),
-(60, 55, '2024-07-05', '2025-01-05', 1, 2), 
-(100, 60, '2024-08-05', '2024-02-05', 2, 2), 
-(80, 40, '2024-09-05', '2025-03-05', 2, 3);
+INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPrev, fKUva, fkPlantacao) VALUES
+(50, 100, '2024-10-05', 1, 1),
+(40, 90, '2024-11-05', 2, 1),
+(30, 70, '2024-12-05', 3, 1),
+(60, 55, '2025-01-05', 1, 2), 
+(100, 60, '2024-02-05', 2, 2), 
+(80, 40,'2025-03-05', 2, 3);
 
 INSERT INTO Dispositivo (nomeSensor,fkTalhao) VALUES 
 ('Sensor1', 1),
