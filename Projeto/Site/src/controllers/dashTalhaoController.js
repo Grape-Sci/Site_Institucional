@@ -70,7 +70,7 @@ function capturarDadosGrafico(req, res) {
     var idTalhao = req.params.idTalhao;
 
     if (idTalhao == undefined) {
-        res.status(400).send("ID da Empresa está undefined!");
+        res.status(400).send("ID Talhão está undefined!");
     } else {
         dashTalhaoModel.capturarDadosGrafico(idTalhao).then(
             function (infoTalhoes) {
