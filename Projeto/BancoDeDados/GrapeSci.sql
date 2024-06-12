@@ -14,8 +14,6 @@ codAutenticF INT NOT NULL UNIQUE,
 codAutenticG INT NOT NULL UNIQUE
 );
 
-
-
 CREATE TABLE Funcionario (
 idFuncionario INT AUTO_INCREMENT,
 nome VARCHAR(45) NOT NULL,
@@ -75,7 +73,7 @@ FOREIGN KEY (fkDispositivo) REFERENCES Dispositivo(idDispositivo)
 INSERT INTO Empresa (nome, cep, cnpj, email, codAutenticF, codAutenticG) VALUES 
 ('UvasLTDA', '03910091', '44834157000108','uvasltda@grape.com', 121314, 998566),
 ('Uvitas', '05910080', '55088157000102','uvitas@uvitas.com', 262728, 232311),
-('RoxINhas', '05910080', '60078151000222' ,'Roxinhas@outlook.com', 343536, 777390);
+('Roxinhas', '05910080', '60078151000222' ,'Roxinhas@outlook.com', 343536, 777390);
 
 INSERT INTO Funcionario (nome, cpf, senha, email, telefone, cargo, fkEmpresa) VALUES 
 ('Fernando Brandao', '11111111111', '12345678',  'fernando@gmail.com', '11111111111', 'Gerente', 1),

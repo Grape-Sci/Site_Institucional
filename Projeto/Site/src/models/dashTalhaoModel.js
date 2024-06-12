@@ -1,7 +1,7 @@
 var database = require("../database/config");
 
 function capturar_kpiTalhao(idTalhao) {
-  var instrucaoSql = `SELECT TIMESTAMPDIFF(DAY, now(), prevColheita) AS prevColheita, nomeTipo, tempMax, tempMin, umiMax, umiMin FROM Talhao JOIN Uva ON fkUva = idUva  WHERE idTalhao  =  ${idTalhao};`;
+  var instrucaoSql = `SELECT TIMESTAMPDIFF(DAY, now(), dtPrev) AS prevColheita, nomeTipo, tempMax, tempMin, umiMax, umiMin FROM Talhao JOIN Uva ON fkUva = idUva  WHERE idTalhao  =  ${idTalhao};`;
 
   return database.executar(instrucaoSql);
 }
