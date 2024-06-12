@@ -4,7 +4,8 @@ var qtdTalhoesPerigo = 0;
 var qtdTalhoesAlerta = 0;
 
 var listaTempTalhao = [];
-var listaUmiTalhao = []
+var listaUmiTalhao = [];
+
 async function listarTalhoes() {
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
     var idMocked = sessionStorage.ID_MOCADO_PLANTACAO;

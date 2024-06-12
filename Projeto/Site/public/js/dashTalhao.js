@@ -84,6 +84,8 @@ async function capturarKPITalhao() {
         });
 }
 
+setInterval(() => capturarKPITalhao(), 2000);
+
 
 var ultimaTemp;
 var ultimaUmi;
@@ -119,12 +121,12 @@ async function capturarDadosUltimas(idTalhaoSelecionado) {
     })
         .then(async function (resposta) {
             await resposta.json().then((registros24hrs) => {
-                
+
                 MaxTemp = registros24hrs[0].MaxTemp;
                 MaxUmi = registros24hrs[0].MaxUmi;
                 MinUmi = registros24hrs[0].MinUmi;
                 MinTemp = registros24hrs[0].MinTemp;
-     
+
             });
         })
         .catch(function (resposta) {
@@ -132,7 +134,7 @@ async function capturarDadosUltimas(idTalhaoSelecionado) {
         });
 }
 
-async function capturarDadosGrafico(idTalhaoSelecionado){
+async function capturarDadosGrafico(idTalhaoSelecionado) {
     await fetch(`/dashTalhao/capturarDadosGrafico/${idTalhaoSelecionado}`, {
         method: "GET",
     })
@@ -142,8 +144,8 @@ async function capturarDadosGrafico(idTalhaoSelecionado){
                 consultaTemp = dadosGrafico[0].consultaTemp;
                 consultaUmi = dadosGrafico[0].consultaUmi;
                 registroDt = dadosGrafico[0].registroDt;
-                    plotarGraficoTemp(dadosGrafico, idTalhaoSelecionado)
-                    plotarGraficoUmi(dadosGrafico, idTalhaoSelecionado)
+                plotarGraficoTemp(dadosGrafico, idTalhaoSelecionado)
+                plotarGraficoUmi(dadosGrafico, idTalhaoSelecionado)
                 console.log(consultaTemp)
                 console.log(consultaUmi)
                 console.log(registroDt)
@@ -151,116 +153,9 @@ async function capturarDadosGrafico(idTalhaoSelecionado){
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-        }); 
+        });
 }
 
-// const labels = [
-//     '12:00',
-//     '12:01',
-//     '12:02',
-//     '12:03',
-//     '12:04',
-//     '12:05',
-// ];
-
-// const labels2 = [
-//     '12:00',
-//     '12:01',
-//     '12:02',
-//     '12:03',
-//     '12:04',
-//     '12:05',
-// ];
-
-// // Definindo os dados para o gráfico de temperatura em tempo real
-// const data = {
-//     labels: labels,
-//     datasets: [{
-//         label: 'Temperatura em tempo real',
-//         backgroundColor: '#FF2D00',
-//         borderColor: '#FF2D00',
-//         data: [24, 23, 22, 22, 21, 22], // Dados de temperatura
-//     }]
-// };
-
-// // Definindo os dados para o gráfico de umidade em tempo real
-// const data2 = {
-//     labels: labels2,
-//     datasets: [{
-//         label: 'Umidade em tempo real',
-//         backgroundColor: '#009BFF',
-//         borderColor: '#009BFF',
-//         data: [55, 53, 58, 57, 54, 56], // Dados de umidade
-//     }]
-// };
-
-// // Configurações para o gráfico de temperatura em tempo real
-// const config = {
-//     type: 'line',
-//     data: data,
-//     options: {
-//         plugins: {
-//             legend: {
-//                 labels: {
-//                     color: 'black' // Cor das labels da legenda
-//                 }
-//             }
-//         },
-//         scales: {
-//             x: {
-//                 ticks: {
-//                     color: 'black' // Cor das labels do eixo X
-//                 }
-//             },
-//             y: {
-//                 ticks: {
-//                     color: 'black' // Cor das labels do eixo Y
-//                 }
-//             }
-//         }
-//     }
-// };
-
-// // Configurações para o gráfico de umidade em tempo real
-// const config2 = {
-//     type: 'line',
-//     data: data2,
-//     options: {
-//         plugins: {
-//             legend: {
-//                 labels: {
-//                     color: 'black' // Cor das labels da legenda
-//                 }
-//             }
-//         },
-//         scales: {
-//             x: {
-//                 ticks: {
-//                     color: 'black' // Cor das labels do eixo X
-//                 }
-//             },
-//             y: {
-//                 ticks: {
-//                     color: 'black' // Cor das labels do eixo Y
-//                 }
-//             }
-//         }
-//     }
-// };
-
-// // Criando a instância do gráfico de temperatura em tempo real
-// const myChart = new Chart(
-//     document.getElementById('myChart').getContext('2d'), // ID do elemento HTML onde o gráfico será renderizado
-//     config // Configurações do gráfico
-// );
-
-// // Criando a instância do gráfico de umidade em tempo real
-// const myChart2 = new Chart(
-//     document.getElementById('myChart2').getContext('2d'), // ID do elemento HTML onde o gráfico será renderizado
-//     config2 // Configurações do gráfico
-// );
-
-// Configurando o fundo branco para o canvas
 document.getElementById('myChart').style.backgroundColor = 'white';
 document.getElementById('myChart2').style.backgroundColor = 'white';
 
@@ -275,13 +170,13 @@ function plotarGraficoTemp(dadosGrafico, idTalhaoSelecionado) {
     let dados = {
         labels: labels,
         datasets: [
-        {
-            label: 'Temperatura',
-            data: [],
-            fill: false,
-            borderColor: 'rgb(199, 52, 52)',
-            tension: 0.1
-        }]
+            {
+                label: 'Temperatura',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(199, 52, 52)',
+                tension: 0.1
+            }]
     };
 
     console.log('----------------------------------------------')
@@ -291,7 +186,8 @@ function plotarGraficoTemp(dadosGrafico, idTalhaoSelecionado) {
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < dadosGrafico.length; i++) {
         var registro = dadosGrafico[i];
-        labels.push(registro.registroDt);
+        var dataAtualizada = new Date(registro.registroDt)
+        labels.push(dataAtualizada.toLocaleString());
         dados.datasets[0].data.push(registro.consultaTemp);
     }
 
@@ -344,7 +240,8 @@ function plotarGraficoUmi(dadosGrafico, idTalhaoSelecionado) {
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < dadosGrafico.length; i++) {
         var registro = dadosGrafico[i];
-        labels.push(registro.registroDt);
+        var dataAtualizada = new Date(registro.registroDt)
+        labels.push(dataAtualizada.toLocaleString());
         dados.datasets[0].data.push(registro.consultaUmi);
     }
 
@@ -410,13 +307,14 @@ function atualizarGraficoTemp(idTalhaoSelecionado, dados, myChart) {
                 } else {
                     // tirando e colocando valores no gráfico
                     dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro[0].registroDt); // incluir um novo momento
+                    var dataAtualizada = new Date(novoRegistro[0].registroDt)
+                    dados.labels.push(dataAtualizada.toLocaleString()); // incluir um novo momento
 
                     // dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                     // dados.datasets[0].data.push(novoRegistro[0].consultaUmi); // incluir uma nova medida de umidade
 
-                    dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[1].data.push(novoRegistro[0].consultaTemp); // incluir uma nova medida de temperatura
+                    dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                    dados.datasets[0].data.push(novoRegistro[0].consultaTemp); // incluir uma nova medida de temperatura
 
                     myChart.update();
                 }
@@ -462,7 +360,8 @@ function atualizarGraficoUmi(idTalhaoSelecionado, dados, myChart) {
                 } else {
                     // tirando e colocando valores no gráfico
                     dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro[0].registroDt); // incluir um novo momento
+                    var dataAtualizada = new Date(novoRegistro[0].registroDt)
+                    dados.labels.push(dataAtualizada.toLocaleString())// incluir um novo momento
 
                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                     dados.datasets[0].data.push(novoRegistro[0].consultaUmi); // incluir uma nova medida de umidade
