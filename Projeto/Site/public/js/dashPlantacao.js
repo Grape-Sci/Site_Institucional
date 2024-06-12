@@ -7,6 +7,10 @@ var listaTempTalhao = [];
 var listaUmiTalhao = [];
 
 async function listarTalhoes() {
+    var qtdTalhoesSeguro = 0;
+    var qtdTalhoesPerigo = 0;
+    var qtdTalhoesAlerta = 0;
+
     var idPlantacao = sessionStorage.PLANTACAO_ATUAL;
     var idMocked = sessionStorage.ID_MOCADO_PLANTACAO;
     var idEmpresa = sessionStorage.ID_EMPRESA;
@@ -121,7 +125,11 @@ async function listarTalhoes() {
             qtdAlerta.innerHTML = `${qtdTalhoesAlerta}`
             qtdPerigo.innerHTML = `${qtdTalhoesPerigo}`
         });
+
 }
+
+setInterval(() => { listarTalhoes() }, 2000)
+
 
 async function listarPlantacaoKPI(idPlantacao) {
     await fetch(`/dashPlantacao/listarPlantacoesKPI/${idPlantacao}`, {
