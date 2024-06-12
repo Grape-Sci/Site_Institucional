@@ -79,6 +79,7 @@ INSERT INTO Empresa (nome, cep, cnpj, email, codAutenticF, codAutenticG) VALUES
 ('RoxINhas', '05910080', '60078151000222' ,'Roxinhas@outlook.com', 343536, 777390);
 
 INSERT INTO Funcionario (nome, cpf, senha, email, telefone, cargo, fkEmpresa) VALUES 
+('Fernando Brandao', '11111111111', '12345678',  'fernando@gmail.com', '11111111111', 'Gerente', 1),
 ('João Silva', '45088953210', 'Lagarto023', 'Joao.Silva@gmail.com', '11957867699', 'Funcionario', 1),
 ('Tom Donajam', '33908953210', '11DonDon89', 'TomDonajam.gerente@bol.com.br', '11957444909', 'Gerente', 1),
 ('Rafaela Moreira', '38287926908', 'SeGreDo9575', 'Moreira_gerente1@gmail.com', '16988423151', 'Gerente', 2),
@@ -98,12 +99,12 @@ INSERT INTO Uva (nomeTipo, tempMax, tempMIN, umiMIN, umiMax) VALUES
 
 
 INSERT INTO Talhao (qtdVieiras, tamAreaPlant, dtPlantio, prevColheita, fKUva, fkPlantacao) VALUES
-(50, 100, '2024-01-05', '2024-05-05', 1, 1),
-(40, 90, '2024-05-05', '2024-09-05', 2, 1),
-(30, 70, '2024-06-05', '2024-10-05', 3, 1),
-(60, 55, '2024-07-05', '2024-11-05', 1, 2), 
-(100, 60, '2024-08-05', '2024-12-05', 2, 2), 
-(80, 40, '2024-09-05', '2025-01-05', 2, 3);
+(50, 100, '2024-01-05', '2024-10-05', 1, 1),
+(40, 90, '2024-05-05', '2024-11-05', 2, 1),
+(30, 70, '2024-06-05', '2024-12-05', 3, 1),
+(60, 55, '2024-07-05', '2025-01-05', 1, 2), 
+(100, 60, '2024-08-05', '2024-02-05', 2, 2), 
+(80, 40, '2024-09-05', '2025-03-05', 2, 3);
 
 INSERT INTO Dispositivo (nomeSensor,fkTalhao) VALUES 
 ('Sensor1', 1),
@@ -136,4 +137,10 @@ SELECT r.idRegistro, r.consultaUmi, r.consultaTemp, r.registroDt, r.fkDispositiv
 	JOIN (SELECT fkDispositivo, MAX(registroDt) AS UltimaData FROM Registro GROUP BY fkDispositivo) AS UltimosRegistros
 		ON r.fkDispositivo = UltimosRegistros.fkDispositivo AND r.registroDt = UltimosRegistros.UltimaData
 		 LEFT JOIN Dispositivo d ON r.fkDispositivo = d.idDispositivo;
+
+DROP VIEW IF EXISTS MaxMinRegistrosTalhaoUltimas24Horas;
+CREATE VIEW MaxMinRegistrosTalhaoUltimas24Horas AS 
+SELECT d.fkTalhao, MAX(r.consultaUmi) AS MaxUmi, MIN(r.consultaUmi) AS MinUmi, MAX(r.consultaTemp) AS MaxTemp, MIN(r.consultaTemp) AS MinTemp
+	FROM Registro AS r JOIN Dispositivo d ON r.fkDispositivo = d.idDispositivo WHERE r.registroDt >= NOW() - INTERVAL 1 DAY
+GROUP BY d.fkTalhao;
 	
