@@ -16,9 +16,10 @@ function monitorar(idPlantacaoSelecionada, idMocado) {
     sessionStorage.PLANTACAO_ATUAL = idPlantacaoSelecionada;
     sessionStorage.ID_MOCADO_PLANTACAO = idMocado;
     window.location = "dashPlantacao.html";
-}
-
-function analisar(idTalhaoSelecionado, idMocado) {
+    }
+    
+    function analisar(idTalhaoSelecionado, idMocado) {
+    alert(idMocado)
     sessionStorage.TALHAO_ATUAL = idTalhaoSelecionado;
     sessionStorage.ID_MOCADO_TALHAO = idMocado;
     window.location = "dashTalhao.html";

@@ -105,7 +105,7 @@ async function listarTalhoes() {
                             </div>
                         </div>
                         <div class="botaoTalhao">
-                            <button onclick="analisar(${talhaoAtual.idTalhao})">Analisar</button>
+                            <button onclick="analisar(${talhaoAtual.idTalhao}, ${index + 1})">Analisar</button>
                         </div>
                     </div>`;
                     }
@@ -128,7 +128,7 @@ async function listarTalhoes() {
 
 }
 
-setInterval(() => { listarTalhoes() }, 2000)
+setInterval(() => { listarTalhoes() }, 8000)
 
 
 async function listarPlantacaoKPI(idPlantacao) {

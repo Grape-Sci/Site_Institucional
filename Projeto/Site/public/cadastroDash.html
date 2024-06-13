@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="listarPlantacoes()">
+<body onload="listarPlantacoes(), exibirUsuario()">
   <div class="pagina">
     <div class="navBar">
       <div class="logo">
@@ -40,7 +40,7 @@
           <div class="imagem">
             <img src="img/fazendeiro.png" alt="">
           </div>
-          <span>Usuário</span>
+          <span id="nomeUsuario">Usuário</span>
           <button onclick="sair()">Sair</button>
         </div>
       </div>
@@ -128,6 +128,13 @@
 
 
 <script>
+function exibirUsuario() {
+    var nome = sessionStorage.NOME_USUARIO;
+
+    nomeUsuario.innerHTML = `${nome}`;
+    var cargo = sessionStorage.CARGO_USUARIO;
+}
+
   function adicionarP() {
 
     var areaT = Number(input_areaTotal.value);

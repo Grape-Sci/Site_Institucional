@@ -22,16 +22,16 @@
                     <div class="inputsCad1">
                         <div class="container">
                             <div class="campo">
-                                <input type="text" id="input_usuario" placeholder="Usuário">
+                                <input type="text" value="João Reali" id="input_usuario" placeholder="Usuário">
                             </div>
                             <div class="campo">
-                                <input type="text" id="input_cpf" placeholder="CPF" maxlength="14" onkeypress="mascararCpf(Event)">
+                                <input type="text" value="656.909.787-11" id="input_cpf" placeholder="CPF" maxlength="14" onkeypress="mascararCpf(Event)">
                             </div>
                             <div class="campo">
-                                <input type="text" id="input_telefone" placeholder="Telefone" maxlength="15" onkeypress="mascararTel(Event)">
+                                <input type="text" value="(11) 99128-2972" id="input_telefone" placeholder="Telefone" maxlength="15" onkeypress="mascararTel(Event)">
                             </div>
                             <div class="campo">
-                                <input type="password"  id="input_senha" placeholder="Senha">
+                                <input type="password" value="12345678" id="input_senha" placeholder="Senha">
                             </div>
                         </div>
                     </div>
@@ -43,17 +43,17 @@
                                 </select>
                             </div>
                             <div class="campo">
-                                <input type="text" value="" id="input_email" placeholder="Email">
+                                <input type="text" value="joao@gmail.com" id="input_email" placeholder="Email">
                             </div>
                             <div class="campo">
                                 <select id="select_cargo">
-                                    <option value="0" selected disabled>Selecione seu cargo:</option>
-                                    <option value="1">Gerente</option>
+                                    <option value="0" disabled>Selecione seu cargo:</option>
+                                    <option selected value="1">Gerente</option>
                                     <option value="2">Funcionário</option>
                                 </select>
                             </div>
                             <div class="campo">
-                                <input type="password" value="" id="input_confirmarSenha"
+                                <input type="password" value="12345678" id="input_confirmarSenha"
                                     placeholder="Confirmar senha">
                             </div>
                         </div>
@@ -105,4 +105,5 @@
 </html>
 
 <script src="js/cadastro.js">
+    
 </script>

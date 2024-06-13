@@ -1,13 +1,15 @@
 async function capturarKPITalhao() {
     var idTalhaoSelecionado = sessionStorage.TALHAO_ATUAL;
-
+    var idMocado = sessionStorage.ID_MOCADO_TALHAO;
+    
     var situacao = "";
     var situacaoTemp = "";
     var situacaoUmi = "";
-
+    
     await capturarSituacao(idTalhaoSelecionado);
     await capturarDadosUltimas(idTalhaoSelecionado);
     await capturarDadosGrafico(idTalhaoSelecionado)
+    nomeTalhao.innerHTML= `Talhão ${idMocado}`
 
     fetch(`/dashTalhao/capturar_kpiTalhao/${idTalhaoSelecionado}`, {
         method: "GET",
