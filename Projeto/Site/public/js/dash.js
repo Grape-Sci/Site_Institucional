@@ -19,7 +19,6 @@ function monitorar(idPlantacaoSelecionada, idMocado) {
     }
     
     function analisar(idTalhaoSelecionado, idMocado) {
-    alert(idMocado)
     sessionStorage.TALHAO_ATUAL = idTalhaoSelecionado;
     sessionStorage.ID_MOCADO_TALHAO = idMocado;
     window.location = "dashTalhao.html";
